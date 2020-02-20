@@ -5,7 +5,21 @@ repo = 'prabirshrestha/vim-lsp'
 # async auto complete
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+merged = 0
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
 # fuzzy finder
 [[plugins]]
 repo = 'junegunn/fzf'

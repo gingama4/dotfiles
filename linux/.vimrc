@@ -161,6 +161,8 @@ let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_sizestyle='H'
 let g:netrw_timefmt='%Y/%m/%d(%a) %H:%M:%S'
+let g:netrw_preview=1
+let g:netrw_altv=1
 " }}}
 
 " 拡張子ごとのインデントを指定する {{{
@@ -342,6 +344,9 @@ augroup END
 " *でカーソルを移動しないようにする
 noremap * *N
 
+" jjでINSERTを脱出
+inoremap jj <Esc><CR>
+
 " ファイル保存と終了 {{{
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q!<CR>
@@ -392,6 +397,13 @@ nnoremap va7 va'
 nnoremap va@ va`
 nnoremap va[ va[
 nnoremap va{ va{
+" }}}
+
+" ウィンドウ移動 {{{
+nnoremap <Leader>h <C-w>h<CR>
+nnoremap <Leader>j <C-w>j<CR>
+nnoremap <Leader>k <C-w>k<CR>
+nnoremap <Leader>l <C-w>l<CR>
 " }}}
 
 " 行先頭と行末
@@ -462,33 +474,26 @@ nnoremap <C-P> :Files<CR>
 " }}}
 
 " lsp settings {{{
-nnoremap <silent> <C-]> :LspDefinition<CR>
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <f2> <plug>(lsp-rename)
+  nnoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+endfunction
 
-" 非同期補完を有効にする
-"let g:lsp_async_completion = 1
-
-" lsp log
-"let g:lsp_log_verbose = 0
-"let g:lsp_log_file = expand('~/vim-lsp.log')
-
-" enable signs
-let g:lsp_signs_error = {'text': 'ｳﾎ'}
-let g:lsp_signs_warning = {'text': '🍌'}
-let g:lsp_signs_enabled = 1
-"let g:lsp_diagnostics_echo_cursor = 1
-
-" Go {{{
-augroup LspGo
-    au!
-    if executable('gopls')
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'gopls',
-                    \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-                    \ 'whitelist': ['go'],
-                    \ })
-    endif
+augroup lsp_install
+au!
+autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-" }}}
+command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
+
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+"let g:asyncomplete_auto_popup = 1
+"let g:asyncomplete_auto_completeopt = 0
+"let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
 
 " }}}
 
