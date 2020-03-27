@@ -1,0 +1,84 @@
+# language server protocol
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+# async auto complete
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+merged = 0
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+# fuzzy finder
+[[plugins]]
+repo = 'junegunn/fzf'
+build_on = '''
+./install --all
+'''
+
+# fzf for vim
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+merged = 0
+
+# resize window size on vim
+[[plugins]]
+repo = 'simeji/winresizer'
+
+# status line
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+	let g:lightline = {
+		\ 'colorscheme': 'wombat',
+		\ 'active': {
+			\ 'left': [ ['mode', 'paste'], ['readonly', 'filepath', 'modified'] ]
+			\ },
+		\ 'component_function':{
+			\ 'filepath': 'FilePath',
+			\ },
+		\ }
+
+	function! FilePath()
+		if winwidth(0) > 90
+			return expand("%:s")
+		else
+			return expand("%:t")
+		endif
+	endfunction
+
+	" # show statusbar
+	set laststatus=2
+	" # hide --INSERT--
+	set noshowmode
+'''
+
+# syntax file type toml
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+# color scheme
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+# vim help ja
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
