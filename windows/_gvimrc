@@ -1,0 +1,8 @@
+" カラースキーマ
+colorscheme iceberg
+
+set renderoptions=type:directx,renmode:5
+
+" 文字サイズ
+set guifont=Cica:h12 guifontwide=Cica:h12
+
