@@ -132,8 +132,7 @@ set undolevels=1000
 " }}}
 
 " Windowsのクリップボードを共有 {{{
-set guioptions+=a
-set clipboard^=unnamedplus
+set clipboard^=unnamed,unnamedplus
 " }}}
 
 " カーソルが常に中央に来るようにする {{{
@@ -318,8 +317,9 @@ augroup HighlightTrailingSpaces
 augroup END
 " }}}
 
-" swapファイルを作成しない
+" swapファイル等を作成しない
 set noswapfile
+set nobackup
 
 " {{{ セッションで保存する対象を設定する
 if !has('nvim')
@@ -498,18 +498,6 @@ let g:lsp_diagnostics_echo_cursor = 1
 "let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 
-" }}}
-
-" {{{ WSLのクリップボード設定
-"if $WSL_DISTRO_NAME != ''
-"    augroup yankpost
-"        au!
-"        autocmd TextYankPost * echo v:event
-"        autocmd TextYankPost * call system('win32yank.exe -i', v:event.regcontents + [''])
-"    augroup END
-"
-"    noremap <silent> <Leader>p :call setreg('"',system('win32yank.exe -o'))<CR>
-"endif
 " }}}
 
 " }}}
