@@ -1,0 +1,13 @@
+[push]
+	default = simple
+[core]
+	autocrlf = false
+	ignorecase = false
+	editor = vim
+[color]
+	ui = true
+[alias]
+	st = status
+	co = commit
+	ps = push
+	sw = switch
