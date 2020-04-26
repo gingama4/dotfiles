@@ -12,11 +12,20 @@ read username
 echo -n INPUT_EMAIL_ADD:
 read useremail
 
-ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
-
+# git
 cp ~/dotfiles/git/gitconfig ~/.gitconfig
 git config --global user.name $username
 git config --global user.email $useremail
+
+# vim
+ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+if [ ! -d ~/.vim ];then
+	mkdir ~/.vim
+fi
+
+if [ ! -d ~/.vim/undo ];then
+	mkdir ~/.vim/undo
+fi
 
 printf "${ESC}[36m%s${RESET}\n" "Setup Complete"
 

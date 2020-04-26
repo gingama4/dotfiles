@@ -51,6 +51,11 @@ set hlsearch
 
 " Undo ------------------------------------------------------------------------------- {{{
 set undolevels=1000
+if has('persistent_undo')
+	let undo_path = expand('~/.vim/undo')
+	exe 'set undodir=' .. undo_path
+	set undofile
+endif
 " }}}
 
 " クリップボード
