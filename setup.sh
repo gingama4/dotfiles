@@ -18,7 +18,7 @@ git config --global user.name $username
 git config --global user.email $useremail
 
 # vim
-ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
 if [ ! -d ~/.vim ];then
 	mkdir ~/.vim
 fi
