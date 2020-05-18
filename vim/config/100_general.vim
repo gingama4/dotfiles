@@ -81,3 +81,4 @@ let g:netrw_preview=1
 " wildmenuを有効化
 set wildmenu
 
+

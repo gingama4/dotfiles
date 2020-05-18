@@ -26,6 +26,7 @@ fi
 if [ ! -d ~/.vim/undo ];then
 	mkdir ~/.vim/undo
 fi
+ln -sf ~/dotfiles/vim/dein.toml ~/.vim/dein.toml
 
 printf "${ESC}[36m%s${RESET}\n" "Setup Complete"
 
