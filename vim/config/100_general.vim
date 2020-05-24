@@ -18,6 +18,10 @@ set fileformats=unix,dos,mac
 " シンタックスの有効化
 syntax enable
 
+" カラースキーム
+colorscheme darkblue " 何故か別のカラースキームを設定しておかないと白くなる
+colorscheme iceberg
+
 " インデントの設定 -------------------------------------------------------------------- {{{
 filetype plugin indent on
 set smartindent
@@ -81,4 +85,5 @@ let g:netrw_preview=1
 " wildmenuを有効化
 set wildmenu
 
-
+" swapファイルを無効化
+set noswapfile

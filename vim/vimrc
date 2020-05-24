@@ -62,10 +62,6 @@ endif
 
 " }}}
 
-" カラースキーム
-colorscheme darkblue " 何故か別のカラースキームを設定しておかないと白くなる
-colorscheme iceberg
-
 " 設定ファイルをすべて読み込む
 set runtimepath+=~/dotfiles/vim/
 call map(sort(split(globpath(&runtimepath, 'config/*.vim'))), {->[execute('exec "so" v:val')]})

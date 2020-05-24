@@ -17,8 +17,8 @@ nnoremap <C-l> <C-w>l
 " }}}
 
 " vimrc ------------------------------------------------------------------------------ {{{
-" 新規タブでvimrcを開く
-nnoremap <leader>. :tabe $MYVIMRC<CR>
+" 新規タブでvimrcフォルダを開く
+nnoremap <leader>. :tabe ~/dotfiles/vim/config<CR>
 " vimrcを読み込む
 nnoremap <leader>s :source $MYVIMRC<CR>
 " }}}
