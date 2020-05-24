@@ -59,3 +59,6 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
