@@ -54,5 +54,8 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
 repo = 'scrooloose/nerdtree'
 
