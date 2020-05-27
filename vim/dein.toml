@@ -69,3 +69,7 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
+# EditorConfig
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
