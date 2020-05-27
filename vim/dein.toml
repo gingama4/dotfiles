@@ -21,6 +21,10 @@ merged = 0
 [[plugins]]
 repo = 'mattn/vim-lsp-icons'
 
+# resize window size
+[[plugins]]
+repo = 'simeji/winresizer'
+
 # color scheme
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
@@ -50,15 +54,18 @@ hook_add = '''
 	" # show statusbar
 	set laststatus=2
 	" # hide --INSERT--
-	set noshowmode
+	" set noshowmode
 '''
 
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
-
+# folder tree
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+# git
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
+# NERD Font
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
 

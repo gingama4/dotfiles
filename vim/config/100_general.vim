@@ -19,7 +19,7 @@ set fileformats=unix,dos,mac
 syntax enable
 
 " カラースキーム
-colorscheme darkblue " 何故か別のカラースキームを設定しておかないと白くなる
+set background=dark
 colorscheme iceberg
 
 " インデントの設定 -------------------------------------------------------------------- {{{
@@ -87,3 +87,17 @@ set wildmenu
 
 " swapファイルを無効化
 set noswapfile
+
+" ウィンドウサイズ自動調整を無効化
+set noequalalways
+
+" タブを常に表示
+set showtabline=2
+
+" {{{ 外部でファイルの変更があった場合、自動読み込み
+set autoread
+augroup vimrc-misc
+	au!
+	autocmd WinEnter, FocusGained * checktime
+augroup END
+" }}}
