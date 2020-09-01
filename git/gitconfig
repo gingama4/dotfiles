@@ -11,3 +11,5 @@
 	co = commit
 	ps = push
 	sw = switch
+[credential]
+	helper = store
