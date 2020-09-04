@@ -13,3 +13,8 @@
 	sw = switch
 [credential]
 	helper = store
+[pull]
+	rebase = true
+[url "git@github.com:"]
+    pushInsteadOf = https://github.com/
+
