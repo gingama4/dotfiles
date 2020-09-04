@@ -5,7 +5,7 @@ printf "${ESC}[32m%s${RESET}\n" "tmux setup"
 
 if [[ ! -d $HOME/.tmux-themepack ]]; then
     echo "clone tmux-themepack"
-    git clone https://github.com/jimeh/tmux-thmepack.git ~/.tmux-themepack
+    git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 fi
 
 if [[ ! -d $HOME/.tmux-resurrect ]]; then
@@ -15,11 +15,11 @@ fi
 
 if [[ ! -e $HOME/.tmux.conf ]]; then
     echo "link tmux.conf"
-    ln -sf ./tmux/tmux.conf ~/.tmux.conf
+    ln -sf $PWD/tmux.conf ~/.tmux.conf
 
     case "$(uname)" in
         "Linux" )
-            ln -sf ./tmux/tmux.conf.linux ~/.tmux.conf.linux
+            ln -sf $PWD/tmux.conf.linux ~/.tmux.conf.linux
     esac
 fi
 

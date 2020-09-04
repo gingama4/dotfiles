@@ -11,6 +11,6 @@ read username
 echo -n INPUT_EMAIL_ADD:
 read useremail
 
-cp ~/dotfiles/git/gitconfig ~/.gitconfig
+cp $PWD/gitconfig ~/.gitconfig
 git config --global user.name $username
 git config --global user.email $useremail

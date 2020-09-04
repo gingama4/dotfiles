@@ -4,14 +4,20 @@ ESC=$(printf '\033') RESET="${ESC}[0m"
 
 printf "${ESC}[36m%s${RESET}\n" "Setup gingama4's dotfiles!!"
 
+locale=$PWD
+
 # git
-bash ./git/install.sh
+cd $locale/git
+bash install.sh
 
 # vim
-bash ./vim/install.sh
+cd $locale/vim
+bash install.sh
 
 # tmux
-bash ./tmux/install.sh
+cd $locale/tmux
+bash install.sh
 
+cd $locale
 printf "${ESC}[36m%s${RESET}\n" "Setup Complete"
 

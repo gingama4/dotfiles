@@ -10,7 +10,7 @@ if [ ! -e $path ];then
 	mkdir -p $path
 fi
 
-if [ ! -e $path/config ];then
+if [ ! -L $path/config ];then
     echo "link config"
     ln -s $PWD/config $path/config
 fi
@@ -20,7 +20,7 @@ if [ ! -e $HOME/.vimrc ];then
     ln -sf $PWD/vimrc $HOME/.vimrc
 fi
 
-if [ ! -e $path/undo ];then
+if [ ! -d $path/undo ];then
     echo "make undo"
     mkdir $path/undo
 fi
