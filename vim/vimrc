@@ -63,6 +63,5 @@ endif
 " }}}
 
 " 設定ファイルをすべて読み込む
-set runtimepath+=~/dotfiles/vim/
 call map(sort(split(globpath(&runtimepath, 'config/*.vim'))), {->[execute('exec "so" v:val')]})
 
