@@ -73,3 +73,11 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
+# surround
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+# bracket
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
