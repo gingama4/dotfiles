@@ -23,3 +23,5 @@ nnoremap <leader>. :tabe ~/dotfiles/vim/config<CR>
 nnoremap <leader>s :source $MYVIMRC<CR>
 " }}}
 
+" セミコロンでコロン入力
+nnoremap ; :
