@@ -9,7 +9,7 @@ scriptencoding utf-8
 " ミュート
 set belloff=all
 
-" 文字コード -------------------------------------------------------------------------- {{{
+" 文字コード {{{
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,ecu-jp,sjis
 set fileformats=unix,dos,mac
@@ -22,19 +22,27 @@ syntax enable
 set background=dark
 colorscheme iceberg
 
-" インデントの設定 -------------------------------------------------------------------- {{{
+" 背景の透過 {{{
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none 
+" }}}
+
+" インデントの設定 {{{
 filetype plugin indent on
 set smartindent
 set autoindent
 " }}}
 
-" タブの設定 -------------------------------------------------------------------------- {{{
+" タブの設定 {{{
 set expandtab
 set tabstop=4
 set shiftwidth=4
 " }}}
 
-" バックスペースの設定 ---------------------------------------------------------------- {{{
+" バックスペースの設定 {{{
 set backspace=2
 set ambiwidth=double
 " }}}
@@ -48,13 +56,13 @@ set textwidth=0
 " 行番号を表示
 set number
 
-" 検索設定 --------------------------------------------------------------------------- {{{
+" 検索設定 {{{
 set incsearch
 set smartcase
 set hlsearch
 " }}}
 
-" Undo ------------------------------------------------------------------------------- {{{
+" Undo {{{
 set undolevels=1000
 if has('persistent_undo')
 	let undo_path = expand('~/.vim/undo')
@@ -69,12 +77,12 @@ set clipboard=unnamed
 " カーソルが中央に来るようにする
 set scrolloff=100
 
-" カーソルラインの表示 --------------------------------------------------------------- {{{
+" カーソルラインの表示 {{{
 set cursorline
 set cursorlineopt=number
 " }}}
 
-" netrwツリー ------------------------------------------------------------------------ {{{
+" netrwツリー {{{
 let g:netrw_listtyle=3
 let g:netrw_banner=0
 let g:netrw_sizestyle='H'
