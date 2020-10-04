@@ -54,7 +54,7 @@ hook_add = '''
 
 # folder tree
 [[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'preservim/nerdtree'
 
 # git
 [[plugins]]
