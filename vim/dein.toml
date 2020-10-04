@@ -3,15 +3,6 @@ repo = 'Shougo/dein.vim'
 
 # Language Server Protocol
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
@@ -20,6 +11,11 @@ merged = 0
 
 [[plugins]]
 repo = 'mattn/vim-lsp-icons'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 # resize window size
 [[plugins]]
@@ -50,7 +46,6 @@ hook_add = '''
 			return expand("%:t")
 		endif
 	endfunction
-
 	" # show statusbar
 	set laststatus=2
 	" # hide --INSERT--
@@ -81,3 +76,12 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'cohama/lexima.vim'
 
+# JP Help
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+# Fuzzy Finder
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+[[plugins]]
+repo = 'mattn/ctrlp-matchfuzzy'
