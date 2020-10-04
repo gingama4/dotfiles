@@ -6,17 +6,12 @@ printf "${ESC}[36m%s${RESET}\n" "Setup gingama4's dotfiles!!"
 
 locale=$PWD
 
-# git
-cd $locale/git
-bash install.sh
+target="git vim tmux fish"
 
-# vim
-cd $locale/vim
-bash install.sh
-
-# tmux
-cd $locale/tmux
-bash install.sh
+for v in $target; do
+    cd $locale/$v
+    bash install.sh
+done
 
 cd $locale
 printf "${ESC}[36m%s${RESET}\n" "Setup Complete"
