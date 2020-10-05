@@ -1,11 +1,11 @@
-##= PATH ====================================
+##= ENV ======================================
 
 # brew
 set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
+# anyenv
 status --is-interactive; and source (anyenv init -|psub)
 
 ##= Alias ====================================
-alias g='cd (ghq root)/(ghq list | peco)'
-alias lag='lazygit'
-alias lad='lazydocker'
+alias lg='lazygit'
 
+fish_vi_key_bindings

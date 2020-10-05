@@ -2,6 +2,6 @@
 
 * vim
 * tmux
-* bash
+* fish
 * git
 
