@@ -1,5 +1,8 @@
 ##= ENV ======================================
 
+# PATH
+set -x PATH $HOME/.local/bin $PATH
+
 # brew
 set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
 # anyenv
