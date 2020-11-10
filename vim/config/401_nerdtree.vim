@@ -6,9 +6,7 @@ scriptencoding utf-8
 "
 "==============================================================
 
-if empty(globpath(&rtp, 'autoload/nerdtree.vim'))
-    finish
-endif
+UsePlugin 'nerdtree'
 
 autocmd StdinReadPre * let s:std_in=1
 let g:NERDTreeShowHidden=1
