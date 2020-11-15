@@ -25,8 +25,3 @@ if [ ! -d $path/undo ];then
     mkdir $path/undo
 fi
 
-if [ ! -e $path/dein.toml ];then
-    echo "link dein.toml"
-    ln -sf $PWD/dein.toml $path/dein.toml
-fi
-
