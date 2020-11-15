@@ -6,9 +6,7 @@ scriptencoding utf-8
 "
 "==============================================================
 
-if empty(globpath(&rtp, 'help_ja.vim'))
-    finish
-endif
+UsePlugin 'vimdoc-ja'
 
 set helplang=ja
 

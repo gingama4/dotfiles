@@ -6,9 +6,7 @@ scriptencoding utf-8
 "
 "==============================================================
 
-if empty(globpath(&rtp, 'autoload/lsp.vim'))
-    finish
-endif
+UsePlugin 'vim-lsp'
 
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete

@@ -6,9 +6,7 @@ scriptencoding utf-8
 "
 "==============================================================
 
-if empty(globpath(&rtp, 'autoload/ctrlp.vim'))
-    finish
-endif
+UsePlugin 'ctrlp.vim'
 
 let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
 nnoremap <leader>c :CtrlP<CR>

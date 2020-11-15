@@ -6,9 +6,7 @@ scriptencoding utf-8
 "
 "==============================================================
 
-if empty(globpath(&rtp, 'webdevicons.vim'))
-    finish
-endif
+UsePlugin 'vim-devicons'
 
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
