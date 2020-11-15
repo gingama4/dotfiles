@@ -18,10 +18,6 @@ set fileformats=unix,dos,mac
 " シンタックスの有効化
 syntax enable
 
-" カラースキーム
-set background=dark
-colorscheme iceberg
-
 " 背景の透過 {{{
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
