@@ -47,6 +47,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/vim-goimports'
+Plug 'mattn/emmet-vim'
 call plug#end()
 " }}}
 
