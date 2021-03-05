@@ -48,6 +48,7 @@ Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/vim-goimports'
 Plug 'mattn/emmet-vim'
+Plug 'skanehira/preview-markdown.vim'
 call plug#end()
 " }}}
 
