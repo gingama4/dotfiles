@@ -1,0 +1,31 @@
+name: Test
+
+on: [push]
+
+jobs:
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Update packages
+        run: pacman -Syyu --noconfirm
+      - name: Install required packages
+        run: pacman -S --noconfirm git sudo
+      - name: Install dotfiles
+        run: ./seup.sh install
+      - name: Add user
+        run: useradd builduser -m
+      - name: Add sudoer
+        run: echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
+      - name: Change password
+        run: passwd -d builduser
+  ubuntu:
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install required packaged
+        run: apt update && apt install -y git sudo
+      - name: Install dotfiles
+        run: ./setup.sh install
