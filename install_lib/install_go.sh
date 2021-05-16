@@ -15,7 +15,7 @@ is_install="true"
 if [[ "$#" = 2 ]] && [[ "$2" = "update" ]]; then
   go_version=$(go version | awk '{print $3}')
   current_version=${go_version:2}
-  result=`echo "${version//./} > ${current_version//./}" | bc`
+  result=$(echo "${version//./} > ${current_version//./}" | bc)
   if [[ $result -eq 1 ]]; then
     if ! yes_or_no_select "Do you want to update from Go$current_version to Go$version?" ; then
       is_install="false"
