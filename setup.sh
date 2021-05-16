@@ -75,8 +75,13 @@ function main() {
     print_info " INSTALL"
     print_info "#################################"
     print_info ""
+
     if [[ -n "$INSTALL_GO_VERSION" ]]; then
       source  $current_dir/install_lib/install_go.sh $INSTALL_GO_VERSION
+    fi
+
+    if [[ -n "$INSTALL_NVM_VERSION" ]]; then
+      source  $current_dir/install_lib/install_nvm.sh $INSTALL_NVM_VERSION
     fi
   fi
 
@@ -86,8 +91,13 @@ function main() {
     print_info " UPDATE"
     print_info "#################################"
     print_info ""
+
     if [[ -n "$INSTALL_GO_VERSION" ]]; then
       source  $current_dir/install_lib/install_go.sh $INSTALL_GO_VERSION update
+    fi
+
+    if [[ -n "$INSTALL_NVM_VERSION" ]]; then
+      source  $current_dir/install_lib/install_nvm.sh $INSTALL_NVM_VERSION update
     fi
   fi
 

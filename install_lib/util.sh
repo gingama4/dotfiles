@@ -68,3 +68,7 @@ function yes_or_no_select() {
     ;;
   esac
 }
+
+function _has() {
+  type "$1" > /dev/null 2>&1
+}
