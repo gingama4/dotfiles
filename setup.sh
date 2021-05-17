@@ -67,7 +67,7 @@ function main() {
 
   if [[ "$is_install" == false && "$is_update" == false && "$is_link" == false ]]; then
     is_install="true"
-    is_update="true"
+    is_update="false"
     is_link="true"
   fi
 
