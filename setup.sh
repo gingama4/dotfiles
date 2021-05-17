@@ -6,7 +6,7 @@ set -ue
 #- Functions
 #
 function usage() {
-  print_default "Usage: ${BASH_SOURCE[0]:-$0} [install | update | link] [--help | -h]" 0>&2
+  print_default "Usage: ${BASH_SOURCE[0]:-$0} [install | update | link | go-pack] [--help | -h]" 0>&2
 }
 
 #
@@ -24,6 +24,7 @@ function main() {
   local is_install="false"
   local is_update="false"
   local is_link="false"
+  local is_go="false"
 
   if [ -d ~/dottmp ]; then
     print_warning "~/dottmp already exists."
@@ -45,16 +46,25 @@ function main() {
       is_install="true"
       is_update="false"
       is_link="true"
+      is_go="false"
       ;;
     update)
       is_install="false"
       is_update="true"
       is_link="false"
+      is_go="false"
       ;;
     link)
       is_install="false"
       is_update="false"
       is_link="true"
+      is_go="false"
+      ;;
+    go-pack)
+      is_install="false"
+      is_update="false"
+      is_link="false"
+      is_go="true"
       ;;
     *)
       print_warning "[ERROR] Invalid arguments '${1}'"
@@ -101,6 +111,10 @@ function main() {
     if [[ -n "$INSTALL_NVM_VERSION" ]]; then
       source  $current_dir/install_lib/install_nvm.sh $INSTALL_NVM_VERSION update
     fi
+  fi
+
+  if [[ "$is_go" == true ]]; then
+    source $current_dir/install_lib/install_go-pack.sh
   fi
 
   rm -rf ~/dottmp
