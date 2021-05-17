@@ -1,4 +1,4 @@
-[ -z "$DOT_DEBUG" ] && echo "Load function_init.bash"
+[ -n "$DOT_DEBUG" ] && echo "Load function_init.bash"
 
 f-d-view() {
 	if [ -z "$1" ]; then
@@ -18,10 +18,8 @@ f-d-view() {
 }
 
 current_dir=$(dirname "${BASH_SOURCE[0]:-$0}")
-echo $current_dir
 
 if [ -d "$current_dir/functions" ]; then
-  echo "Load functions =================="
 	for f in $current_dir/functions/*.bash ; do
 		. $f
 	done

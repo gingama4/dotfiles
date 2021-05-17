@@ -1,4 +1,4 @@
-[ -z "$DOT_DEBUG" ] && echo "Load alias.bash"
+[ -n "$DOT_DEBUG" ] && echo "Load alias.bash"
 
 alias sb="source ~/.bashrc"
 alias la="ls -la"

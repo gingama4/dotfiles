@@ -1,4 +1,4 @@
-[ -z "$DOT_DEBUG" ] && echo "Load tm.bash"
+[ -n "$DOT_DEBUG" ] && echo "Load tm.bash"
 
 tm() {
   test -n "$TMUX" && set tmode "switch-client" ;or set tmode "attach-session"

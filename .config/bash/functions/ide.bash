@@ -1,4 +1,4 @@
-[ -z "$DOT_DEBUG" ] && echo "Load ide.bash"
+[ -n "$DOT_DEBUG" ] && echo "Load ide.bash"
 
 ide() {
   if [  -z "$TMUX" ];then

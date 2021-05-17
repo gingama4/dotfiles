@@ -1,4 +1,4 @@
-[ -z "$DOT_DEBUG" ] && echo "Load ghq-fzf.bash"
+[ -n "$DOT_DEBUG" ] && echo "Load ghq-fzf.bash"
 
 ghq-fzf() {
 	local selected_dir

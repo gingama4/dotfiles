@@ -1,4 +1,4 @@
-[ -z "$DOT_DEBUG" ] && echo "Load fzf-direct.bash"
+[ -n "$DOT_DEBUG" ] && echo "Load fzf-direct.bash"
 
 fzf-direct() {
 	local selected_ele
