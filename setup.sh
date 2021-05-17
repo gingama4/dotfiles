@@ -18,6 +18,8 @@ function main() {
   current_dir=$(dirname "${BASH_SOURCE[0]:-$0}")
   source $current_dir/install_lib/util.sh
   source $current_dir/.env
+
+  export DOT_DEBUG
   
   local is_install="false"
   local is_update="false"
@@ -41,15 +43,15 @@ function main() {
       ;;
     install)
       is_install="true"
-      is_update="true"
+      is_update="false"
       is_link="true"
       ;;
     update)
-      is_install="true"
+      is_install="false"
       is_update="true"
       is_link="false"
       ;;
-    install)
+    link)
       is_install="false"
       is_update="false"
       is_link="true"

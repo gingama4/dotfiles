@@ -49,8 +49,8 @@ function checkinstall() {
 function yes_or_no_select() {
   local answer
   local message
-  if [[ -n "$1" ]]; then
-    message=$1
+  if [[ -n "$*" ]]; then
+    message=$*
   else
     message="Are you ready?"
   fi
@@ -64,7 +64,11 @@ function yes_or_no_select() {
     return 1
     ;;
   *)
-    yes_or_no_select $message
+    if [[ "$DOT_DEBUG" = true ]]; then
+      return 0
+    else
+      yes_or_no_select $message
+    fi
     ;;
   esac
 }

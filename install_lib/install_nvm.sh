@@ -14,7 +14,7 @@ nvm_install="true"
 
 if [[ "$#" = 2 ]] && [[ "$2" = "update" ]]; then
   nvm_install="true"
-elif [ ! -d "~/.nvm" ] ; then
+elif [ -d "~/.nvm" ] ; then
   print_info "nvm is already installed."
   nvm_install="false"
 fi

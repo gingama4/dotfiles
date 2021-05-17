@@ -9,7 +9,7 @@ if [ ! -f $PWD/config.txt ];then
     echo -n INPUT_USER_NAME:
     read username
 
-    echo -n INPUT_EMAIL_ADD:
+    echo -n INPUT_EMAIL:
     read useremail
 
     echo "USER=${username}" > config.txt

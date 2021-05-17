@@ -24,22 +24,20 @@ if [[ "$#" = 2 ]] && [[ "$2" = "update" ]]; then
     is_install="false"
   fi
 else
-  if type go > /dev/null 2>&1
-  then
+  if _has go; then
     print_info "Go is already installed."
     is_install="false"
   fi
 fi
 
 if [[ "$is_install" == true ]]; then
-  wget -O ~/tmp/golang.tar.gz https://golang.org/dl/go$version.linux-amd64.tar.gz
-  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ~/tmp/golang.tar.gz
-  rm ~/tmp/golang.tar.gz
+  wget -O ~/dottmp/golang.tar.gz https://golang.org/dl/go$version.linux-amd64.tar.gz
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ~/dottmp/golang.tar.gz
+  rm ~/dottmp/golang.tar.gz
 
   check_exec="false"
 
-  if type go > /dev/null 2>&1
-  then
+  if _has go; then
     print_success $(go version)
     check_exec="true"
   fi
@@ -47,8 +45,9 @@ if [[ "$is_install" == true ]]; then
   if [[ "$check_exec" == false ]];then
     if yes_or_no_select "Do you want to add PATH to .bashrc?"
     then
-      echo "TODO:.bashrc"
+      SOURCE_STR="\\nexport PATH=\$PATH:/usr/local/go/bin\\nexport GOPATH=\$HOME/go\nexport PATH=\$PATH:\$GOPATH/bin"
+      print_default $SOURCE_STR
+      echo "${SOURCE_STR}" >> ~/.bashrc
     fi
   fi
 fi
-
