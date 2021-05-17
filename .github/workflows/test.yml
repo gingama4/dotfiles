@@ -15,13 +15,7 @@ jobs:
       - name: Install required packages
         run: pacman -S --noconfirm git sudo wget
       - name: Install dotfiles
-        run: ./seup.sh install
-      - name: Add user
-        run: useradd builduser -m
-      - name: Add sudoer
-        run: echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
-      - name: Change password
-        run: passwd -d builduser
+        run: ./setup.sh install
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
