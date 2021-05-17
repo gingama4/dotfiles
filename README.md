@@ -1,8 +1,11 @@
 # dotfiles
 
+[![Test](https://github.com/gingama4/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/gingama4/dotfiles/actions/workflows/test.yml)
+
 ## Supported OS
 
 - ArchLinux
+- Ubuntu
 
 ## Install
 
@@ -22,6 +25,7 @@ git clone https://github.com/gingama4/dotfiles.git
 * bash
 * vim
 * tmux
+* git
 
 ## Respect
 
