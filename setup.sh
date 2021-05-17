@@ -114,6 +114,16 @@ function main() {
     fi
   fi
 
+  if [[ "$is_link" == true ]]; then
+    print_info ""
+    print_info "#################################"
+    print_info " LINK"
+    print_info "#################################"
+    print_info ""
+
+    source $current_dir/install_lib/link.sh
+  fi
+
   if [[ "$is_go" == true ]]; then
     source $current_dir/install_lib/install_go-pack.sh
   fi

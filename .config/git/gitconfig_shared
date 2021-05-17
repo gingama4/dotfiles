@@ -1,0 +1,50 @@
+[core]
+	autocrlf = false
+	ignorecase = false
+	editor = vim
+
+[color]
+	ui = true
+
+[status]
+	showUntrackedFiles = all
+
+[commit]
+	verbose = true
+
+[push]
+	default = current
+
+[diff]
+	noprefix = true
+	renames = true
+	colorMoved = default
+
+[merge]
+	tool = vimdiff
+
+[mergetool]
+	keepBackup = false
+
+[grep]
+	lineNumber = true
+	patternTYpe = extended
+
+[rebase]
+	autostash = true
+
+[pull]
+	rebase = true
+	ff = only
+
+[credential]
+	helper = store
+
+[url "git@github.com:"]
+	pushInsteadOf = https://github.com/
+
+[alias]
+	st = status
+	co = commit
+	ps = push
+	sw = switch

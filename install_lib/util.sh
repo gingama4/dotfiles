@@ -76,3 +76,9 @@ function yes_or_no_select() {
 function _has() {
   type "$1" > /dev/null 2>&1
 }
+
+function mkdir_not_exist() {
+  if [ ! -d "$1" ]; then
+    mkdir -p "$1"
+  fi
+}
