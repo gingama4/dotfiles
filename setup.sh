@@ -75,10 +75,11 @@ function main() {
     shift
   done
 
-  if [[ "$is_install" == false && "$is_update" == false && "$is_link" == false ]]; then
+  if [[ "$is_install" == false && "$is_update" == false && "$is_link" == false && "$is_go" == false ]]; then
     is_install="true"
     is_update="false"
     is_link="true"
+    is_go="false"
   fi
 
   if [[ "$is_install" == true ]]; then
