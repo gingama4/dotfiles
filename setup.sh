@@ -122,6 +122,7 @@ function main() {
     print_info ""
 
     source $current_dir/install_lib/link.sh
+    source $current_dir/install_lib/link_vim.sh
   fi
 
   if [[ "$is_go" == true ]]; then
