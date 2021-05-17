@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ubuntu:
+    build: ./docker/ubuntu/
+    volumes:
+      - .:/home/dottest/dotfiles
+    command: ./dotfiles/setup.sh install
+  arch:
+    build: ./docker/arch/
+    volumes:
+      - .:/home/dottest/dotfiles
+    command: ./dotfiles/setup.sh install
