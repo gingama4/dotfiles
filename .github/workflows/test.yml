@@ -6,6 +6,8 @@ jobs:
   arch:
     runs-on: ubuntu-latest
     container: archlinux:latest
+    env:
+      DOT_DEBUG: true
     steps:
       - uses: actions/checkout@v1
       - name: Update packages
@@ -23,6 +25,8 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
+    env:
+      DOT_DEBUG: true
     steps:
       - uses: actions/checkout@v1
       - name: Install required packaged
