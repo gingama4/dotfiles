@@ -40,7 +40,9 @@ set shiftwidth=2
 
 " バックスペースの設定 {{{
 set backspace=2
-set ambiwidth=double
+if !exists('g:vscode')
+  set ambiwidth=double
+endif
 " }}}
 
 " 折りたたみの設定
@@ -75,7 +77,9 @@ set scrolloff=100
 
 " カーソルラインの表示 {{{
 set cursorline
-set cursorlineopt=number
+if !has('nvim')
+  set cursorlineopt=number
+endif
 " }}}
 
 " netrwツリー {{{
