@@ -37,6 +37,7 @@ function link_vimdir() {
       _link "$f" "$config_dir"
     done
   fi
+  _link "$config_dir" "$HOME/.config/nvim/config"
 }
 
 link_vimdir
