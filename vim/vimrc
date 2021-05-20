@@ -13,14 +13,19 @@ scriptencoding utf-8
 " vim-plug setting {{{
 
 " install dir {{{
-let s:autoload_dir = expand('~/.vim/autoload')
+if has('nvim')
+  let s:autoload_dir = expand('~/.config/nvim/autoload')
+else
+  let s:autoload_dir = expand('~/.vim/autoload')
+endif
+ 
 let s:plug_dir = s:autoload_dir . '/plug.vim'
 " }}}
 
 " vim-plug installation check {{{
 if &runtimepath !~# '/plug.vim'
 	if !isdirectory(s:autoload_dir)
-		execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		execute '!curl -fLo ' . s:plug_dir . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	endif
 	execute 'set runtimepath^=' . s:plug_dir
 endif
