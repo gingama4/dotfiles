@@ -5,9 +5,11 @@
 ## Supported OS
 
 - ArchLinux
-- Ubuntu
+- Ubuntu (WSL2)
 
 ## Install
+
+Use [dotter](https://github.com/gingama4/dotter). Please install it.
 
 1. Download
 
@@ -17,16 +19,12 @@ git clone https://github.com/gingama4/dotfiles.git
 
 2. Install
 ```bash
-./setup.sh
+dotter
 ```
 
 ## Components
 
 * bash
 * vim
-* tmux
 * git
-
-## Respect
-
-[yukat/dotfiles](https://github.com/yutkat/dotfiles)
+* etc...
