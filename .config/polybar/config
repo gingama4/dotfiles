@@ -15,15 +15,18 @@ background = #0f1117
 background-alt = #2e313f
 background-primary = #84a0c6
 background-edge = #818596
+background-visible = #b4be82
 
 foreground = #3e445e
 foreground-alt = #6b7089
 foreground-primary = #161821
 foreground-edge = #17171b
+foreground-visible = #161821
 foreground-alert = #e27878
 
 [bar/main]
 ;bottom = true
+monitor = ${env:MONITOR:}
 fixed-center = true
 
 width = 100%
@@ -47,8 +50,9 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = "NotoSans Nerd Font:style=Regular:pixelsize=11;3"
-font-1 = "NotoSans Nerd Font:style=Bold:pixelsize=13;3"
+font-0 = "Noto Sans CJK JP:style=Regular:pixelsize=11;3"
+font-1 = "NotoSans Nerd Font:style=Regular:pixelsize=11;3"
+font-2 = "NotoSans Nerd Font:style=Bold:pixelsize=13;3"
 
 modules-left = i3
 modules-center = mpd
@@ -71,7 +75,7 @@ cursor-scroll = default
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
-format-font = 2
+format-font = 3
 index-sort = true
 wrapping-scroll = false
 
@@ -99,9 +103,9 @@ label-unfocused-foreground = ${colors.foreground-alt}
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %icon%
-label-visible-background = ${colors.background-alt}
-label-visible-foreground = ${colors.foreground-alt}
+label-visible = %icon% 
+label-visible-background = ${colors.background-visible}
+label-visible-foreground = ${colors.foreground-visible}
 label-visible-padding = 2
 
 ; urgent = Workspace with urgency hint set
