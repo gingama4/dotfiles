@@ -1,0 +1,256 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+[colors]
+background = #0f1117
+background-alt = #2e313f
+background-primary = #84a0c6
+background-edge = #818596
+
+foreground = #3e445e
+foreground-alt = #6b7089
+foreground-primary = #161821
+foreground-edge = #17171b
+foreground-alert = #e27878
+
+[bar/main]
+;bottom = true
+fixed-center = true
+
+width = 100%
+height = 25
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "NotoSans Nerd Font:style=Regular:pixelsize=11;3"
+font-1 = "NotoSans Nerd Font:style=Bold:pixelsize=13;3"
+
+modules-left = i3
+modules-center = mpd
+modules-right = memory wlan eth battery pulseaudio date
+
+separator =
+dim-value = 1.0
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = ${colors.background-alt}
+
+;wm-restack = i3
+;override-redirect = true
+enable-ipc = true
+
+cursor-click = pointer
+cursor-scroll = default
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-font = 2
+index-sort = true
+wrapping-scroll = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 0;
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground-primary}
+label-focused-background = ${colors.background-primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-background = ${colors.background-alt}
+label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${colors.background-alt}
+label-visible-foreground = ${colors.foreground-alt}
+label-visible-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground-alert}
+label-urgent-background = ${colors.background-alt}
+label-urgent-padding = 2
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online-padding = 1
+
+icon-prev = ﭢ
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = ﭠ
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/memory]
+type = internal/memory
+interval = 10
+label =  %gb_used%
+label-foreground = ${colors.foreground-alt}
+label-background = ${colors.background-alt}
+label-padding = 1
+
+[module/wlan]
+type = internal/network
+interface = net1
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-foreground = ${colors.foreground-alt}
+format-connected-background = ${colors.background-alt}
+label-connected = %essid%
+format-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-background = ${colors.background-alt}
+label-disconnected = 睊
+label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-padding = 1
+
+ramp-signal-0 = ﰐ
+ramp-signal-1 = ﰑ
+ramp-signal-2 = ﰒ
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+[module/eth]
+type = internal/network
+interface = enp4s0
+interval = 3.0
+format-connected = 
+format-connected-foreground = ${colors.foreground-alt}
+format-connected-background = ${colors.background-alt}
+format-connected-padding = 1
+
+format-disconnected = 
+format-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-background = ${colors.background-alt}
+format-disconnected-padding = 1
+
+[module/date]
+type = internal/date
+interval = 1
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+label = %date% %time%
+
+format-prefix = 
+format-foreground = ${colors.foreground-edge}
+format-background = ${colors.background-edge}
+format-padding = 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.foreground-alt}
+format-volume-background = ${colors.background-alt}
+format-volume-padding = 1
+
+label-volume = %percentage%%
+
+label-muted = 婢
+label-muted-foreground = ${colors.foreground-alt}
+label-muted-background = ${colors.background-alt}
+label-muted-padding = 1
+
+ramp-volume-0 = 奔
+ramp-volume-1 = 墳
+ramp-volume-2 = 
+
+click-right = pavucontrol
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+;margin-top = 5
+;margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
