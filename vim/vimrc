@@ -9,16 +9,18 @@ scriptencoding utf-8
 "==================================================
 
 let s:home_dir = expand('~')
+let g:rc_common = s:home_dir . '/.vim'
+
 if has('nvim')
   let g:vim_home = s:home_dir . '/.config/nvim'
 else
-  let g:vim_home = s:home_dir . '/.vim'
+  let g:vim_home = g:rc_common
 endif
 
-let g:rc_home = s:home_dir . '/.vim'
+let g:rc_home = g:vim_home . '/rc'
 
 " Load Plugin
-execute 'source' g:rc_home . '/plugin.vim'
+execute 'source' g:rc_common . '/plugin.vim'
 
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
 function! FindPlugin(name) abort

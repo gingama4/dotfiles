@@ -25,7 +25,6 @@ foreground-visible = #161821
 foreground-alert = #e27878
 
 [bar/main]
-;bottom = true
 monitor = ${env:MONITOR:}
 fixed-center = true
 
@@ -61,12 +60,6 @@ modules-right = memory wlan eth battery pulseaudio date
 separator =
 dim-value = 1.0
 
-;tray-position = right
-;tray-padding = 2
-;tray-background = ${colors.background-alt}
-
-;wm-restack = i3
-;override-redirect = true
 enable-ipc = true
 
 cursor-click = pointer

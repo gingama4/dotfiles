@@ -4,9 +4,9 @@ set -euCo pipefail
 
 function main() {
   local -Ar menu=(
-    [' Logout']='i3-msg exit'
-    [' Poweroff']='systemctl poweroff'
-    [' Reboot']='systemctl reboot'
+    ['Logout']='i3-msg exit'
+    ['Poweroff']='systemctl poweroff'
+    ['Reboot']='systemctl reboot'
   )
 
   local -r IFS=$'\n'

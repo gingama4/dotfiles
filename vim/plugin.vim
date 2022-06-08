@@ -28,7 +28,7 @@ call plug#begin(s:plugged_dir)
 Plug 'vim-jp/vimdoc-ja'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 
@@ -42,11 +42,14 @@ endif
 
 " vim {{{
 if !has('nvim')
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
-  Plug 'mattn/vim-lsp-icons'
+  " Not installed with VSCode
+  if !exists('g:vscode')
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'mattn/vim-lsp-icons'
+  endif
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
 endif
@@ -54,6 +57,11 @@ endif
 
 " neovim {{{
 if has('nvim')
+  Plug 'vim-denops/denops.vim'
+  if !exists('g:vscode')
+    "Plug 'lambdalisue/gina.vim'
+    Plug 'lambdalisue/gin.vim'
+  endif
 endif
 " }}}
 
