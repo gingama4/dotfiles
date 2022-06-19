@@ -19,6 +19,8 @@ opt('expandtab', true, buffer)
 opt('tabstop', 2, buffer)
 opt('shiftwidth', 2, buffer)
 
+opt('number', true)
+
 cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
 cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
 cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
