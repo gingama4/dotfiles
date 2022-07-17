@@ -13,3 +13,6 @@ fi
 if type "starship" > /dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
+
+source /usr/share/nvm/init-nvm.sh
+export SSH_AUTH_SOCK=~/.1password/agent.sock

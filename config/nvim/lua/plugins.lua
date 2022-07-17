@@ -73,50 +73,55 @@ local function init()
   --=============================================================
   -- LSP
   --=============================================================
-  -- --------------------------
-  -- Language Server Protocol
-  -- --------------------------
-  use { 'neovim/nvim-lspconfig', config = function() require('plug.nvim-lspconfig') end }
-  use {
-    'williamboman/nvim-lsp-installer',
-    after = { 'nvim-lspconfig', 'cmp-nvim-lsp'  },
-    config = function() require('plug.nvim-lsp-installer') end,
-  }
+  
+  if nocode() then
 
-  -- --------------------------
-  -- Auto Complete
-  -- --------------------------
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      { 'L3MON4D3/LuaSnip', event = "VimEnter" },
-      { 'windwp/nvim-autopairs', event = "VimEnter" },
-    },
-    after = { 'LuaSnip', 'nvim-autopairs' },
-    config = function() require('plug.nvim-cmp') end,
-  }
-  use { 'onsails/lspkind-nvim', module = 'lspkind', config = function() require('plug.lspkind-nvim') end }
-  use { 'hrsh7th/cmp-nvim-lsp', module = 'cmp_nvim_lsp' }
-  use { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }
-  use { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' }
-  use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
-  use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
-  use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
+    -- --------------------------
+    -- Language Server Protocol
+    -- --------------------------
+    use { 'neovim/nvim-lspconfig', config = function() require('plug.nvim-lspconfig') end }
+    use {
+      'williamboman/nvim-lsp-installer',
+      after = { 'nvim-lspconfig', 'cmp-nvim-lsp'  },
+      config = function() require('plug.nvim-lsp-installer') end,
+    }
 
-  use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+    -- --------------------------
+    -- Auto Complete
+    -- --------------------------
+    use {
+      'hrsh7th/nvim-cmp',
+      requires = {
+        { 'L3MON4D3/LuaSnip', event = "VimEnter" },
+        { 'windwp/nvim-autopairs', event = "VimEnter" },
+      },
+      after = { 'LuaSnip', 'nvim-autopairs' },
+      config = function() require('plug.nvim-cmp') end,
+    }
+    use { 'onsails/lspkind-nvim', module = 'lspkind', config = function() require('plug.lspkind-nvim') end }
+    use { 'hrsh7th/cmp-nvim-lsp', module = 'cmp_nvim_lsp' }
+    use { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
 
-  use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
-  use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
-  use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
-  use { 'f3fora/cmp-spell', after = 'nvim-cmp' }
-  use { 'ray-x/cmp-treesitter', after = 'nvim-cmp' }
+    use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
 
-  use { 'L3MON4D3/LuaSnip', config = function() end }
+    use { 'hrsh7th/cmp-omni', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' }
+    use { 'f3fora/cmp-spell', after = 'nvim-cmp' }
+    use { 'ray-x/cmp-treesitter', after = 'nvim-cmp' }
 
-  -- --------------------------
-  -- LSP UI
-  -- --------------------------
-  use { 'tami5/lspsaga.nvim', after = 'nvim-lsp-installer', config = function() require('plug.lspsaga') end }
+    use { 'L3MON4D3/LuaSnip', config = function() end }
+
+    -- --------------------------
+    -- LSP UI
+    -- --------------------------
+    use { 'tami5/lspsaga.nvim', after = 'nvim-lsp-installer', config = function() require('plug.lspsaga') end }
+  
+  end
 
   --=============================================================
   -- Telescope
@@ -144,6 +149,7 @@ local function init()
   -- Other
   --=============================================================
   use { 'windwp/nvim-autopairs', config = function() require('plug.nvim-autopairs') end }
+  use { 'esensar/nvim-dev-container', requires = { 'nvim-treesitter/nvim-treesitter' }, config = function() require('devcontainer').setup{} end }
 
 end
 
