@@ -1,3 +1,5 @@
+vim.keymap.set("n", "gx", function() require("nvim-tree.api").tree.toggle() end)
+
 require("nvim-tree").setup({
   disable_netrw = true,
   hijack_netrw = true,
