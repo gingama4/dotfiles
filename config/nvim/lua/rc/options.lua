@@ -7,7 +7,7 @@ local options = {
   shiftwidth = 2,
   number = true,
   splitbelow = true,
-  splitright = true,
+  splitright = false,
 }
 
 for k, v in pairs(options) do
