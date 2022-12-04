@@ -8,9 +8,11 @@ end
 local parser_install_dir = vim.fn.stdpath 'data' .. '/treesitter'
 vim.opt.runtimepath:append(parser_install_dir)
 
-vim.cmd('packadd vim-jetpack')
+vim.cmd [[packadd vim-jetpack]]
 require('jetpack.packer').startup(function(use)
   use { 'tani/vim-jetpack', opt = 1 }
+
+  local colorscheme = 'nightfox.nvim'
 
   -- =========================
   -- treesitter
@@ -42,7 +44,12 @@ require('jetpack.packer').startup(function(use)
   }
 
   use {
-    'hrsh7th/nvim-cmp'
+    'onsails/lspkind.nvim'
+  }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function() require('plugin.cmp') end,
   }
 
   use {
@@ -58,7 +65,25 @@ require('jetpack.packer').startup(function(use)
   }
 
   use {
-    'onsails/lspkind.nvim'
+    'hrsh7th/vim-vsnip'
+  }
+
+  use {
+    'hrsh7th/cmp-vsnip'
+  }
+
+  use {
+    'glepnir/lspsaga.nvim',
+    branch = 'main',
+    config = function()
+      local saga = require('lspsaga')
+      saga.init_lsp_saga({})
+    end,
+  }
+
+  use {
+    'j-hui/fidget.nvim',
+    config = function() require('fidget').setup{} end,
   }
 
   -- =========================
@@ -69,7 +94,7 @@ require('jetpack.packer').startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons',
     },
-    after = 'nightfox.nvim',
+    after = colorscheme,
     config = function() require('plugin.nvim-tree') end
   }
 
@@ -80,5 +105,26 @@ require('jetpack.packer').startup(function(use)
     'EdenEast/nightfox.nvim',
     config = function() require('plugin.nightfox') end
   }
+
+  -- =========================
+  -- Statusline
+  -- =========================
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    after = colorscheme,
+    config = function() require('plugin.lualine') end
+  }
+
+  -- =========================
+  -- Other
+  -- =========================
+  use {
+    'akinsho/toggleterm.nvim',
+    config = function() require('plugin.toggleterm') end,
+  }
+
 end)
 
