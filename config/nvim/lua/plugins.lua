@@ -118,6 +118,14 @@ require('jetpack.packer').startup(function(use)
     config = function() require('plugin.lualine') end
   }
 
+  use {
+    'akinsho/bufferline.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function() require('plugin.bufferline') end
+  }
+
   -- =========================
   -- Other
   -- =========================
