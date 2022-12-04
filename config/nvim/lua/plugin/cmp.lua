@@ -1,6 +1,7 @@
-local lspkind = require('lspkind')
+local statusLspkind, lspkind = pcall(require, 'lspkind')
+local statusCmp, cmp = pcall(require, 'cmp')
 
-local cmp = require('cmp')
+if (not statusLspkind or not statusCmp) then return end
 
 cmp.setup({
   snippet = {

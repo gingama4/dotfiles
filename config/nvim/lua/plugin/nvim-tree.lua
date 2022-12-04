@@ -1,8 +1,10 @@
+local status, nvimTree = pcall(require, 'nvim-tree')
+
+if (not status) then return end
+
 vim.keymap.set("n", "gx", function() require("nvim-tree.api").tree.toggle() end)
 
---require('nvim-tree').setup()
-
-require("nvim-tree").setup({
+nvimTree.setup({
   hijack_netrw = true,
   hijack_cursor = true,
   hijack_directories = { enable = true, auto_open = true },

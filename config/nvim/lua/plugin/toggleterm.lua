@@ -1,6 +1,11 @@
-require('toggleterm').setup()
+local status, toggleterm = pcall(require, 'toggleterm')
+local statusTerminal, toggletermTerminal = pcall(require, 'toggleterm.terminal')
 
-local Terminal = require('toggleterm.terminal').Terminal
+if (not status or not statusTerminal) then return end
+
+toggleterm.setup()
+
+local Terminal = toggletermTerminal.Terminal
 local lazygit = Terminal:new({
   cmd = 'lazygit',
   direction = 'float',

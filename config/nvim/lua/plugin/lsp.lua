@@ -1,3 +1,10 @@
+local statusMason, mason = pcall(require, 'mason')
+local statusMasonLsp, masonLsp = pcall(require, 'mason-lspconfig')
+local statusLsp, lspconfig = pcall(require, 'lspconfig')
+local statusCmp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
+
+if (not statusMason or not statusMasonLsp or not statusLsp) then return end
+
 local on_attach = function(client, bufnr)
   local set = vim.keymap.set
   set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -12,13 +19,13 @@ local on_attach = function(client, bufnr)
   set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = cmpNvimLsp.default_capabilities()
 
-require('mason').setup()
-require('mason-lspconfig').setup()
-require('mason-lspconfig').setup_handlers {
+mason.setup()
+masonLsp.setup()
+masonLsp.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    lspconfig[server_name].setup {
       on_attach = on_attach,
       capabilities = capabilities,
     }
