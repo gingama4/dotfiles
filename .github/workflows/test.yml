@@ -12,8 +12,6 @@ jobs:
         run: pacman -Syyu --noconfirm
       - name: Install required packages
         run: pacman -S --noconfirm git sudo wget
-      - name: Set INSTALL_DIR
-        run: echo $GITHUB_WORKSPACE >> $INSTALL_DIR
       - name: Install dotfiles
         run: |
           set -e
