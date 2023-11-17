@@ -6,28 +6,24 @@ jobs:
   arch:
     runs-on: ubuntu-latest
     container: archlinux:latest
-    env:
-      INSTALL_DIR: $GITHUB_WORKSPACE
     steps:
       - uses: actions/checkout@v4
       - name: Update packages
         run: pacman -Syyu --noconfirm
       - name: Install required packages
         run: pacman -S --noconfirm git sudo wget
-      - name: test pwd
-        run: pwd
+      - name: Set INSTALL_DIR
+        run: echo $GITHUB_WORKSPACE > $INSTALL_DIR
       - name: Install dotfiles
         run: ./install.sh
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
-    env:
-      INSTALL_DIR: ${GITHUB_WORKSPACE}
     steps:
       - uses: actions/checkout@v4
       - name: Install required packaged
         run: apt update && apt install -y git sudo wget
-      - name: test pwd
-        run: pwd
+      - name: Set INSTALL_DIR
+        run: echo $GITHUB_WORKSPACE > $INSTALL_DIR
       - name: Install dotfiles
         run: ./install.sh
