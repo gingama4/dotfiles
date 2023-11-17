@@ -7,23 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux:latest
     env:
-      DOT_DEBUG: true
+      INSTALL_DIR: "/github/home"
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Update packages
         run: pacman -Syyu --noconfirm
       - name: Install required packages
         run: pacman -S --noconfirm git sudo wget
       - name: Install dotfiles
-        run: ./install.sh install
+        run: ./install.sh
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
     env:
       DOT_DEBUG: true
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Install required packaged
         run: apt update && apt install -y git sudo wget
       - name: Install dotfiles
-        run: ./install.sh install
+        run: ./install.sh
