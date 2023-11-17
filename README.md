@@ -4,27 +4,14 @@
 
 ## Supported OS
 
-- ArchLinux
-- Ubuntu (WSL2)
+- Arch
+- Ubuntu
 
 ## Install
 
-Use [dotter](https://github.com/gingama4/dotter). Please install it.
-
-1. Download
+Run the following:
 
 ```bash
-git clone https://github.com/gingama4/dotfiles.git
+curl -sL https://raw.githubusercontent.com/gingama4/dotfiles/master/install.sh | sh -s
 ```
 
-2. Install
-```bash
-dotter
-```
-
-## Components
-
-* bash
-* vim
-* git
-* etc...
