@@ -15,7 +15,7 @@ jobs:
       - name: Install required packages
         run: pacman -S --noconfirm git sudo wget
       - name: Install dotfiles
-        run: ./setup.sh install
+        run: ./install.sh install
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
@@ -26,4 +26,4 @@ jobs:
       - name: Install required packaged
         run: apt update && apt install -y git sudo wget
       - name: Install dotfiles
-        run: ./setup.sh install
+        run: ./install.sh install
