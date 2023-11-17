@@ -19,6 +19,7 @@ setup_linux() {
     distro=$(awk '{print $1; exit}' /etc/issue)
     title "Setting up ${distro}"
 
+    setup_xdg_config
     setup_zsh
 }
 
