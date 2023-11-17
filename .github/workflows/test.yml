@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux:latest
     env:
-      INSTALL_DIR: "/github/home"
+      INSTALL_DIR: ${GITHUB_WORKSPACE}
     steps:
       - uses: actions/checkout@v4
       - name: Update packages
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ubuntu:latest
     env:
-      DOT_DEBUG: true
+      INSTALL_DIR: ${GITHUB_WORKSPACE}
     steps:
       - uses: actions/checkout@v4
       - name: Install required packaged
