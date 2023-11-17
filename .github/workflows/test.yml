@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux:latest
     env:
-      INSTALL_DIR: ${GITHUB_WORKSPACE}
+      INSTALL_DIR: $GITHUB_WORKSPACE
     steps:
       - uses: actions/checkout@v4
       - name: Update packages
