@@ -13,9 +13,13 @@ jobs:
       - name: Install required packages
         run: pacman -S --noconfirm git sudo wget
       - name: Set INSTALL_DIR
-        run: echo $GITHUB_WORKSPACE > $INSTALL_DIR
+        run: echo $GITHUB_WORKSPACE >> $INSTALL_DIR
       - name: Install dotfiles
-        run: ./install.sh
+        run: |
+          set -e
+          export CI=1
+          export INSTALL_DIR="$GITHUB_WORKSPACE"
+          bash ./install.sh
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
@@ -23,7 +27,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install required packaged
         run: apt update && apt install -y git sudo wget
-      - name: Set INSTALL_DIR
-        run: echo $GITHUB_WORKSPACE > $INSTALL_DIR
       - name: Install dotfiles
-        run: ./install.sh
+        run: |
+          set -e
+          export CI=1
+          export INSTALL_DIR="$GITHUB_WORKSPACE"
+          bash ./install.sh
