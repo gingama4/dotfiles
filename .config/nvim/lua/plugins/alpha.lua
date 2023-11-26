@@ -28,6 +28,7 @@ return {
     local button = require('utils').alpha_button
 
     dashboard.section.buttons.val = {
+      button("e", "  Explorer", ":Lazy load neo-tree.nvim<CR>:Neotree<CR>"),
       button("p", "  Update Plugins", ":Lazy sync<CR>"),
       button("q", "  Quit", ":qa<CR>"),
     }

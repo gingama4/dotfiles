@@ -14,6 +14,7 @@ local options = {
   showcmd = true,
   title = false,
   laststatus = 3,
+  clipboard = 'unnamedplus',
 }
 
 for k, v in pairs(options) do
