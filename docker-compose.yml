@@ -4,9 +4,18 @@ services:
     build: ./docker/ubuntu/
     volumes:
       - .:/home/dottest/dotfiles
-    command: ./dotfiles/setup.sh install
+    environment:
+      - INSTALL_DIR=/home/dottest/dotfiles
+      - CI=1
+      - XDG_RUNTIME_DIR=/run/user/1000
+    command: ./dotfiles/install.sh install
   arch:
     build: ./docker/arch/
     volumes:
       - .:/home/dottest/dotfiles
-    command: ./dotfiles/setup.sh install
+    environment:
+      - INSTALL_DIR=/home/dottest/dotfiles
+      - CI=1
+      - XDG_RUNTIME_DIR=/run/user/1000
+    command: ./dotfiles/install.sh install
+
