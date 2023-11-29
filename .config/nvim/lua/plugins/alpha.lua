@@ -29,6 +29,8 @@ return {
 
     dashboard.section.buttons.val = {
       button("e", "  Explorer", ":Lazy load neo-tree.nvim<CR>:Neotree<CR>"),
+      button("f", "  Find Files", ":Telescope find_files<CR>"),
+      button("w", "󰉓  Workspaces", ":Telescope workspaces<CR>"),
       button("p", "  Update Plugins", ":Lazy sync<CR>"),
       button("q", "  Quit", ":qa<CR>"),
     }
