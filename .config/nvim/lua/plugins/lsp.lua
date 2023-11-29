@@ -25,5 +25,9 @@ return {
     },
     config = require'plugins.configs.nvim-cmp',
   },
+  {
+    'folke/trouble.nvim',
+    event = { "BufReadPost", "BufNewFile" },
+  },
 }
 
