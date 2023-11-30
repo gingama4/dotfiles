@@ -4,29 +4,14 @@
 
 ## Supported OS
 
-- ArchLinux
+- Arch
 - Ubuntu
 
 ## Install
 
-1. Download
+Run the following:
 
 ```bash
-git clone https://github.com/gingama4/dotfiles.git
+curl -sL https://raw.githubusercontent.com/gingama4/dotfiles/master/install.sh | sh -s
 ```
 
-2. Install
-```bash
-./setup.sh
-```
-
-## Components
-
-* bash
-* vim
-* tmux
-* git
-
-## Respect
-
-[yukat/dotfiles](https://github.com/yutkat/dotfiles)
