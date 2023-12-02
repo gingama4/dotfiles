@@ -4,6 +4,27 @@ local util = require('utils')
 local config_util = require('utils.lsp.config')
 
 function M.load()
+  local lspconfig = require('lspconfig')
+  local mason_lspconfig = require('mason-lspconfig')
+  local setup = {
+    function(server_name)
+      lspconfig[server_name].setup({})
+    end,
+  }
+
+  local configs = Load()
+
+  for lsp, config in pairs(configs) do
+    setup[lsp] = function ()
+      lspconfig[lsp].setup(config)
+    end
+  end
+
+  mason_lspconfig.setup()
+  mason_lspconfig.setup_handlers(setup)
+end
+
+function Load()
   local defaults = Import('lsp')
   local workspaces = Import_workspace()
   local configs = util.extend_tbl(defaults, workspaces)
@@ -49,7 +70,7 @@ function Import_workspace()
     return {}
   end
 
-  return Import('lsp.' .. workspace)
+  return Import('workspace.' .. workspace .. '.lsp')
 end
 
 return M

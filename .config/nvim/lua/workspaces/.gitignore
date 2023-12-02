@@ -1,0 +1,7 @@
+*
+!.gitignore
+!example
+!example/rc
+!example/rc/rc.lua
+!example/lsp
+!example/lsp/lua-ls.lua
