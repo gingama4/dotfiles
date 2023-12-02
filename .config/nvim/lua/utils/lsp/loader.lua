@@ -1,12 +1,11 @@
 local M = {}
 
 local util = require('utils')
-local lazy_util = require('lazy.core.util')
 local config_util = require('utils.lsp.config')
 
 function M.load()
-  local defaults = import('lsp')
-  local workspaces = import_workspace()
+  local defaults = Import('lsp')
+  local workspaces = Import_workspace()
   local configs = util.extend_tbl(defaults, workspaces)
 
   local opts = {}
@@ -18,22 +17,19 @@ function M.load()
   return opts
 end
 
-function import(path)
-  local modnames = {}
-  lazy_util.lsmod(path, function(modname)
-    modnames[#modnames + 1] = modname
-  end)
-  table.sort(modnames)
+function Import(path)
+  local loader = require 'utils.loader'
+  local modnames = loader.import(path)
 
   local mods = {}
   for _, modname in ipairs(modnames) do
-    mods[#mods + 1] = import_config(modname)
+    mods[#mods + 1] = Import_config(modname)
   end
 
   return mods
 end
 
-function import_config(modname)
+function Import_config(modname)
   local mod = require(modname)
   if type(mod) ~= 'table' then
     error('Invalid lsp config: `'
@@ -46,14 +42,14 @@ function import_config(modname)
   return mod
 end
 
-function import_workspace()
+function Import_workspace()
   local workspaces = require('workspaces')
   local workspace = workspaces.name()
   if not workspace then
     return {}
   end
 
-  return import('lsp.' .. workspace)
+  return Import('lsp.' .. workspace)
 end
 
 return M
