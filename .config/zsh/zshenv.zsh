@@ -11,6 +11,9 @@ export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/1000}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export SHELDON_CONFIG_DIR="${ZDOTDIR}/sheldon"
 
+# Git
+export GPG_TTY=$(tty)
+
 # GO
 export GOPATH="${XDG_DATA_HOME}/go"
 export PATH="${PATH}:${GOPATH}/bin"
