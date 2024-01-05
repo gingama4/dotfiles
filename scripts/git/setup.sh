@@ -25,6 +25,7 @@ setup_git() {
     git config --global core.ignorecase false
 
     git config --global commit.gpgsign true
+    git config --global gpg.format ssh
 
     git config --global merge.conflictstyle diff3
 
