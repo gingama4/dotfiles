@@ -21,6 +21,7 @@ setup_linux() {
 
     setup_xdg_config
     setup_zsh
+    setup_git
     setup_nvim
 }
 
