@@ -35,3 +35,15 @@ symlink() {
     echo -e "${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2${COLOR_NONE}"
     ln -snf "$1" "$2"
 }
+
+simple_link() {
+    local target_dir=$1
+    local target_func_name=${2:-$target_dir}
+    title "Setting up ${target_func_name}"
+    local target_file_dir="${CONFIGS_DIR}/${target_dir}"
+
+    info "Creating symlink for ${target_func_name}"
+    symlink "$target_file_dir" "${XDG_CONFIG_HOME}/${target_dir}"
+
+    success "${target_func_name} complete"
+}
