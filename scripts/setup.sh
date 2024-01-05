@@ -19,10 +19,19 @@ setup_linux() {
     distro=$(awk '{print $1; exit}' /etc/issue)
     title "Setting up ${distro}"
 
+    setup_cui
+    setup_gui
+}
+
+setup_cui() {
     setup_xdg_config
     setup_zsh
     setup_git
     setup_nvim
+}
+
+setup_gui() {
+    setup_i3
 }
 
 execute_setup() {
