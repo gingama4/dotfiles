@@ -1,0 +1,14 @@
+[window]
+padding = { x = 3, y = 3}
+opacity = 0.9
+
+[font]
+normal = { family = "UDEV Gothic NFLG" }
+bold = { family = "UDEV Gothic NFLG" }
+italic = { family = "UDEV Gothic NFLG" }
+bold_italic = { family = "UDEV Gothic NFLG" }
+size = 10
+
+[mouse]
+hide_when_typing = true
+

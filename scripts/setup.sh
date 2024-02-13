@@ -39,6 +39,7 @@ setup_cui() {
     setup_zsh
     setup_git
     setup_nvim
+    setup_alacritty
 }
 
 setup_gui() {
