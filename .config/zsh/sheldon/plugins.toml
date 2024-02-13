@@ -12,13 +12,24 @@
 
 shell = "zsh"
 
+[templates]
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+
 [plugins]
 
-[plugins.git-prompt]
-git = 'https://github.com/woefe/git-prompt.zsh.git'
+[plugins.zsh-defer]
+github = 'romkatv/zsh-defer'
+
+[plugins.powerlevel10k]
+github = 'romkatv/powerlevel10k'
 
 [plugins.autosuggestions]
-git = 'https://github.com/zsh-users/zsh-autosuggestions.git'
+github = 'zsh-users/zsh-autosuggestions'
+apply = ["defer"]
+
+[plugins.zsh-abbr]
+github = 'olets/zsh-abbr'
+apply = ["defer"]
 
 # For example:
 #

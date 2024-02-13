@@ -23,6 +23,6 @@ fi
 source "$sheldon_cache"
 unset sheldon_cache sheldon_toml
 
-source "${ZDOTDIR}/functions/gh-q.zsh"
-source "${ZDOTDIR}/functions/gd.zsh"
+source "${ZDOTDIR}/base.zsh"
 
+zsh-defer unfunction source
