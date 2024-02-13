@@ -31,6 +31,13 @@ success() {
     echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
 }
 
+debug() {
+    local is_debug=${DOT_DEBUG:-false}
+    if "${is_debug}"; then
+      echo -e "${COLOR_RED}[DEBUG]${COLOR_GRAY}$1${COLOR_NONE}"
+    fi
+}
+
 symlink() {
     echo -e "${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2${COLOR_NONE}"
     ln -snf "$1" "$2"
