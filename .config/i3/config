@@ -150,6 +150,9 @@ exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/backgrounds/archlinux/w
 # IME
 exec --no-startup-id fcitx5
 
+# Polybar
+exec --no-startup-id ~/.config/polybar/launch.sh
+
 ##################
 # floating rules #
 ##################
