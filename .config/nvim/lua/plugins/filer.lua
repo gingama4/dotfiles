@@ -1,22 +1,5 @@
 return {
   {
-    'lambdalisue/fern.vim',
-    enabled = false,
-    keys = {
-      { "<leader>e", ":Fern . -reveal=% -drawer -toggle -width=40<CR>", desc = "toggle fern" },
-    },
-    dependencies = {
-      { 'lambdalisue/nerdfont.vim' },
-      { 'lambdalisue/fern-git-status.vim' },
-      {
-        'lambdalisue/fern-renderer-nerdfont.vim',
-        config = function()
-          vim.g['fern#renderer'] = "nerdfont"
-        end
-      },
-    },
-  },
-  {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'main',
     keys = {
