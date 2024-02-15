@@ -29,5 +29,10 @@ return {
     'folke/trouble.nvim',
     event = { "BufReadPost", "BufNewFile" },
   },
+  {
+    'nvimdev/lspsaga.nvim',
+    event = 'VimEnter',
+    config = function() require 'plugins.configs.lspsaga' end
+  },
 }
 

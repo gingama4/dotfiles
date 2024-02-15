@@ -52,6 +52,7 @@ local basic_options = {
   scrolloff = 5,
   sidescrolloff = 5,
   pumheight = 10,
+  signcolumn = "yes",
 
   -- Status line
   laststatus = 3,
