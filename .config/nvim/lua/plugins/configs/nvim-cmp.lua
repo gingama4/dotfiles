@@ -1,6 +1,7 @@
 return function()
   local cmp = require 'cmp'
   local lspkind_status_ok, lspkind = pcall(require, 'lspkind')
+  local luasnip = require 'luasnip'
   local utils = require 'utils'
 
   local border_opts = {
@@ -22,6 +23,11 @@ return function()
     formatting = {
       fields = { 'kind', 'abbr', 'menu' },
       format = lspkind_status_ok and lspkind.cmp_format(utils.plugin_opts 'lspkind.nvim') or nil,
+    },
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end,
     },
     duplicates = {
       nvim_lsp = 1,
@@ -60,12 +66,13 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = cmp.config.sources {
       { name = 'nvim_lsp', priority = 1000 },
-      { name = 'buffer', priority = 500 },
-      { name = 'path', priority = 250 },
+      { name = 'buffer',   priority = 500 },
+      { name = 'luasnip',  priority = 20 },
+      { name = 'path',     priority = 250 },
     },
   })
-
 end
