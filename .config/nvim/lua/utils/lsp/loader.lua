@@ -25,9 +25,7 @@ function M.load()
 end
 
 function Load()
-  local defaults = Import('lsp')
-  local workspaces = Import_workspace()
-  local configs = util.extend_tbl(defaults, workspaces)
+  local configs = Import('lsp')
 
   local opts = {}
   for _, config in ipairs(configs) do
@@ -61,16 +59,6 @@ function Import_config(modname)
     )
   end
   return mod
-end
-
-function Import_workspace()
-  local workspaces = require('workspaces')
-  local workspace = workspaces.name()
-  if not workspace then
-    return {}
-  end
-
-  return Import('workspace.' .. workspace .. '.lsp')
 end
 
 return M
