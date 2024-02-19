@@ -1,6 +1,7 @@
 local M = {}
 
 local util = require('utils')
+local Import = require('utils.loader').import
 local config_util = require('utils.lsp.config')
 
 function M.load()
@@ -15,7 +16,7 @@ function M.load()
   local configs = Load()
 
   for lsp, config in pairs(configs) do
-    setup[lsp] = function ()
+    setup[lsp] = function()
       lspconfig[lsp].setup(config)
     end
   end
@@ -25,7 +26,10 @@ function M.load()
 end
 
 function Load()
-  local configs = Import('lsp')
+  local builtin_configs = Import('lsp')
+  local env_configs = Import('environment.lsp')
+
+  local configs = util.extend_tbl(builtin_configs, env_configs)
 
   local opts = {}
   for _, config in ipairs(configs) do
@@ -34,31 +38,6 @@ function Load()
   end
 
   return opts
-end
-
-function Import(path)
-  local loader = require 'utils.loader'
-  local modnames = loader.import(path)
-
-  local mods = {}
-  for _, modname in ipairs(modnames) do
-    mods[#mods + 1] = Import_config(modname)
-  end
-
-  return mods
-end
-
-function Import_config(modname)
-  local mod = require(modname)
-  if type(mod) ~= 'table' then
-    error('Invalid lsp config: `'
-      .. modname
-      .. '`\nExpected a `table` of config, but a `'
-      .. type(mod)
-      .. '` was returned instead'
-    )
-  end
-  return mod
 end
 
 return M

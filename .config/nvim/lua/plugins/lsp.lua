@@ -2,18 +2,18 @@ return {
   {
     'neovim/nvim-lspconfig',
     lazy = false,
-    config = require'plugins.configs.nvim-lspconfig',
+    config = require 'plugins.configs.nvim-lspconfig',
   },
   {
     'williamboman/mason.nvim',
     event = { 'BufReadPre', 'VimEnter' },
     build = ':MasonUpdate',
-    config = require'plugins.configs.mason',
+    config = require 'plugins.configs.mason',
   },
   {
     'williamboman/mason-lspconfig.nvim',
     event = 'BufReadPre',
-    config = require'plugins.configs.mason-lspconfig',
+    config = require 'plugins.configs.mason-lspconfig',
   },
   {
     'hrsh7th/nvim-cmp',
@@ -22,17 +22,20 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
     },
-    config = require'plugins.configs.nvim-cmp',
+    config = require 'plugins.configs.nvim-cmp',
   },
+  -- Lint
   {
-    'folke/trouble.nvim',
-    event = { "BufReadPost", "BufNewFile" },
+    'mfussenegger/nvim-lint',
+    envet = { 'BufReadPre' },
+    config = require 'plugins.configs.nvim-lint',
   },
+  -- Format
   {
-    'nvimdev/lspsaga.nvim',
-    event = 'VimEnter',
-    config = function() require 'plugins.configs.lspsaga' end
+    'stevearc/conform.nvim',
+    event = { 'BufReadPre' },
+    config = require 'plugins.configs.conform',
   },
 }
-
