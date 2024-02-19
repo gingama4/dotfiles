@@ -28,6 +28,19 @@ return {
     config = function(_, opts) require('lspkind').init(opts) end,
   },
   {
+    'nvimdev/lspsaga.nvim',
+    event = 'VimEnter',
+    config = function() require 'plugins.configs.lspsaga' end
+  },
+  {
+    'folke/trouble.nvim',
+    event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    'j-hui/fidget.nvim',
+    event = 'VimEnter',
+  },
+  {
     'akinsho/toggleterm.nvim',
     event = { "BufReadPost", "BufNewFile" },
     keys = {
