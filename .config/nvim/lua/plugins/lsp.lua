@@ -26,5 +26,15 @@ return {
     },
     config = require'plugins.configs.nvim-cmp',
   },
+  -- Lint
+  {
+    'mfussenegger/nvim-lint',
+    envet = { 'BufReadPre', 'VimEnter' },
+  },
+  -- Format
+  {
+    'stevearc/conform.nvim',
+    event = { 'VimEnter' },
+  },
 }
 
