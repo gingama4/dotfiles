@@ -29,7 +29,7 @@ return {
   -- Lint
   {
     'mfussenegger/nvim-lint',
-    envet = { 'BufReadPre' },
+    event = { 'BufReadPre' },
     config = require 'plugins.configs.nvim-lint',
   },
   -- Format
