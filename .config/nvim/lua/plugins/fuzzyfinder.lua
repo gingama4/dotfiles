@@ -6,8 +6,9 @@ return {
     },
     event = { 'BufReadPre', 'BufNewFile' },
     keys = {
-      { '<leader>m', ':Telescope marks<cr>', desc = 'search by [M]arks' },
-      { '<C-p>', ':Telescope find_files<cr>', desc = 'search Files' },
+      { '<leader>m', ':Telescope marks<cr>',      desc = 'search by [M]arks' },
+      { '<C-p>',     ':Telescope find_files<cr>', desc = 'search Files' },
+      { '<C-g>',     ':Telescope live_grep<cr>',  desc = 'search Files' },
     },
     dependencies = {
       {
@@ -34,4 +35,3 @@ return {
     config = require 'plugins.configs.telescope',
   },
 }
-
