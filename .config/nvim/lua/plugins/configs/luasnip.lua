@@ -25,6 +25,7 @@ return function()
   })
 
   ls.filetype_extend("all", { "_" })
+  ls.filetype_extend("php", { "php", "phpdoc" })
 
   vim.api.nvim_set_keymap("i", "<C-Down>", "<Plug>luasnip-next-choice", {})
   vim.api.nvim_set_keymap("s", "<C-Down>", "<Plug>luasnip-next-choice", {})
