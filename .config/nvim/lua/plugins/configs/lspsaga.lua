@@ -1,21 +1,22 @@
 local lspsaga = require('lspsaga')
 lspsaga.setup({ -- defaults ...
-	ui = {
-		code_action = "󰌶",
-		diagnostic = "",
-	},
-	lightbulb = {
-		virtual_text = false,
-	},
-	finder = {
-		scroll_down = "<C-f>",
-		scroll_up = "<C-b>", -- quit can be a table
-		quit = { "q", "<ESC>" },
-	},
-	symbol_in_winbar = {
-		enable = false,
-		show_file = false,
-	},
+  ui = {
+    code_action = "󰌶",
+    diagnostic = "",
+  },
+  lightbulb = {
+    virtual_text = false,
+  },
+  finder = {
+    scroll_down = "<C-f>",
+    scroll_up = "<C-b>", -- quit can be a table
+    quit = { "q", "<ESC>" },
+  },
+  symbol_in_winbar = {
+    enable = true,
+    show_file = true,
+    folder_level = 4,
+  },
 })
 
 local function op(silent, noremap)
@@ -43,4 +44,3 @@ vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<cr>", op(true, true
 vim.keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<cr>", op(true, true))
 vim.keymap.set("n", "[_Lsp]I", "<cmd>Lspsaga incoming_calls<cr>", op(true, true))
 vim.keymap.set("n", "[_Lsp]O", "<cmd>Lspsaga outgoing_calls<cr>", op(true, true))
-

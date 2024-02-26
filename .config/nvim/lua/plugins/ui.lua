@@ -64,4 +64,26 @@ return {
       },
     },
   },
+  {
+    'rcarriga/nvim-notify',
+    event = "BufreadPre",
+    config = require 'plugins.configs.nvim-notify',
+  },
+  {
+    'folke/noice.nvim',
+    event = "VeryLazy",
+    dependencies = {
+      'hrsh7th/cmp-cmdline',
+      'dmitmel/cmp-cmdline-history',
+    },
+    config = require 'plugins.configs.noice',
+  },
+  {
+    'folke/which-key.nvim',
+    cmd = "WhichKey",
+    keys = {
+      { '<Leader><CR>', '<Cmd>WhichKey \\ <CR>',    desc = "Open Leader map" },
+      { '[_Lsp]<CR>',   '<Cmd>WhichKey [_Lsp]<CR>', desc = "Open [_Lsp] map" },
+    },
+  },
 }
