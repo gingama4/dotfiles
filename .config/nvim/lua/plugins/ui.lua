@@ -64,4 +64,14 @@ return {
       },
     },
   },
+  {
+    'rcarriga/nvim-notify',
+    event = "BufreadPre",
+    config = require 'plugins.configs.nvim-notify',
+  },
+  {
+    'folke/noice.nvim',
+    event = "VeryLazy",
+    config = require 'plugins.configs.noice',
+  },
 }
