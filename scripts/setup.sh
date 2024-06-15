@@ -38,6 +38,7 @@ setup_cui() {
     setup_xdg_config
     setup_zsh
     setup_git
+    setup_lazygit
     setup_nvim
     setup_alacritty
 }

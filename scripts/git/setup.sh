@@ -7,6 +7,8 @@ setup_git() {
     local git_file_dir="${CONFIGS_DIR}/git"
     local git_config_dir="${XDG_CONFIG_HOME}/git"
 
+    local template_filename="commit_template_with_prompt.txt"
+
     if [ -d "$git_config_dir" ]; then
       info "Already exists config file."
     else
@@ -30,6 +32,11 @@ setup_git() {
     git config --global merge.conflictstyle diff3
 
     git config --global diff.colorMoved default
+
+    git config --global core.editor nvim
+
+    info "Creating symlink for git commit template file"
+    symlink "${git_file_dir}/${template_filename}" "${git_config_dir}/${template_filename}"
 
     success "Git complete"
 }
