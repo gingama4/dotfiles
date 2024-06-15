@@ -10,6 +10,9 @@ require('copilot').setup({
       dismiss = "<C-S-]>",
     },
   },
+  filetypes = {
+    gitcommit = true,
+  },
 })
 
 vim.api.nvim_command("highlight link CopilotAnnotation LineNr")

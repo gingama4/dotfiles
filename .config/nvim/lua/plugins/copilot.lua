@@ -2,7 +2,7 @@ return {
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
-    event = 'InsertEnter',
+    event = 'BufReadPre',
     config = function()
       require('plugins.configs.copilot')
     end,
