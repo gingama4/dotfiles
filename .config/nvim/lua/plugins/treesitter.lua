@@ -1,15 +1,33 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   event = { "BufReadPost", "BufNewFile" },
-  build = ':TSUpdate',
+  build = function()
+    require('nvim-treesitter.install').update({ with_sync = true })
+  end,
   cmd = { "TSUpdateSync" },
   opts = {
     ensure_installed = {
+      "bash",
+      "go",
+      "html",
+      "json",
+      "jsonc",
       "lua",
+      "markdown",
+      "markdown_inline",
+      "javascript",
+      "php",
+      "phpdoc",
+      "php_only",
+      "vim",
+      "yaml",
     },
     auto_install = true,
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = {
+      enable = true,
+      disable = { "yaml" },
+    },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -22,11 +40,6 @@ return {
   },
   config = function(_, opts)
     require('nvim-treesitter.configs').setup(opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-    -- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-    vim.keymap.set('n', '<leader>s', vim.diagnostic.open_float, { desc = 'Open diagnostics list' })
-
     -- Add Blade(Laravel)
     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
     parser_config.blade = {
@@ -37,5 +50,10 @@ return {
       },
       filetype = "blade",
     }
+    vim.filetype.add({
+      pattern = {
+        ['.*%.blade%.php'] = 'blade',
+      },
+    })
   end
 }
