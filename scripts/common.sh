@@ -9,53 +9,53 @@ COLOR_YELLOW="\033[1;33m"
 COLOR_NONE="\033[0m"
 
 title() {
-    echo -e "\n${COLOR_GRAY}===========================================${COLOR_NONE}"
-    echo -e "${COLOR_PURPLE}$1${COLOR_NONE}"
-    echo -e "${COLOR_GRAY}-------------------------------------------${COLOR_NONE}"
+	echo -e "\n${COLOR_GRAY}===========================================${COLOR_NONE}"
+	echo -e "${COLOR_PURPLE}$1${COLOR_NONE}"
+	echo -e "${COLOR_GRAY}-------------------------------------------${COLOR_NONE}"
 }
 
 error() {
-    echo -e "${COLOR_RED}Error: ${COLOR_NONE}$1"
-    exit 1
+	echo -e "${COLOR_RED}Error: ${COLOR_NONE}$1"
+	exit 1
 }
 
 warning() {
-    echo -e "${COLOR_YELLOW}Warning: ${COLOR_NONE}$1"
+	echo -e "${COLOR_YELLOW}Warning: ${COLOR_NONE}$1"
 }
 
 info() {
-    echo -e "${COLOR_BLUE}Info: ${COLOR_NONE}$1"
+	echo -e "${COLOR_BLUE}Info: ${COLOR_NONE}$1"
 }
 
 success() {
-    echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
+	echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
 }
 
 debug() {
-    local is_debug=${DOT_DEBUG:-false}
-    if "${is_debug}"; then
-      echo -e "${COLOR_RED}[DEBUG]${COLOR_YELLOW}$1${COLOR_NONE}"
-    fi
+	local is_debug=${DOT_DEBUG:-0}
+	if [[ "${is_debug}" -ne 0 ]]; then
+		echo -e "${COLOR_RED}[DEBUG]${COLOR_YELLOW}$1${COLOR_NONE}"
+	fi
 }
 
 symlink() {
-    echo -e "${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2${COLOR_NONE}"
-    ln -snf "$1" "$2"
+	echo -e "${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2${COLOR_NONE}"
+	ln -snf "$1" "$2"
 }
 
 simple_link() {
-    local target_dir=$1
-    local target_func_name=${2:-$target_dir}
-    title "Setting up ${target_func_name}"
-    debug "1: ${1}"
-    debug "2: ${2}"
-    debug "target_dir: ${target_dir}"
-    debug "target_func_name: ${target_func_name}"
-    local target_file_dir="${CONFIGS_DIR}/${target_dir}"
-    debug "target_file_dir: ${target_file_dir}"
+	local target_dir=$1
+	local target_func_name=${2:-$target_dir}
+	title "Setting up ${target_func_name}"
+	debug "1: ${1}"
+	debug "2: ${2}"
+	debug "target_dir: ${target_dir}"
+	debug "target_func_name: ${target_func_name}"
+	local target_file_dir="${CONFIGS_DIR}/${target_dir}"
+	debug "target_file_dir: ${target_file_dir}"
 
-    info "Creating symlink for ${target_func_name}"
-    symlink "$target_file_dir" "${XDG_CONFIG_HOME}/${target_dir}"
+	info "Creating symlink for ${target_func_name}"
+	symlink "$target_file_dir" "${XDG_CONFIG_HOME}/${target_dir}"
 
-    success "${target_func_name} complete"
+	success "${target_func_name} complete"
 }

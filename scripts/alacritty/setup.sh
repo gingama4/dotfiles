@@ -3,6 +3,5 @@
 set -ue
 
 setup_alacritty() {
-    simple_link alacritty Alacritty
+	simple_link alacritty Alacritty
 }
-
