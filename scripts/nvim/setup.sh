@@ -3,6 +3,5 @@
 set -ue
 
 setup_nvim() {
-    simple_link nvim Neovim
+	simple_link nvim Neovim
 }
-

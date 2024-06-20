@@ -16,9 +16,8 @@ jobs:
         run: |
           set -e
           export CI=1
-          export INSTALL_DIR="$GITHUB_WORKSPACE"
           export XDG_RUNTIME_DIR="/run/user/1000"
-          bash ./install.sh
+          bash ./install.sh -d "$GITHUB_WORKSPACE"
   ubuntu:
     runs-on: ubuntu-latest
     container: ubuntu:latest
@@ -30,6 +29,5 @@ jobs:
         run: |
           set -e
           export CI=1
-          export INSTALL_DIR="$GITHUB_WORKSPACE"
           export XDG_RUNTIME_DIR="/run/user/1000"
-          bash ./install.sh
+          bash ./install.sh -d "$GITHUB_WORKSPACE"

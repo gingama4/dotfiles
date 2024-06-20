@@ -3,6 +3,5 @@
 set -ue
 
 setup_lazygit() {
-    simple_link lazygit LazyGit
+	simple_link lazygit LazyGit
 }
-

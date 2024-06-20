@@ -3,6 +3,5 @@
 set -ue
 
 setup_polybar() {
-    simple_link polybar Polybar
+	simple_link polybar Polybar
 }
-
