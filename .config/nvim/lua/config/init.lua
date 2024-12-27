@@ -166,6 +166,7 @@ function M.init()
   M.did_init = true
 
   M.load("options")
+  GinVim.plugin.setup()
 end
 
 setmetatable(M, {

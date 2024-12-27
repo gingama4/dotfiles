@@ -16,21 +16,6 @@ return function()
   end
 
   cmp.setup({
-    formatting = {
-      format = require('lspkind').cmp_format({
-        with_text = true,
-        menu = {
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
-          copilot = "[Copilot]",
-          luasnip = "[LuaSnip]",
-          nvim_lua = "[NeovimLua]",
-          path = "[Path]",
-          cmdline = "[Cmd]",
-          cmdline_history = "[History]",
-        },
-      }),
-    },
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
