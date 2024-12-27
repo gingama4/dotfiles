@@ -41,6 +41,7 @@ function setup_gui() {
 	title "GUI CONFIG"
 	setup_i3
 	setup_polybar
+	setup_picom
 }
 
 # Execute setup config
