@@ -135,7 +135,7 @@ set $ws10 "10"
 # compositor #
 ##############
 
-exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
 #############################################
 # autostart applications/services on login: #
