@@ -1,3 +1,3 @@
-require('rc/options')
-require('rc/keymap')
-require('plugin')
+require('config.options')
+require('config.keymap')
+require('config.lazy')
