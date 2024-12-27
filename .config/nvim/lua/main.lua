@@ -1,3 +1,4 @@
-require('config.options')
-require('config.keymap')
+vim.uv = vim.uv or vim.loop
+
 require('config.lazy')
+require('config').setup()

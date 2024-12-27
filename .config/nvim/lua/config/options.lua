@@ -1,66 +1,80 @@
-local basic_options = {
-  -- Tab
-  expandtab = true,
-  tabstop = 2,
-  shiftwidth = 2,
-  softtabstop = 0,
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-  -- Command
-  wildmenu = true,
-  wildmode = "longest,list,full",
+vim.g.autoformat = true
 
-  -- Search
-  wrapscan = true,
-  ignorecase = true,
-  smartcase = true,
-  incsearch = true,
-  hlsearch = true,
+local opt = vim.opt
 
-  -- Window
-  splitbelow = true,
-  splitright = true,
-
-  -- File
-  autoread = true,
-  swapfile = false,
-  hidden = true,
-  backup = true,
-  backupdir = vim.fn.stdpath("data") .. "/backup/",
-  backupskip = "",
-  directory = vim.fn.stdpath("data") .. "/swap/",
-  updatecount = 100,
-  undofile = true,
-  undodir = vim.fn.stdpath("data") .. "/undo/",
-  clipboard = 'unnamedplus,unnamed,' .. vim.o.clipboard,
-
-  -- Beep
-  errorbells = false,
-  visualbell = false,
-
-  -- Display
-  cursorline = true,
-  cursorlineopt = 'number',
-  display = 'lastline',
-  showmode = false,
-  showmatch = true,
-  matchtime = 1,
-  showcmd = true,
-  number = true,
-  relativenumber = true,
-  wrap = true,
-  title = false,
-  scrolloff = 5,
-  sidescrolloff = 5,
-  pumheight = 10,
-  signcolumn = "yes",
-
-  -- Status line
-  laststatus = 3,
+opt.autowrite = true
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 2
+opt.confirm = true
+opt.cursorline = true
+opt.expandtab = true
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
 }
+opt.foldlevel = 99
+opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
+opt.formatoptions = "jcroqlnt" -- tcqj
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true                         -- Ignore case
+opt.inccommand = "nosplit"                    -- preview incremental substitute
+opt.jumpoptions = "view"
+opt.laststatus = 3                            -- global statusline
+opt.linebreak = true                          -- Wrap lines at convenient points
+opt.list = true                               -- Show some invisible characters (tabs...
+opt.mouse = "a"                               -- Enable mouse mode
+opt.number = true                             -- Print line number
+opt.pumblend = 10                             -- Popup blend
+opt.pumheight = 10                            -- Maximum number of entries in a popup
+opt.relativenumber = true                     -- Relative line numbers
+opt.ruler = false                             -- Disable the default ruler
+opt.scrolloff = 4                             -- Lines of context
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.shiftround = true                         -- Round indent
+opt.shiftwidth = 2                            -- Size of an indent
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.showmode = false                          -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8                         -- Columns of context
+opt.signcolumn = "yes"                        -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true                          -- Don't ignore case with capitals
+opt.smartindent = true                        -- Insert indents automatically
+opt.spelllang = { "en" }
+opt.splitbelow = true                         -- Put new windows below current
+opt.splitkeep = "screen"
+opt.splitright = true                         -- Put new windows right of current
+opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+opt.tabstop = 2                               -- Number of spaces tabs count for
+opt.termguicolors = true                      -- True color support
+opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200               -- Save swap file and trigger CursorHold
+opt.virtualedit = "block"          -- Allow cursor to move where there is no text in visual block mode
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.winminwidth = 5                -- Minimum window width
+opt.wrap = false                   -- Disable line wrap
 
-for k, v in pairs(basic_options) do
-  vim.opt[k] = v
+if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = true
+  opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+  opt.foldmethod = "expr"
+  opt.foldtext = ""
+else
+  opt.foldmethod = "indent"
+  opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 end
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
 
 -- Create File Dir
 vim.fn.mkdir(vim.o.backupdir, "p")
@@ -70,13 +84,12 @@ vim.fn.mkdir(vim.o.undodir, "p")
 -- true color support
 vim.g.colorterm = os.getenv("COLORTERM")
 if
-  vim.g.colorterm == "truecolor"
-  or vim.g.colorterm == "24bit"
-  or vim.g.colorterm == "rxvt"
-  or vim.g.colorterm == ""
+    vim.g.colorterm == "truecolor"
+    or vim.g.colorterm == "24bit"
+    or vim.g.colorterm == "rxvt"
+    or vim.g.colorterm == ""
 then
   if vim.fn.exists("+termguicolors") then
     vim.o.termguicolors = true
   end
 end
-
