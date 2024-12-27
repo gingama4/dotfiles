@@ -1,9 +1,5 @@
 return {
   {
-    'folke/trouble.nvim',
-    event = { "BufReadPost", "BufNewFile" },
-  },
-  {
     'j-hui/fidget.nvim',
     event = 'VimEnter',
     config = function() require('fidget').setup() end,
@@ -22,16 +18,6 @@ return {
     config = require 'plugins.configs.toggleterm'
   },
   {
-    'lewis6991/gitsigns.nvim',
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      current_line_blame = true,
-      current_line_blame_opts = {
-        delay = 500,
-      },
-    },
-  },
-  {
     'rcarriga/nvim-notify',
     event = "BufreadPre",
     config = require 'plugins.configs.nvim-notify',
@@ -44,13 +30,5 @@ return {
       'dmitmel/cmp-cmdline-history',
     },
     config = require 'plugins.configs.noice',
-  },
-  {
-    'folke/which-key.nvim',
-    cmd = "WhichKey",
-    keys = {
-      { '<Leader><CR>', '<Cmd>WhichKey \\ <CR>',    desc = "Open Leader map" },
-      { '[_Lsp]<CR>',   '<Cmd>WhichKey [_Lsp]<CR>', desc = "Open [_Lsp] map" },
-    },
   },
 }
