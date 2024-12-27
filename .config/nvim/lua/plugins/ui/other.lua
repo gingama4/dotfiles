@@ -1,38 +1,5 @@
 return {
   {
-    'onsails/lspkind.nvim',
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      mode = 'symbol',
-      symbol_map = {
-        Array = "󰅪",
-        Boolean = "⊨",
-        Class = "󰌗",
-        Constructor = "",
-        Key = "󰌆",
-        Namespace = "󰅪",
-        Null = "NULL",
-        Number = "#",
-        Object = "󰀚",
-        Package = "󰏗",
-        Property = "",
-        Reference = "",
-        Snippet = "",
-        String = "󰀬",
-        TypeParameter = "󰊄",
-        Unit = "",
-      },
-      menu = {},
-    },
-    enabled = vim.g.icons_enabled,
-    config = function(_, opts) require('lspkind').init(opts) end,
-  },
-  {
-    'nvimdev/lspsaga.nvim',
-    event = 'VimEnter',
-    config = function() require 'plugins.configs.lspsaga' end
-  },
-  {
     'folke/trouble.nvim',
     event = { "BufReadPost", "BufNewFile" },
   },
