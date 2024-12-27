@@ -39,6 +39,9 @@ return {
   },
 
   {
+    import = "plugins.ui.statusline",
+  },
+  {
     import = "plugins.ui.dashboard",
   },
   {
