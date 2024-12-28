@@ -15,16 +15,4 @@ return {
     },
     config = require 'plugins.configs.nvim-cmp',
   },
-  -- Lint
-  {
-    'mfussenegger/nvim-lint',
-    event = { 'BufReadPre' },
-    config = require 'plugins.configs.nvim-lint',
-  },
-  -- Format
-  {
-    'stevearc/conform.nvim',
-    event = { 'BufReadPre' },
-    config = require 'plugins.configs.conform',
-  },
 }

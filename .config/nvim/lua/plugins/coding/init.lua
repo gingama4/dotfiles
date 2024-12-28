@@ -12,4 +12,6 @@ return {
       },
     },
   },
+  { import = "plugins.coding.formatting" },
+  { import = "plugins.coding.linting" },
 }
