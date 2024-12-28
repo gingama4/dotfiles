@@ -15,7 +15,7 @@ local defaults = {
   -- load the default settings
   defaults = {
     autocmds = true, -- config.autocmds
-    keymaps = true,  -- config.keymaps
+    keymaps = true, -- config.keymaps
   },
   -- icons used by other plugins
   -- stylua: ignore
@@ -139,7 +139,10 @@ function M.setup(opts)
     callback = function()
       M.load("keymaps")
       M.load("autocmds")
-    end
+
+      GinVim.format.setup()
+      GinVim.root.setup()
+    end,
   })
 end
 
