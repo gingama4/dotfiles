@@ -1,6 +1,6 @@
 return {
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     init = function()
       vim.g.lualine_laststatus = vim.o.laststatus
@@ -46,6 +46,15 @@ return {
           },
           lualine_x = {
             Snacks.profiler.status(),
+            -- copilot status
+            GinVim.lualine.status(GinVim.config.icons.kinds.Copilot, function()
+              local clients = package.loaded["copilot"] and GinVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
+                or {}
+              if #clients > 0 then
+                local status = require("copilot.api").status.data.status
+                return (status == "InProgress" and "pending") or (status == "Warning" and "error") or "ok"
+              end
+            end),
             -- stylua: ignore
             {
               function() return require("noice").api.status.command.get() end,
@@ -93,7 +102,7 @@ return {
             end,
           },
         },
-        extensions = { "neo-tree", "lazy", "fzf"},
+        extensions = { "neo-tree", "lazy", "fzf" },
       }
 
       return opts
@@ -101,13 +110,13 @@ return {
   },
 
   {
-    'akinsho/bufferline.nvim',
+    "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
       { "<leader>bl", "<cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-      { "<leader>bh", "<cmd>BufferLineCloseLeft<CR>",  desc = "Delete Buffers to the Left" },
-      { "<S-h>",      "<cmd>BufferLineCyclePrev<CR>",  desc = "Prev Buffer" },
-      { "<S-l>",      "<cmd>BufferLineCycleNext<CR>",  desc = "Next Buffer" },
+      { "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
+      { "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Prev Buffer" },
+      { "<S-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
     },
     opts = {
       options = {
@@ -120,7 +129,7 @@ return {
         diagnostics_indicator = function(_, _, diag)
           local icons = GinVim.config.icons.diagnostics
           local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-              .. (diag.warning and icons.Warn .. diag.warning or "")
+            .. (diag.warning and icons.Warn .. diag.warning or "")
           return vim.trim(ret)
         end,
         offsets = {
@@ -132,7 +141,7 @@ return {
           },
         },
         indicator = {
-          style = 'underline'
+          style = "underline",
         },
         custom_filter = function(buf_number, buf_numbers)
           -- filter out filetypes you don't want to see
@@ -140,7 +149,7 @@ return {
             return false
           end
           -- filter out by buffer name
-          if vim.fn.bufname(buf_number) == "" or vim.fn.bufname(buf_number) == '[No Name]' then
+          if vim.fn.bufname(buf_number) == "" or vim.fn.bufname(buf_number) == "[No Name]" then
             return false
           end
 

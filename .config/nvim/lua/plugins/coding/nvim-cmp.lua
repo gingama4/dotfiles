@@ -94,6 +94,7 @@ return {
     main = "config.util.cmp",
   },
 
+  -- snippets
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -114,6 +115,31 @@ return {
       if GinVim.has("nvim-snippets") then
         table.insert(opts.sources, { name = "snippets" })
       end
+    end,
+  },
+
+  -- copilot
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        opts = {},
+        config = function(_, opts)
+          local copilot_cmp = require("copilot_cmp")
+          copilot_cmp.setup(opts)
+          GinVim.lsp.on_attach(function()
+            copilot_cmp._on_insert_enter({})
+          end, "copilot")
+        end,
+      },
+    },
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = "copilot",
+        group_index = 1,
+        priority = 100,
+      })
     end,
   },
 }
