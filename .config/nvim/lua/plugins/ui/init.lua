@@ -45,6 +45,9 @@ return {
     import = "plugins.ui.dashboard",
   },
   {
+    import = "plugins.ui.notice",
+  },
+  {
     import = "plugins.ui.other",
   },
 }

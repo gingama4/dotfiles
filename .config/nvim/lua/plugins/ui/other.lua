@@ -17,18 +17,4 @@ return {
     },
     config = require 'plugins.configs.toggleterm'
   },
-  {
-    'rcarriga/nvim-notify',
-    event = "BufreadPre",
-    config = require 'plugins.configs.nvim-notify',
-  },
-  {
-    'folke/noice.nvim',
-    event = "VeryLazy",
-    dependencies = {
-      'hrsh7th/cmp-cmdline',
-      'dmitmel/cmp-cmdline-history',
-    },
-    config = require 'plugins.configs.noice',
-  },
 }
