@@ -4,6 +4,7 @@ local LazyUtil = require("lazy.core.util")
 ---@field config GinVimConfig
 ---@field format config.util.format
 ---@field lsp config.util.lsp
+---@field lualine config.util.lualine
 ---@field plugin config.util.plugin
 ---@field root config.util.root
 local M = {}

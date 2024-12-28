@@ -19,6 +19,10 @@ M.spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 M.detectors = {}
 
+function M.detectors.cwd()
+  return { vim.uv.cwd() }
+end
+
 ---@param patterns string[]|string
 function M.detectors.pattern(buf, patterns)
   patterns = type(patterns) == "string" and { patterns } or patterns
@@ -39,6 +43,10 @@ end
 
 function M.bufpath(buf)
   return M.realpath(vim.api.nvim_buf_get_name(assert(buf)))
+end
+
+function M.cwd()
+  return M.realpath(vim.uv.cwd()) or ""
 end
 
 function M.realpath(path)
