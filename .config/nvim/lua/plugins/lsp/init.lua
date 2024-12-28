@@ -218,8 +218,4 @@ return {
       end)
     end,
   },
-
-  {
-    import = "plugins.lsp.lsp",
-  },
 }
