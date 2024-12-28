@@ -5,6 +5,7 @@ local LazyUtil = require("lazy.core.util")
 ---@field format config.util.format
 ---@field lsp config.util.lsp
 ---@field plugin config.util.plugin
+---@field root config.util.root
 local M = {}
 
 setmetatable(M, {
@@ -17,6 +18,10 @@ setmetatable(M, {
     return t[k]
   end,
 })
+
+function M.is_win()
+  return vim.uv.os_uname().sysname:find("Windows") ~= nil
+end
 
 ---@param name string
 function M.get_plugin(name)

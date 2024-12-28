@@ -2,105 +2,6 @@
 
 return {
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    cmd = "Neotree",
-    keys = {
-      {
-        "<leader>fe",
-        function()
-          require("neo-tree.command").execute({ toggle = true })
-        end,
-        desc = "Explorer NeoTree"
-      },
-    },
-    deactivate = function()
-      vim.cmd([[Neotree close]])
-    end,
-    init = function()
-      vim.g.neo_tree_remove_legacy_commands = true
-      vim.api.nvim_create_autocmd("BufEnter", {
-        group = vim.api.nvim_create_augroup("Neotree_start_directory", { clear = true }),
-        desc = "Start Neo-tree with directory",
-        once = true,
-        callback = function()
-          if package.loaded["neo-tree"] then
-            return
-          else
-            local status = vim.uv.fs_stat(vim.fn.argv(0))
-            if stats and stats.type == "directory" then
-              require("neohtree")
-            end
-          end
-        end,
-      })
-    end,
-    opts = function()
-      return {
-        auto_clean_after_session_restore = true,
-        close_if_last_window = true,
-        sources = { "filesystem", "buffers", "git_status" },
-        source_selector = {
-          winbar = true,
-          content_layout = "center",
-          sources = {
-            { source = "filesystem", display_name = "󰉓 File" },
-            { source = "buffers", display_name = "󰈙 Bufs" },
-            { source = "git_status", display_name = "󰊢 Git" },
-            { source = "diagnostics", display_name = "󰒡 Diagnostics" },
-          },
-        },
-        default_component_configs = {
-          modified = { symbol = "" },
-          diagnostics = {
-            symbols = {
-              hint = "󰌵",
-              info = " ",
-              warn = " ",
-              error = " ",
-            },
-          },
-          git_status = {
-            symbols = {
-              added = "",
-              deleted = "",
-              modified = "",
-              renamed = "➜",
-              untracked = "★",
-              ignored = "◌",
-              unstaged = "✗",
-              staged = "✓",
-              conflict = "",
-            },
-          },
-        },
-        window = {
-          width = 30,
-          mappings = {
-            ["<space>"] = false,
-            ["[b"] = "prev_source",
-            ["]b"] = "next_source",
-          },
-        },
-        filesystem = {
-          follow_current_file = { enabled = true },
-          filtered_items = {
-            hide_dotfiles = false,
-            hide_gitignored = false,
-            hide_hidden = false,
-          },
-          use_libuv_file_watcher = vim.fn.has "win32" ~= 1,
-        },
-        event_handlers = {
-          {
-            event = "neo_tree_buffer_enter",
-            handler = function(_) vim.opt_local.signcolumn = "auto" end,
-          },
-        }
-      }
-    end,
-  },
-
-  {
     'numToStr/Comment.nvim',
     event = 'VeryLazy',
     config = function() require 'plugins.configs.Comment' end
@@ -212,6 +113,9 @@ return {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+  {
+    import = "plugins.editor.explorer",
+  },
   {
     import = "plugins.editor.fuzzyfinder",
   },
