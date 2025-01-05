@@ -1,7 +1,12 @@
 return {
   {
-    'numToStr/Comment.nvim',
-    event = 'VeryLazy',
-    config = function() require 'plugins.configs.Comment' end
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
+      },
+    },
   },
 }
