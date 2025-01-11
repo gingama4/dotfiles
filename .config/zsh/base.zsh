@@ -28,6 +28,11 @@ source "${rc_dir}/functions.zsh"
 source "${rc_dir}/bindkey.zsh"
 
 # --------------------------------------
+# Alias
+# --------------------------------------
+source "${rc_dir}/alias.zsh"
+
+# --------------------------------------
 # Plugin
 # --------------------------------------
 source "${rc_dir}/plugins.zsh"
