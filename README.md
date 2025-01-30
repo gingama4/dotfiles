@@ -4,14 +4,20 @@
 
 ## Supported OS
 
-- Arch
-- Ubuntu
+- Darwin (ARM64)
 
 ## Install
 
 Run the following:
 
+### nix-darwin
+
 ```bash
-curl -sL https://raw.githubusercontent.com/gingama4/dotfiles/master/install.sh | sh -s
+nix run nix-darwin -- switch --flake .
 ```
 
+## References
+
+- [asa1984/dotfiles](https://github.com/asa1984/dotfiles)
+- [mkt3/dotfiles](https://github.com/mkt3/dotfiles)
+- [yutkat/dotfiles](https://github.com/yutkat/dotfiles)
