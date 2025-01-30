@@ -1,6 +1,0 @@
-abbr dc="docker compose"
-abbr la="ls -la"
-abbr nv="nvim"
-abbr v="nvim"
-abbr vv="vim"
-abbr lg="lazygit"
