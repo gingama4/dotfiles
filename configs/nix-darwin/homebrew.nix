@@ -1,8 +1,8 @@
 {
   homebrew = {
     casks = [
-      "discord"
-      "slack"
+      "1password"
+      "iterm2"
     ];
   };
 }

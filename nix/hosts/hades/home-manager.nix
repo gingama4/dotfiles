@@ -27,6 +27,8 @@
 
   home.packages = with pkgs; [
     vscode
+    discord
+    slack
   ];
 
   programs.home-manager.enable = true;
