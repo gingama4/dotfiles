@@ -25,6 +25,8 @@
     enableNixpkgsReleaseCheck = false;
   };
 
+  development.enable = true;
+
   home.packages = with pkgs; [
     vscode
     discord
