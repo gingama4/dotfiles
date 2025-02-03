@@ -38,6 +38,15 @@
 
         overlays = import ./nix/overlays inputs;
 
+        homeManagerModules.default = import ./nix/modules/home-manager;
+        homeConfigurations = {
+          "hythlodaeus" = self.lib.makeHomeManagerConfig {
+            system = "x86_64-linux";
+            username = "ubuntu";
+            modules = [ ./nix/hosts/hythlodaeus/home-manager.nix ];
+          };
+        };
+
         darwinModules.default = import ./nix/modules/nix-darwin;
         darwinConfigurations = {
           hades = self.lib.makeDarwinConfig {
