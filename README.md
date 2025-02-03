@@ -3,6 +3,7 @@
 ## Supported OS
 
 - Darwin (ARM64)
+- Ubuntu - CLI (x86_64)
 
 ### Hosts and OS (Device)
 
