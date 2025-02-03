@@ -38,6 +38,13 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
+      cleanup = "uninstall";
     };
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      udev-gothic-nf
+    ];
   };
 }
