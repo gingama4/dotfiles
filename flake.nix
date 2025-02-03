@@ -42,7 +42,7 @@
         homeConfigurations = {
           "hythlodaeus" = self.lib.makeHomeManagerConfig {
             system = "x86_64-linux";
-            username = "gingama4";
+            username = "ubuntu";
             modules = [ ./nix/hosts/hythlodaeus/home-manager.nix ];
           };
         };
