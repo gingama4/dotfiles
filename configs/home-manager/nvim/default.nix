@@ -1,5 +1,11 @@
 { pkgs, ... }:
 {
+  programs.neovim = {
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+    ];
+  };
+
   home.packages = with pkgs; [
     neovim
 
@@ -8,14 +14,14 @@
   ];
 
   xdg.configFile = {
-      # entry file
-      "nvim/init.lua".source = ./init.lua;
+    # entry file
+    "nvim/init.lua".source = ./init.lua;
 
-      # config files
-      "nvim/lua".source = ./lua;
-      "nvim/after".source = ./after;
+    # config files
+    "nvim/lua".source = ./lua;
+    "nvim/after".source = ./after;
 
-      # option files
-      "nvim/lazyvim.json".source = ./lazyvim.json;
-    };
-  }
+    # option files
+    "nvim/lazyvim.json".source = ./lazyvim.json;
+  };
+}
