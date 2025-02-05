@@ -7,5 +7,7 @@
 
     fzf
     ghq
+
+    neofetch
   ];
 }
