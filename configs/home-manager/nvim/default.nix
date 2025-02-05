@@ -14,8 +14,5 @@
     # config files
     "nvim/lua".source = ./lua;
     "nvim/after".source = ./after;
-
-    # option files
-    "nvim/lazyvim.json".source = ./lazyvim.json;
   };
 }
