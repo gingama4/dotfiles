@@ -1,17 +1,11 @@
 { pkgs, ... }:
 {
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
+    enable = true;
+    package = pkgs.neovim;
+    plugins = import ./plugins.nix { inherit pkgs; };
+    extraPackages = import ./tools.nix { inherit pkgs; };
   };
-
-  home.packages = with pkgs; [
-    neovim
-
-    ripgrep
-    lazygit
-  ];
 
   xdg.configFile = {
     # entry file
