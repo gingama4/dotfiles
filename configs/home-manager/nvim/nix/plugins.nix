@@ -19,6 +19,8 @@ let
   plugins = with pkgs.vimPlugins; [
     lazy-nvim
     snacks-nvim
+
+    mini-icons
   ];
 in
 pkgListToAttr plugins
