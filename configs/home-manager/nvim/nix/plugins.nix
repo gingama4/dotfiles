@@ -17,12 +17,18 @@ let
     pkgList: pkgs.lib.foldl' (acc: pkg: acc // { "${normalizePname pkg.pname}" = pkg; }) { } pkgList;
 
   plugins = with pkgs.vimPlugins; [
+    # Base Plugin
     lazy-nvim
     snacks-nvim
 
+    # Colorscheme
     kanagawa-nvim
 
+    # UI
     mini-icons
+
+    # Editor
+    which-key-nvim
   ];
 in
 pkgListToAttr plugins
