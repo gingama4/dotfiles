@@ -152,7 +152,7 @@ function M.load(name)
       end, { msg = "Failed loading " .. mod })
     end
   end
-  _load("config." .. name)
+  _load("gingama4.config." .. name)
   if vim.bo.filetype == "lazy" then
     vim.cmd([[do VimResized]])
   end
