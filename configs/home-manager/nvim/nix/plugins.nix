@@ -20,6 +20,8 @@ let
     lazy-nvim
     snacks-nvim
 
+    kanagawa-nvim
+
     mini-icons
   ];
 in

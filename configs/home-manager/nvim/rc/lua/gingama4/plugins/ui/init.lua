@@ -1,5 +1,14 @@
 return {
   {
+    name = "rebelot/kanagawa.nvim",
+    dir = "@kanagawa_nvim@",
+    lazy = false,
+    priority = 1000,
+    init = function()
+      vim.cmd("colorscheme kanagawa")
+    end,
+  },
+  {
     name = "echasnovski/mini.icons",
     dir = "@mini_icons@",
     lazy = true,

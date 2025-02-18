@@ -6,7 +6,6 @@ require("lazy").setup({
   spec = {
     { import = "gingama4.plugins" },
   },
-  -- install = { colorscheme = { "tokyonight", "habmax" } },
   checker = { enabled = true },
   performance = {
     reset_packpath = false,
