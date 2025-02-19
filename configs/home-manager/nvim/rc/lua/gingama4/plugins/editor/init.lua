@@ -9,6 +9,7 @@ return {
       spec = {
         {
           mode = { "n", "v" },
+          { "<leader>f", group = "file/find" },
         },
       },
     },
