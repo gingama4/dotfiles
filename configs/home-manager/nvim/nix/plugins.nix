@@ -26,6 +26,7 @@ let
 
     # UI
     mini-icons
+    bufferline-nvim
 
     # Editor
     which-key-nvim

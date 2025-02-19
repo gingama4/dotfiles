@@ -1,4 +1,5 @@
 return {
+  { import = "gingama4.plugins.ui.bufferline" },
   {
     name = "rebelot/kanagawa.nvim",
     dir = "@kanagawa_nvim@",
