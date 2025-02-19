@@ -35,7 +35,13 @@
 
         homeManagerModules.default = import ./nix/modules/home-manager;
         homeConfigurations = {
-          "hythlodaeus" = self.lib.makeHomeManagerConfig {
+          "gingama4@hades" = self.lib.makeHomeManagerConfig {
+            system = "aarch64-darwin";
+            username = "gingama4";
+            modules = [ ./nix/hosts/hades/home-manager.nix ];
+          };
+
+          "ubuntu@hythlodaeus" = self.lib.makeHomeManagerConfig {
             system = "x86_64-linux";
             username = "ubuntu";
             modules = [ ./nix/hosts/hythlodaeus/home-manager.nix ];
