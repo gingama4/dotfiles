@@ -91,6 +91,7 @@ add-zsh-hook precmd _time_and_date_precmd
 # Setopt
 unsetopt glob_dots
 unsetopt ignore_eof
+unsetopt nomatch
 setopt no_flow_control
 setopt auto_pushd
 setopt no_beep
