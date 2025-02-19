@@ -1,0 +1,64 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+
+[templates]
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+
+[plugins]
+
+[plugins.zsh-defer]
+github = 'romkatv/zsh-defer'
+
+[plugins.git-prompt]
+github = 'woefe/git-prompt.zsh'
+hooks.post = '''
+ZSH_THEME_GIT_PROMPT_PREFIX="("''$'\Ue725 '
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
+ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg_bold[cyan]%}:"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="↓"
+ZSH_THEME_GIT_PROMPT_AHEAD="↑"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✖ "
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}● "
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}✚ "
+ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
+ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑ "
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔ "
+'''
+
+[plugins.syntax-highlight]
+github = 'z-shell/F-Sy-H'
+apply = ["defer"]
+
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+apply = ["defer"]
+
+[plugins.zsh-abbr]
+github = 'olets/zsh-abbr'
+apply = ["defer"]
+
+[plugins.enhancd]
+github = 'b4b4r07/enhancd'
+use = ["init.sh"]
+apply = ["defer"]
+hooks.post = '''
+ENHANCD_FILTER="fzf"
+'''
+
+# For example:
+#
+# [plugins.base16]
+# github = "chriskempson/base16-shell"
