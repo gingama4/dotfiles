@@ -24,6 +24,9 @@ let
     # Colorscheme
     kanagawa-nvim
 
+    # Treesitter
+    nvim-treesitter
+
     # UI
     mini-icons
     bufferline-nvim
