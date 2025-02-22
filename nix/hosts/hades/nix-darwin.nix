@@ -44,7 +44,7 @@
 
   fonts = {
     packages = with pkgs; [
-      udev-gothic-nf
+      hackgen-nf-font
     ];
   };
 }
