@@ -30,6 +30,7 @@ let
     # UI
     mini-icons
     bufferline-nvim
+    lualine-nvim
 
     # Editor
     which-key-nvim

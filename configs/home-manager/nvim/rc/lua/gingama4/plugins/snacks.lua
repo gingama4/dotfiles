@@ -41,4 +41,3 @@ return {
     require("snacks").setup(opts)
   end,
 }
-
