@@ -14,6 +14,7 @@
     ../../../configs/home-manager/lazygit
     ../../../configs/home-manager/nvim
     ../../../configs/home-manager/sheldon
+    ../../../configs/home-manager/wezterm
     ../../../configs/home-manager/xdg
     ../../../configs/home-manager/zsh
   ];
