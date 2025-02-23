@@ -1,5 +1,36 @@
+local function esc(x)
+  return (
+    x:gsub("%%", "%%%%")
+    :gsub("^%^", "%%^")
+    :gsub("%$$", "%%$")
+    :gsub("%(", "%%(")
+    :gsub("%)", "%%)")
+    :gsub("%.", "%%.")
+    :gsub("%[", "%%[")
+    :gsub("%]", "%%]")
+    :gsub("%*", "%%*")
+    :gsub("%+", "%%+")
+    :gsub("%-", "%%-")
+    :gsub("%?", "%%?")
+  )
+end
+
+local function get_cwd()
+  local cwd = vim.uv.cwd()
+  local git_dir = require("lualine.components.branch.git_branch").find_git_dir(cwd)
+  local root = vim.fs.dirname(git_dir)
+  if cwd == root then
+    return ""
+  end
+  local d, n = string.gsub(cwd, esc(root) .. "/", "")
+  if n == 0 and d == nil then
+    return ""
+  end
+  return "󱉭 /" .. d
+end
+
 return {
-  name = "nvim-lualine/lualine.nvim",
+  name = "lualine",
   dir = "@lualine_nvim@",
   event = "VeryLazy",
   init = function()
@@ -22,7 +53,7 @@ return {
       options = {
         icons_enabled = true,
         theme = "auto",
-        globalstatus = vim.o.laststatus == 3,
+        globalstatus = true,
         disabled_filetypes = {
           statusline = { "snacks_dashboard" },
         },
@@ -33,6 +64,7 @@ return {
       lualine_a = { "mode" },
       lualine_b = { "branch" },
       lualine_c = {
+        { get_cwd },
         {
           "diagnostics",
           symbols = {
@@ -43,22 +75,28 @@ return {
           },
         },
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        "filename"
+        {
+          "filename",
+          path = 1,
+        },
       },
 
       lualine_x = {
-        "diff",
-        symbols = {
-          added = icons.git.added,
-          modified = icons.git.modified,
-          removed = icons.git.removed,
+        Snacks.profiler.status(),
+        {
+          "diff",
+          symbols = {
+            added = icons.git.added,
+            modified = icons.git.modified,
+            removed = icons.git.removed,
+          },
         },
       },
       lualine_y = {
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
       },
-      lualine_z = {},
+      lualine_z = {"hostname"},
     }
 
     opts.sections = sections
@@ -66,6 +104,5 @@ return {
 
     return opts
   end,
-  config = function(opts) require("lualine").setup(opts) end,
 }
 
