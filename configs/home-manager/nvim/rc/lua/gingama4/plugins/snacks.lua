@@ -28,7 +28,17 @@ return {
     explorer = { enabled = true, replace_netrw = true },
     lazygit = { enabled = true },
     notifier = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      win = {
+        list = {
+          keys = {
+            ["s"] = "edit_vsplit",
+            ["v"] = "edit_split",
+          },
+        },
+      },
+    },
     terminal = {
       enabled = true,
       win = {
