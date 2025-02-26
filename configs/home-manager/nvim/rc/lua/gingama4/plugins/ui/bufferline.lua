@@ -1,5 +1,5 @@
 return {
-  name = "akinsho/bufferline.nvim",
+  name = "bufferline.nvim",
   dir = "@bufferline_nvim@",
   event = "VeryLazy",
   keys = {
@@ -29,6 +29,7 @@ return {
           filetype = "snacks_layout_box",
         },
       },
+      ---@module "bufferline"
       ---@param opts bufferline.IconFetcherOpts
       get_element_icon = function(opts)
         return GinVim.config.icons.ft[opts.filetype]

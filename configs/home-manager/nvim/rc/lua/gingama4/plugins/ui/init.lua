@@ -1,18 +1,23 @@
 return {
   {
-    name = "rebelot/kanagawa.nvim",
+    name = "kanagawa.nvim",
     dir = "@kanagawa_nvim@",
     lazy = false,
     priority = 1000,
-    init = function()
-      require('kanagawa').setup({
-        transparent = true,
-      })
+    build = ":KanagawaCompile",
+    ---@module "kanagawa"
+    ---@type KanagawaConfig
+    opts = {
+      compile = false,
+    },
+    ---@param opts KanagawaConfig
+    config = function(_, opts)
+      require('kanagawa').setup(opts)
       vim.cmd("colorscheme kanagawa")
     end,
   },
   {
-    name = "echasnovski/mini.icons",
+    name = "mini.icons",
     dir = "@mini_icons@",
     lazy = true,
     opts = {

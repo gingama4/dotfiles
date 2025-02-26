@@ -1,5 +1,5 @@
 return {
-  name = "nvim-treesitter/nvim-treesitter",
+  name = "nvim-treesitter",
   dir = "@nvim_treesitter@",
   event = { "LazyFile", "VeryLazy" },
   init = function()

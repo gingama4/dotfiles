@@ -8,7 +8,7 @@ local function term_nav(dir)
 end
 
 return {
-  name = "folke/snacks.nvim",
+  name = "snacks.nvim",
   dir = "@snacks_nvim@",
   priority = 1000,
   lazy = false,

@@ -1,6 +1,6 @@
 return {
   {
-    name = "folke/which-key.nvim",
+    name = "which-key.nvim",
     dir = "@which_key_nvim@",
     event = "VeryLazy",
     opts = {

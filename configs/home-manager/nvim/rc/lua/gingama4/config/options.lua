@@ -63,33 +63,10 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
-  opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-  opt.foldmethod = "expr"
-  opt.foldtext = ""
-else
-  opt.foldmethod = "indent"
-  opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
-end
+opt.smoothscroll = true
+opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+opt.foldmethod = "expr"
+opt.foldtext = ""
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
-
--- Create File Dir
-vim.fn.mkdir(vim.o.backupdir, "p")
-vim.fn.mkdir(vim.o.directory, "p")
-vim.fn.mkdir(vim.o.undodir, "p")
-
--- true color support
-vim.g.colorterm = os.getenv("COLORTERM")
-if
-  vim.g.colorterm == "truecolor"
-  or vim.g.colorterm == "24bit"
-  or vim.g.colorterm == "rxvt"
-  or vim.g.colorterm == ""
-then
-  if vim.fn.exists("+termguicolors") then
-    vim.o.termguicolors = true
-  end
-end

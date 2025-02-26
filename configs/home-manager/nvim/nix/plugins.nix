@@ -27,6 +27,13 @@ let
     # Treesitter
     nvim-treesitter
 
+    # LSP
+    nvim-lspconfig
+    blink-cmp
+
+    # Coding
+    lazydev-nvim
+
     # UI
     mini-icons
     bufferline-nvim
