@@ -9,6 +9,7 @@ return {
     ---@type KanagawaConfig
     opts = {
       compile = false,
+      transparent = true,
     },
     ---@param opts KanagawaConfig
     config = function(_, opts)
