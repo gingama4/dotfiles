@@ -33,6 +33,7 @@ let
 
     # Coding
     lazydev-nvim
+    conform-nvim
 
     # UI
     mini-icons

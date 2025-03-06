@@ -4,6 +4,8 @@ with pkgs; [
   lazygit
   fd
 
-  # Programming languages (LSP)
+  # Programming languages (LSP/Formatter)
+  ## Lua
   lua-language-server
+  stylua
 ]
