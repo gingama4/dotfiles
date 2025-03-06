@@ -28,7 +28,7 @@ return {
     appearance = {
       use_nvim_cmp_as_default = false,
       nerd_font_variant = "mono",
-      kind_icons = GinVim.config.icons.kinds,
+      kind_icons = GinVim.icons.kinds,
     },
     sources = {
       default = { "lazydev", "lsp", "path", "snippets", "buffer" },

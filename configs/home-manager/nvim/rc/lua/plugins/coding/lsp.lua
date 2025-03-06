@@ -15,7 +15,7 @@ return {
     end
 
     -- Global config
-    local icons = GinVim.config.icons
+    local icons = GinVim.icons
     vim.diagnostic.config({
       underline = true,
       update_in_insert = false,

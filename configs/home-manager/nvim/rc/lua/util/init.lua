@@ -3,6 +3,7 @@ local LazyUtil = require("lazy.core.util")
 ---@class util: LazyUtilCore
 ---@field config GinVimConfig
 ---@field plugin util.plugin
+---@field icons util.icons
 local M = {}
 
 setmetatable(M, {

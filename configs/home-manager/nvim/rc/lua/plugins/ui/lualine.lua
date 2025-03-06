@@ -1,17 +1,17 @@
 local function esc(x)
   return (
     x:gsub("%%", "%%%%")
-    :gsub("^%^", "%%^")
-    :gsub("%$$", "%%$")
-    :gsub("%(", "%%(")
-    :gsub("%)", "%%)")
-    :gsub("%.", "%%.")
-    :gsub("%[", "%%[")
-    :gsub("%]", "%%]")
-    :gsub("%*", "%%*")
-    :gsub("%+", "%%+")
-    :gsub("%-", "%%-")
-    :gsub("%?", "%%?")
+      :gsub("^%^", "%%^")
+      :gsub("%$$", "%%$")
+      :gsub("%(", "%%(")
+      :gsub("%)", "%%)")
+      :gsub("%.", "%%.")
+      :gsub("%[", "%%[")
+      :gsub("%]", "%%]")
+      :gsub("%*", "%%*")
+      :gsub("%+", "%%+")
+      :gsub("%-", "%%-")
+      :gsub("%?", "%%?")
   )
 end
 
@@ -45,7 +45,7 @@ return {
     local lualine_require = require("lualine_require")
     lualine_require.require = require
 
-    local icons = GinVim.config.icons
+    local icons = GinVim.icons
 
     vim.o.laststatus = vim.g.lualine_laststatus
 
@@ -96,7 +96,7 @@ return {
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
       },
-      lualine_z = {"hostname"},
+      lualine_z = { "hostname" },
     }
 
     opts.sections = sections
@@ -105,4 +105,3 @@ return {
     return opts
   end,
 }
-
