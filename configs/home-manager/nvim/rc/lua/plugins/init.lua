@@ -1,4 +1,4 @@
-require("gingama4.config").init()
+require("config").init()
 
 return {
   {

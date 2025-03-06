@@ -1,4 +1,4 @@
----@class gingama4.util.plugin
+---@class util.plugin
 local M = {}
 
 M.lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }

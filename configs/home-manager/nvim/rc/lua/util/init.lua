@@ -1,8 +1,8 @@
 local LazyUtil = require("lazy.core.util")
 
----@class gingama4.util: LazyUtilCore
+---@class util: LazyUtilCore
 ---@field config GinVimConfig
----@field plugin gingama4.util.plugin
+---@field plugin util.plugin
 local M = {}
 
 setmetatable(M, {
@@ -10,7 +10,7 @@ setmetatable(M, {
     if LazyUtil[k] then
       return LazyUtil[k]
     end
-    t[k] = require("gingama4.util." .. k)
+    t[k] = require("util." .. k)
     return t[k]
   end,
 })

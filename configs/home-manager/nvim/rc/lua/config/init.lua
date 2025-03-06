@@ -1,4 +1,4 @@
-_G.GinVim = require("gingama4.util")
+_G.GinVim = require("util")
 
 ---@class GinVimConfig: GinVimOptions
 local M = {}
@@ -147,7 +147,7 @@ function M.load(name)
       end, { msg = "Failed loading " .. mod })
     end
   end
-  _load("gingama4.config." .. name)
+  _load("config." .. name)
   if vim.bo.filetype == "lazy" then
     vim.cmd([[do VimResized]])
   end

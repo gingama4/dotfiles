@@ -13,7 +13,7 @@ return {
     },
     ---@param opts KanagawaConfig
     config = function(_, opts)
-      require('kanagawa').setup(opts)
+      require("kanagawa").setup(opts)
       vim.cmd("colorscheme kanagawa")
     end,
   },
@@ -37,6 +37,6 @@ return {
       end
     end,
   },
-  { import = "gingama4.plugins.ui.bufferline" },
-  { import = "gingama4.plugins.ui.lualine" },
+  { import = "plugins.ui.bufferline" },
+  { import = "plugins.ui.lualine" },
 }
