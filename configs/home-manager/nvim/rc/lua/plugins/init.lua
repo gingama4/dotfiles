@@ -1,5 +1,3 @@
-require("config").init()
-
 return {
   {
     name = "lazy.nvim",
