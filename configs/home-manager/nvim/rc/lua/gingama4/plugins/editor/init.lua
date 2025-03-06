@@ -23,4 +23,5 @@ return {
       },
     },
   },
+  { import = "gingama4.plugins.editor.git" },
 }

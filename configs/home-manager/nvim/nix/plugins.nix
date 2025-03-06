@@ -41,6 +41,8 @@ let
 
     # Editor
     which-key-nvim
+    gitsigns-nvim
+    git-blame-nvim
   ];
 in
 pkgListToAttr plugins
