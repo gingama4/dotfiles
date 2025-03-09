@@ -8,4 +8,7 @@ with pkgs; [
   ## Lua
   lua-language-server
   stylua
+
+  ## Deno
+  deno
 ]
