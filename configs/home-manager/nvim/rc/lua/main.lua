@@ -15,6 +15,9 @@ require("lazy").setup({
   install = {
     missing = false,
   },
+  ui = {
+    border = "rounded",
+  },
 })
 
 require("config.keymaps")

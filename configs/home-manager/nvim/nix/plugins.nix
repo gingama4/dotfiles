@@ -29,7 +29,10 @@ let
 
     # LSP
     nvim-lspconfig
-    blink-cmp
+    nvim-cmp
+    cmp-nvim-lsp
+    cmp-buffer
+    cmp-path
 
     # Coding
     lazydev-nvim

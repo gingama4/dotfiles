@@ -10,9 +10,15 @@ return {
   },
   config = function(_, opts)
     local lspconfig = require("lspconfig")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+    local defaultOpts = {
+      capabilities = capabilities,
+    }
     for server, server_opts in pairs(opts.servers) do
-      lspconfig[server].setup(server_opts)
+      local o = vim.tbl_deep_extend("force", defaultOpts, server_opts)
+      lspconfig[server].setup(o)
     end
 
     -- Global config
@@ -33,6 +39,9 @@ return {
         end,
       },
       severity_sort = true,
+      float = {
+        border = "rounded",
+      },
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
@@ -54,5 +63,8 @@ return {
         },
       },
     })
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.buf.hover({ border = "single" })
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.buf.hover({ border = "single" })
   end,
 }
