@@ -33,6 +33,7 @@ let
     cmp-nvim-lsp
     cmp-buffer
     cmp-path
+    copilot-cmp
 
     # Coding
     lazydev-nvim
@@ -47,6 +48,13 @@ let
     which-key-nvim
     gitsigns-nvim
     git-blame-nvim
+
+    # AI
+    copilot-lua
+    CopilotChat-nvim
+
+    # Library
+    plenary-nvim
   ];
 in
 pkgListToAttr plugins

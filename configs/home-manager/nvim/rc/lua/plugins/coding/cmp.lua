@@ -6,9 +6,24 @@ return {
     { name = "cmp-nvim-lsp", dir = "@cmp_nvim_lsp@" },
     { name = "cmp-buffer", dir = "@cmp_buffer@" },
     { name = "cmp-path", dir = "@cmp_path@" },
+    {
+      name = "copilot-cmp",
+      dir = "@copilot_cmp@",
+      config = function()
+        require("copilot_cmp").setup()
+      end,
+    },
   },
   opts = function()
     local cmp = require("cmp")
+    local has_words_before = function()
+      if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+        return false
+      end
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+    end
+
     return {
       window = {
         completion = cmp.config.window.bordered({
@@ -19,19 +34,32 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<Tab>"] = cmp.mapping.select_next_item(),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+        ["<Tab>"] = vim.schedule_wrap(function(fallback)
+          if cmp.visible() and has_words_before() then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            fallback()
+          end
+        end),
+        ["<S-Tab>"] = vim.schedule_wrap(function(fallback)
+          if cmp.visible() and has_words_before() then
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            fallback()
+          end
+        end),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
       sources = cmp.config.sources({
         { name = "lazydev" },
+        { name = "copilot", group_index = 1, priority = 100 },
         { name = "nvim_lsp" },
         { name = "path" },
       }, {
         { name = "buffer" },
       }),
       formatting = {
-        format = function(entry, item)
+        format = function(_, item)
           local icons = GinVim.icons
           local kinds = icons.kinds
           if kinds[item.kind] then
@@ -51,6 +79,9 @@ return {
 
           return item
         end,
+      },
+      experimental = {
+        ghost_text = true,
       },
     }
   end,
