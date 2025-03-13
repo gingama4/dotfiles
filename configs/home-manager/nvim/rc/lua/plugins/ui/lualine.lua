@@ -65,6 +65,11 @@ return {
       lualine_b = { "branch" },
       lualine_c = {
         { get_cwd },
+        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+        {
+          "filename",
+          path = 1,
+        },
         {
           "diagnostics",
           symbols = {
@@ -74,15 +79,9 @@ return {
             hint = icons.diagnostics.Hint,
           },
         },
-        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        {
-          "filename",
-          path = 1,
-        },
       },
 
       lualine_x = {
-        Snacks.profiler.status(),
         {
           "diff",
           symbols = {
@@ -93,6 +92,10 @@ return {
         },
       },
       lualine_y = {
+        -- stylua: ignore
+        {
+          GinVim.skk.Mode,
+        },
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
       },

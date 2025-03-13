@@ -11,4 +11,9 @@ let
 in
 {
   home.packages = [ neovimWrapper ];
+
+  home.file.".skk" = {
+    source = "${pkgs.skkDictionaries.l}/share/skk";
+    recursive = true;
+  };
 }

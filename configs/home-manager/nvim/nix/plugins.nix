@@ -20,6 +20,10 @@ let
     # Base Plugin
     lazy-nvim
     snacks-nvim
+    denops-vim
+
+    # Input
+    skkeleton
 
     # Colorscheme
     kanagawa-nvim
@@ -34,6 +38,7 @@ let
     cmp-buffer
     cmp-path
     copilot-cmp
+    cmp-skkeleton
 
     # Coding
     lazydev-nvim

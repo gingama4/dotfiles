@@ -79,4 +79,6 @@ M.kinds = {
   Variable      = "󰀫 ",
 }
 
+M.ime = " "
+
 return M

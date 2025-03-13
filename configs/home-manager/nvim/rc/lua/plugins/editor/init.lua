@@ -24,4 +24,5 @@ return {
     },
   },
   { import = "plugins.editor.git" },
+  { import = "plugins.editor.skk" },
 }
