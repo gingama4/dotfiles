@@ -58,6 +58,9 @@ let
     copilot-lua
     CopilotChat-nvim
 
+    # Other
+    vimdoc-ja
+
     # Library
     plenary-nvim
   ];
