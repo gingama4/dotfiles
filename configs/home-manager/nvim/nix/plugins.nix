@@ -1,68 +1,49 @@
 pkgs:
-let
-  normalizePname =
-    pname:
-    builtins.replaceStrings
-      [
-        "-"
-        "."
-      ]
-      [
-        "_"
-        "_"
-      ]
-      (pkgs.lib.toLower pname);
+with pkgs.vimPlugins; [
+  # Base Plugin
+  lazy-nvim
+  snacks-nvim
+  denops-vim
 
-  pkgListToAttr =
-    pkgList: pkgs.lib.foldl' (acc: pkg: acc // { "${normalizePname pkg.pname}" = pkg; }) { } pkgList;
+  # Input
+  skkeleton
 
-  plugins = with pkgs.vimPlugins; [
-    # Base Plugin
-    lazy-nvim
-    snacks-nvim
-    denops-vim
+  # Colorscheme
+  kanagawa-nvim
 
-    # Input
-    skkeleton
+  # Treesitter
+  nvim-treesitter
 
-    # Colorscheme
-    kanagawa-nvim
+  # LSP
+  nvim-lspconfig
+  nvim-cmp
+  cmp-nvim-lsp
+  cmp-buffer
+  cmp-path
+  copilot-cmp
+  cmp-skkeleton
 
-    # Treesitter
-    nvim-treesitter
+  # Coding
+  lazydev-nvim
+  conform-nvim
 
-    # LSP
-    nvim-lspconfig
-    nvim-cmp
-    cmp-nvim-lsp
-    cmp-buffer
-    cmp-path
-    copilot-cmp
-    cmp-skkeleton
+  # UI
+  mini-icons
+  bufferline-nvim
+  lualine-nvim
 
-    # Coding
-    lazydev-nvim
-    conform-nvim
+  # Editor
+  which-key-nvim
+  gitsigns-nvim
+  git-blame-nvim
 
-    # UI
-    mini-icons
-    bufferline-nvim
-    lualine-nvim
+  # AI
+  copilot-lua
+  CopilotChat-nvim
 
-    # Editor
-    which-key-nvim
-    gitsigns-nvim
-    git-blame-nvim
+  # Other
+  vimdoc-ja
 
-    # AI
-    copilot-lua
-    CopilotChat-nvim
-
-    # Other
-    vimdoc-ja
-
-    # Library
-    plenary-nvim
-  ];
-in
-pkgListToAttr plugins
+  # Library
+  plenary-nvim
+]

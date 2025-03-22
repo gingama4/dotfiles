@@ -9,6 +9,10 @@ with pkgs; [
   lua-language-server
   stylua
 
-  ## Deno
-  deno
+  ## TypeScript
+  typescript
+  typescript-language-server
+
+  ## Vue
+  vue-language-server
 ]

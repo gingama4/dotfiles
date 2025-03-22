@@ -1,12 +1,32 @@
+local M = {}
+
+function M.load()
+  local servers = {}
+
+  local files = {}
+  local lazy = require("lazy.core.util")
+  lazy.lsmod("plugins.coding.languages", function(file)
+    files[#files + 1] = file
+  end)
+  table.sort(files)
+
+  for _, file in ipairs(files) do
+    local server = require(file)
+    if type(server) ~= "table" then
+      error("Invalid server configuration in " .. file)
+    end
+    servers = vim.tbl_deep_extend("force", servers, server)
+  end
+
+  return servers
+end
+
 return {
   name = "nvim-lspconfig",
   dir = "@nvim_lspconfig@",
   event = "LazyFile",
   opts = {
-    servers = {
-      lua_ls = {},
-      denols = {},
-    },
+    servers = {},
   },
   config = function(_, opts)
     local lspconfig = require("lspconfig")
@@ -16,7 +36,11 @@ return {
     local defaultOpts = {
       capabilities = capabilities,
     }
-    for server, server_opts in pairs(opts.servers) do
+
+    local load_servers = M.load()
+    local servers = vim.tbl_deep_extend("force", load_servers, opts.servers)
+
+    for server, server_opts in pairs(servers) do
       local o = vim.tbl_deep_extend("force", defaultOpts, server_opts)
       lspconfig[server].setup(o)
     end
