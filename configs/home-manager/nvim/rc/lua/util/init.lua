@@ -1,5 +1,6 @@
 ---@class util
 ---@field icons util.icons
+---@field keymap util.keymap
 ---@field plugin util.plugin
 ---@field skk util.skk
 local M = {}
