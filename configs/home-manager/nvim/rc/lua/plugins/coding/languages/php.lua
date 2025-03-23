@@ -1,3 +1,6 @@
 return {
-  phpactor = {},
+  servers = {
+    phpactor = {},
+  },
+  formatters = {},
 }

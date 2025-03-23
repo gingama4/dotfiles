@@ -1,26 +1,3 @@
-local M = {}
-
-function M.load()
-  local servers = {}
-
-  local files = {}
-  local lazy = require("lazy.core.util")
-  lazy.lsmod("plugins.coding.languages", function(file)
-    files[#files + 1] = file
-  end)
-  table.sort(files)
-
-  for _, file in ipairs(files) do
-    local server = require(file)
-    if type(server) ~= "table" then
-      error("Invalid server configuration in " .. file)
-    end
-    servers = vim.tbl_deep_extend("force", servers, server)
-  end
-
-  return servers
-end
-
 return {
   name = "nvim-lspconfig",
   dir = "@nvim_lspconfig@",
@@ -37,7 +14,7 @@ return {
       capabilities = capabilities,
     }
 
-    local load_servers = M.load()
+    local load_servers = GinVim.language.load().servers
     local servers = vim.tbl_deep_extend("force", load_servers, opts.servers)
 
     for server, server_opts in pairs(servers) do

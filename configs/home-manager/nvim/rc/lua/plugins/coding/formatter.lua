@@ -19,11 +19,10 @@ return {
         timeout_ms = 2500,
       }
     end,
-    formatters_by_ft = {
-      lua = { "stylua" },
-    },
   },
   config = function(_, opts)
+    local formatters = GinVim.language.load().formatters
+    opts = vim.tbl_extend("force", opts, formatters)
     require("conform").setup(opts)
 
     vim.api.nvim_create_user_command("FormatDisable", function(args)

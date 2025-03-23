@@ -1,3 +1,10 @@
 return {
-  lua_ls = {},
+  servers = {
+    lua_ls = {},
+  },
+  formatters = {
+    formatters_by_ft = {
+      lua = { "stylua" },
+    },
+  },
 }
