@@ -56,7 +56,7 @@ in
       ])
       ++ optionals cfg.languages.go.enable ([
         pkgs.go
-        pkgs.gopls
+        pkgs.gotools
       ])
       ++ optionals cfg.languages.javascript.enable ([
         pkgs.bun

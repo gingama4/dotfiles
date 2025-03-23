@@ -18,4 +18,10 @@ with pkgs; [
 
   ## Vue
   vue-language-server
+
+  # Go
+  go
+  gopls
+  gofumpt
+  gotools
 ]
