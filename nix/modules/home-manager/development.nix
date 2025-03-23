@@ -37,22 +37,6 @@ in
         };
       };
 
-      lua = {
-        enable = mkOption {
-          type = types.bool;
-          default = true;
-          description = "Enable Lua";
-        };
-      };
-
-      nix = {
-        enable = mkOption {
-          type = types.bool;
-          default = true;
-          description = "Enable Nix";
-        };
-      };
-
       shell = {
         enable = mkOption {
           type = types.bool;
@@ -72,23 +56,12 @@ in
       ])
       ++ optionals cfg.languages.go.enable ([
         pkgs.go
-        pkgs.gopls
+        pkgs.gotools
       ])
       ++ optionals cfg.languages.javascript.enable ([
         pkgs.bun
         pkgs.deno
-        pkgs.eslint
-        pkgs.nodePackages.typescript-language-server
         pkgs.nodejs
-        pkgs.nodePackages.prettier
-      ])
-      ++ optionals cfg.languages.lua.enable ([
-        pkgs.lua-language-server
-        pkgs.stylua
-      ])
-      ++ optionals cfg.languages.nix.enable ([
-        pkgs.nil
-        pkgs.nixfmt-rfc-style
       ])
       ++ optionals cfg.languages.shell.enable ([
         pkgs.shellcheck

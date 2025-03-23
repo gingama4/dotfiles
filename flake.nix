@@ -2,9 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +14,19 @@
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
     };
   };
 

@@ -1,21 +1,20 @@
 { pkgs, ... }:
+let
+  makeNeovimWrapper = import ./nix/lib/make-neovim-wrapper.nix {
+    inherit pkgs;
+    neovim = pkgs.neovim;
+  };
+
+  tools = import ./nix/tools.nix pkgs;
+  nodes = import ./nix/nodes.nix pkgs;
+
+  neovimWrapper = makeNeovimWrapper { extraPackages = tools ++ nodes; };
+in
 {
-  home.packages = with pkgs; [
-    neovim
+  home.packages = [ neovimWrapper ];
 
-    ripgrep
-    lazygit
-  ];
-
-  xdg.configFile = {
-      # entry file
-      "nvim/init.lua".source = ./init.lua;
-
-      # config files
-      "nvim/lua".source = ./lua;
-      "nvim/after".source = ./after;
-
-      # option files
-      "nvim/lazyvim.json".source = ./lazyvim.json;
-    };
-  }
+  home.file.".skk" = {
+    source = "${pkgs.skkDictionaries.l}/share/skk";
+    recursive = true;
+  };
+}
