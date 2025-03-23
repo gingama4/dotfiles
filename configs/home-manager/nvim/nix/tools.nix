@@ -9,6 +9,9 @@ with pkgs; [
   lua-language-server
   stylua
 
+  # PHP
+  phpactor
+
   ## TypeScript
   typescript
   typescript-language-server
