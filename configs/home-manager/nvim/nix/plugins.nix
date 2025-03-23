@@ -31,6 +31,7 @@ with pkgs.vimPlugins; [
   mini-icons
   bufferline-nvim
   lualine-nvim
+  noice-nvim
 
   # Editor
   which-key-nvim
@@ -46,4 +47,5 @@ with pkgs.vimPlugins; [
 
   # Library
   plenary-nvim
+  nui-nvim
 ]

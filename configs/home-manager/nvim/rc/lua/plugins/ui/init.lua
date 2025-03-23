@@ -46,6 +46,28 @@ return {
       end
     end,
   },
+  {
+    name = "noice.nvim",
+    dir = "@noice_nvim@",
+    event = "VeryLazy",
+    dependencies = {
+      { name = "nui.nvim", dir = "@nui_nvim@" },
+    },
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+      },
+    },
+  },
   { import = "plugins.ui.bufferline" },
   { import = "plugins.ui.lualine" },
 }

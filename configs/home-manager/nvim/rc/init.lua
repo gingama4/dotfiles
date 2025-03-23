@@ -1,5 +1,6 @@
 vim.loader.enable()
 vim.uv = vim.uv or vim.loop
+vim.tbl_islist = vim.islist
 
 local lazypath = "@lazy_nvim@"
 vim.opt.rtp:prepend(lazypath)

@@ -26,6 +26,7 @@ return {
       },
     },
     explorer = { enabled = true, replace_netrw = true },
+    indent = { enabled = true },
     lazygit = { enabled = true },
     notifier = { enabled = true },
     picker = {
@@ -51,6 +52,7 @@ return {
       },
     },
   },
+  --stylua: ignore
   keys = {
     -- Explorer
     { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },

@@ -96,6 +96,7 @@ return {
         {
           GinVim.skk.Mode,
         },
+        { "filetype" },
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
       },
