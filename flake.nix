@@ -17,14 +17,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
     };
