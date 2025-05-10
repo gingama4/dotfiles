@@ -1,0 +1,6 @@
+return {
+  servers = {
+    intelephense = {},
+  },
+  formatters = {},
+}

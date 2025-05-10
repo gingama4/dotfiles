@@ -1,2 +1,3 @@
 *.zwc
 .config/zsh/sheldon/sheldon.zsh
+.DS_Store
