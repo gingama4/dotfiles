@@ -1,6 +1,6 @@
 return {
   servers = {
-    phpactor = {},
+    intelephense = {},
   },
   formatters = {},
 }

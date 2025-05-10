@@ -2,7 +2,6 @@ inputs:
 let
   defaultOverlays = [
     inputs.self.overlays.default
-    inputs.neovim-nightly-overlay.overlays.default
   ];
 in 
 {

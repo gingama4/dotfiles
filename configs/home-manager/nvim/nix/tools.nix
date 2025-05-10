@@ -10,7 +10,7 @@ with pkgs; [
   stylua
 
   # PHP
-  phpactor
+  intelephense
 
   ## TypeScript
   typescript
