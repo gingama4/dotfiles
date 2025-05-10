@@ -6,7 +6,6 @@ return {
     servers = {},
   },
   config = function(_, opts)
-    local lspconfig = require("lspconfig")
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -14,12 +13,14 @@ return {
       capabilities = capabilities,
     }
 
+    vim.lsp.config("*", defaultOpts)
+
     local load_servers = GinVim.language.load().servers
     local servers = vim.tbl_deep_extend("force", load_servers, opts.servers)
 
     for server, server_opts in pairs(servers) do
-      local o = vim.tbl_deep_extend("force", defaultOpts, server_opts)
-      lspconfig[server].setup(o)
+      vim.lsp.config(server, server_opts)
+      vim.lsp.enable(server)
     end
 
     -- Global config
