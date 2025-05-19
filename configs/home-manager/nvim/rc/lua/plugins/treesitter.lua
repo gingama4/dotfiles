@@ -5,9 +5,14 @@ return {
   init = function()
     vim.opt.runtimepath:append("@treesitter_parsers@")
   end,
-  opts = {
-    auto_install = false,
-    highlight = { enable = true },
-    indent = { enabled = true },
-  },
+  config = function()
+    require("nvim-treesitter.configs").setup({
+      highlight = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      },
+    })
+  end,
 }
