@@ -2,5 +2,10 @@ return {
   servers = {
     intelephense = {},
   },
-  formatters = {},
+  formatters = {
+    formatters_by_ft = {
+      php = { "pint" },
+      blade = { "blade-formatter" },
+    },
+  },
 }
