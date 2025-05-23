@@ -11,6 +11,6 @@
       merge.conflictStyle = "diff3";
       diff.colorMoved = "default";
     };
-    difftastic.enable = true;
+    delta.enable = true;
   };
 }
