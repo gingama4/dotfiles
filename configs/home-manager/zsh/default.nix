@@ -1,4 +1,4 @@
-{ pkgs, config, ...}:
+{ pkgs, config, lib, ...}:
 {
   home.packages = with pkgs; [
     sheldon
@@ -23,7 +23,7 @@
       fi
     '';
 
-    initExtraFirst = ''
+    initContent = lib.mkBefore ''
       # source command override
       function source {
         ensure_zcompiled "''$1"
@@ -73,6 +73,7 @@
     shellAliases =
       {
         ls = "eza --icons";
+        gd = "ghq list --full-path | cd";
       };
   };
 
