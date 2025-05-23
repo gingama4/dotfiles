@@ -73,6 +73,7 @@
     shellAliases =
       {
         ls = "eza --icons";
+        gd = "ghq list --full-path | cd";
       };
   };
 
