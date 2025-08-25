@@ -1,5 +1,7 @@
 {
   system = {
+    primaryUser = "gingama4";
+
     defaults = {
       dock = {
         autohide = false;
