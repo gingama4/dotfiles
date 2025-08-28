@@ -8,15 +8,15 @@
   imports = [
     ../../modules/home-manager
 
-    ../../../configs/home-manager/cli-utilities
-    ../../../configs/home-manager/gh
-    ../../../configs/home-manager/git
-    ../../../configs/home-manager/lazygit
-    ../../../configs/home-manager/nvim
-    ../../../configs/home-manager/sheldon
-    ../../../configs/home-manager/wezterm
-    ../../../configs/home-manager/xdg
-    ../../../configs/home-manager/zsh
+    ../../../configs/cli-utilities
+    ../../../configs/gh
+    ../../../configs/git
+    ../../../configs/lazygit
+    ../../../configs/nvim
+    ../../../configs/sheldon
+    ../../../configs/wezterm
+    ../../../configs/xdg
+    ../../../configs/zsh
   ];
 
   home = {
