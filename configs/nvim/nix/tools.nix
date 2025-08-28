@@ -19,9 +19,6 @@ with pkgs; [
   typescript
   typescript-language-server
 
-  ## Vue
-  vue-language-server
-
   # Go
   go
   gopls
