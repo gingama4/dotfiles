@@ -8,7 +8,19 @@ return {
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
-      copilot_node_command = "node",
+      server_opts_overrides = {
+        trace = "verbose",
+        cmd = {
+          vim.fn.expand("@copilot_language_server@/bin/copilot-language-server"),
+          "--stdio",
+        },
+        settings = {
+          advanced = {
+            listCount = 10,
+            inlineSuggestCount = 3,
+          },
+        },
+      },
       filetypes = {
         markdown = true,
         help = true,
@@ -19,6 +31,7 @@ return {
     name = "CopilotChat.nvim",
     dir = "@copilotchat_nvim@",
     build = "make tiktoken",
+    event = "BufReadPost",
     dependencies = {
       { name = "copilot.lua", dir = "@copilot_lua@" },
       { name = "plenary.nvim", dir = "@plenary_nvim@" },

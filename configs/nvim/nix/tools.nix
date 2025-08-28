@@ -4,6 +4,9 @@ with pkgs; [
   lazygit
   fd
 
+  # Copilot
+  copilot-language-server
+
   # Programming languages (LSP/Formatter)
   ## Lua
   lua-language-server
@@ -15,9 +18,6 @@ with pkgs; [
   ## TypeScript
   typescript
   typescript-language-server
-
-  ## Vue
-  vue-language-server
 
   # Go
   go

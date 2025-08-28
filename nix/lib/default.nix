@@ -43,39 +43,4 @@ in
         ++ [ inputs.self.homeManagerModules.default ]
         ++ modules;
     };
-
-    makeDarwinConfig =
-      {
-        hostname,
-        modules,
-        overlays ? defaultOverlays,
-        system,
-        username,
-      }:
-      inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {
-          inherit
-            hostname
-            inputs
-            system
-            username
-            ;
-          pkgs-stable = import inputs.nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        };
-        modules =
-          [
-            {
-              nixpkgs = {
-                inherit overlays;
-                config.allowUnfree = true;
-                hostPlatform = system;
-              };
-            }
-          ]
-          ++ [ inputs.self.darwinModules.default ]
-          ++ modules;
-      };
 }

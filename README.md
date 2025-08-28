@@ -19,14 +19,16 @@ Run the following:
 ### Hades
 
 ```bash
-nix run nix-darwin -- switch --flake .
+nix run nixpkgs#home-manager -- switch --flake .#gingama4@hades
 ```
 
 ### Hythlodaeus
 
 ```bash
-nix run nixpkgs#home-manager -- switch --flake .#hythlodaeus
+nix run nixpkgs#home-manager -- switch --flake .#ubuntu@hythlodaeus
 ```
+
+After the initial execution, you can update it anytime by running `nh home switch .`.
 
 ## References
 
