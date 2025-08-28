@@ -7,10 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -47,16 +43,6 @@
             system = "x86_64-linux";
             username = "ubuntu";
             modules = [ ./nix/hosts/hythlodaeus/home-manager.nix ];
-          };
-        };
-
-        darwinModules.default = import ./nix/modules/nix-darwin;
-        darwinConfigurations = {
-          hades = self.lib.makeDarwinConfig {
-            system = "aarch64-darwin";
-            hostname = "hades";
-            username = "gingama4";
-            modules = [ ./nix/hosts/hades/nix-darwin.nix ];
           };
         };
 

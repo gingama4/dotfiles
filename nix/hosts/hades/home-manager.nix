@@ -38,9 +38,7 @@
 
   # Development
   programs.git.enable = true;
-  services.colima.enable = true;
   
   # GUI
   programs.google-chrome.enable = true;
-  services.raycast.enable = true;
 }
