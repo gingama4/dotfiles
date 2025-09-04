@@ -13,7 +13,6 @@ return {
         require("copilot_cmp").setup()
       end,
     },
-    { name = "cmp-skkeleton", dir = "@cmp_skkeleton@" },
   },
   opts = function()
     local cmp = require("cmp")
@@ -55,7 +54,6 @@ return {
         { name = "lazydev" },
         { name = "copilot", group_index = 1, priority = 100 },
         { name = "nvim_lsp" },
-        { name = "skkeleton" },
         { name = "path" },
       }, {
         { name = "buffer" },

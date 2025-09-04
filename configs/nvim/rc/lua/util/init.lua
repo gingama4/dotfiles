@@ -3,7 +3,6 @@
 ---@field keymap util.keymap
 ---@field language util.language
 ---@field plugin util.plugin
----@field skk util.skk
 local M = {}
 
 setmetatable(M, {
