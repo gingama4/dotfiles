@@ -5,9 +5,6 @@ with pkgs.vimPlugins; [
   snacks-nvim
   denops-vim
 
-  # Input
-  skkeleton
-
   # Colorscheme
   kanagawa-nvim
 
@@ -24,7 +21,6 @@ with pkgs.vimPlugins; [
   cmp-buffer
   cmp-path
   copilot-cmp
-  cmp-skkeleton
 
   # Coding
   lazydev-nvim
