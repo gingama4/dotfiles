@@ -23,8 +23,8 @@
       interactive.diffFilter = "delta --color-only";
       merge.conflictStyle = "diff3";
       diff.colorMoved = "default";
-      "credntial \"https://github.com\"" = {
-        helper = "gh auth git-credential";
+      "credential \"https://github.com\"" = {
+        helper = "!gh auth git-credential";
       };
     };
   };
