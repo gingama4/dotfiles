@@ -24,7 +24,7 @@
       merge.conflictStyle = "diff3";
       diff.colorMoved = "default";
       "credential \"https://github.com\"" = {
-        helper = "gh auth git-credential";
+        helper = "!gh auth git-credential";
       };
     };
   };
