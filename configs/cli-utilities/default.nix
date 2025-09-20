@@ -12,6 +12,6 @@
     ghq
     nh
 
-    #neofetch
+    devcontainer
   ];
 }
