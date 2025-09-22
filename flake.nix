@@ -12,10 +12,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-    };
   };
 
   outputs =
