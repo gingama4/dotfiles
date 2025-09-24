@@ -19,13 +19,13 @@ Run the following:
 ### Hades
 
 ```bash
-nix run nixpkgs#home-manager -- switch --flake .#gingama4@hades
+nix run nixpkgs#home-manager -- switch --flake .#hades
 ```
 
 ### Hythlodaeus
 
 ```bash
-nix run nixpkgs#home-manager -- switch --flake .#ubuntu@hythlodaeus
+nix run nixpkgs#home-manager -- switch --flake .#hythlodaeus
 ```
 
 After the initial execution, you can update it anytime by running `nh home switch .`.

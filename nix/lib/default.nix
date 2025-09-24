@@ -10,7 +10,7 @@ in
       modules,
       overlays ? defaultOverlays,
       system,
-      username,
+      username ? builtins.getEnv "USER",
     }:
     inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import inputs.nixpkgs {
