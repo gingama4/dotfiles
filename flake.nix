@@ -29,13 +29,13 @@
 
         homeManagerModules.default = import ./nix/modules/home-manager;
         homeConfigurations = {
-          "gingama4@hades" = self.lib.makeHomeManagerConfig {
+          "hades" = self.lib.makeHomeManagerConfig {
             system = "aarch64-darwin";
             username = "gingama4";
             modules = [ ./nix/hosts/hades/home-manager.nix ];
           };
 
-          "ubuntu@hythlodaeus" = self.lib.makeHomeManagerConfig {
+          "hythlodaeus" = self.lib.makeHomeManagerConfig {
             system = "x86_64-linux";
             modules = [ ./nix/hosts/hythlodaeus/home-manager.nix ];
           };
