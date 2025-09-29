@@ -1,6 +1,20 @@
 #!/bin/bash
 set -e
 
+# Options
+while [[ "$1" == -* ]]; do
+  case "$1" in
+    -d|--dry-run)
+      DOT_DRY_RUN=1
+      shift
+      ;;
+    *)
+      echo "Unknown option: $1"
+      exit 1
+      ;;
+  esac
+done
+
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
@@ -12,6 +26,13 @@ REPO_URL="https://github.com/gingama4/dotfiles"
 DIALOG="
   author: gingama4
   repository: $REPO_URL
+
+  Select:
+  [a] all above
+  [d] download dotfiles
+  [l] link dotfiles
+  [u] unlink dotfiles
+  [q] quit
 "
 
 has() {
@@ -47,15 +68,31 @@ link_dotfiles() {
 
 # Main Process
 echo "dotfiles" "$DIALOG"
+if [[ "$DOT_DRY_RUN" -ne 0 ]]; then
+  echo "  dry-run mode enabled."
+fi
 
-# Step 1: Download dotfiles
-echo "  begin download dotfiles."
-download_dotfiles
-echo "  end download dotfiles."
+read -r selection
 
-# Step 2: Link dotfiles
-echo "  begin link dotfiles."
-link_dotfiles
-echo "  end link dotfiles."
+if [[ "$selection" = *"q"* ]]; then
+  exit 0
+fi
+
+if [[ "$selection" = *"a"* ]] || [[ "$selection" = *"d"* ]]; then
+  echo "  begin download dotfiles."
+  download_dotfiles
+  echo "  end download dotfiles."
+fi
+
+if [[ "$selection" = *"a"* ]] || [[ "$selection" = *"l"* ]] || [[ "$selection" = *"u"* ]]; then
+  if [[ "$selection" = *"u"* ]]; then
+    DOT_UNLINK=1
+    echo "  begin unlink dotfiles."
+  else
+    echo "  begin link dotfiles."
+  fi
+  link_dotfiles
+  echo "  end link dotfiles."
+fi
 
 echo "  finished."
