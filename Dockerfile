@@ -5,14 +5,15 @@ RUN apt-get update && \
     apt-get install -y \
       sudo \
       git \
-      zsh \
-      locales && \
-    locale-gen en_US.UTF-8
+      wget
 
 # ユーザ作成
 ARG USER=dotuser
-ARG UID=1000
-RUN useradd -m -s /bin/zsh -u $UID $USER && \
+ARG GROUP=dotgroup
+ARG UID=1001
+ARG GID=1001
+RUN groupadd -g $GID $GROUP && \
+    useradd -m -s /bin/bash -u $UID -g $GID $USER && \
     echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER $USER
@@ -20,5 +21,4 @@ WORKDIR /home/$USER/dotfiles
 
 COPY . /home/$USER/dotfiles
 
-CMD ["/bin/zsh", "install.sh"]
-WORKDIR /home/$USER/dotfiles
+CMD ["/bin/bash"]
