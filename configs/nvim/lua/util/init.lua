@@ -2,7 +2,6 @@
 ---@field icons util.icons
 ---@field keymap util.keymap
 ---@field language util.language
----@field plugin util.plugin
 local M = {}
 
 setmetatable(M, {
