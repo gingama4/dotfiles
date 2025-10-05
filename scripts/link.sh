@@ -88,3 +88,4 @@ function symlink() {
 load_scripts
 setup_zsh
 setup_git
+setup_nvim
