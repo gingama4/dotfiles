@@ -43,17 +43,17 @@ function safe_link() {
     # Already a symlink, check if it points to the correct source
     if [ "$(readlink "$dest")" = "$src" ]; then
       echo -e " ${COLOR_BLUE}Symlink already exists and is correct: ${COLOR_GREEN}$dest${COLOR_NONE}"
-      exit 0
+      return 0
     else
       echo -e " ${COLOR_YELLOW}Symlink exists but points elsewhere: ${COLOR_GREEN}$dest${COLOR_NONE}"
       if [[ "${is_dry_run}" -eq 0 ]]; then
-        exit 1
+        return 1
       fi
     fi
   elif [ -e "$dest" ]; then
     echo -e " ${COLOR_RED}File or directory already exists at ${COLOR_PURPLE}$dest${COLOR_RED}. Please removed.${COLOR_NONE}"
     if [[ "${is_dry_run}" -eq 0 ]]; then
-      exit 1
+      return 1
     fi
   fi
 
