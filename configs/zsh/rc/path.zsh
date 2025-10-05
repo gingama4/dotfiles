@@ -7,3 +7,5 @@ if [ "$OS" = 'Darwin' ];then
   # homebrew
   export PATH="/opt/homebrew/bin:${MAC_DEFAULT_PATH}"
 fi
+
+export PATH="$HOME/.local/nvim-nightly/bin:$PATH"
