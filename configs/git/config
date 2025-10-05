@@ -1,0 +1,18 @@
+[include]
+  path = ~/.gitconfig.local
+
+[core]
+  ignoreCase = false
+
+[credential "https://github.com"]
+  helper = "!gh auth git-credential"
+
+[fetch]
+  prune = true
+
+[init]
+  deffaultBranch = "main"
+
+[pull]
+  rebase = false
+
