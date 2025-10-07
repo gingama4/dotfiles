@@ -1,72 +1,67 @@
+-- Leader -----------------------------------------------------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.g.autoformat = true
+-- General ----------------------------------------------------------------
+vim.o.backup = false
+vim.o.mouse = 'a'
+vim.o.switchbuf = 'usetab'
+vim.o.writebackup = false
+vim.o.undofile = true
 
-local opt = vim.opt
+vim.cmd('filetype plugin indent on')
 
-opt.autowrite = true
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-opt.completeopt = "menu,menuone,noselect"
-opt.conceallevel = 2
-opt.confirm = true
-opt.cursorline = true
-opt.expandtab = true
-opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}
-opt.foldlevel = 99
-opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
-opt.formatoptions = "jcroqlnt" -- tcqj
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
-opt.ignorecase = true -- Ignore case
-opt.inccommand = "nosplit" -- preview incremental substitute
-opt.jumpoptions = "view"
-opt.laststatus = 3 -- global statusline
-opt.linebreak = true -- Wrap lines at convenient points
-opt.list = true -- Show some invisible characters (tabs...
-opt.mouse = "a" -- Enable mouse mode
-opt.number = true -- Print line number
-opt.pumblend = 30 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
-opt.ruler = false -- Disable the default ruler
-opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
-opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
-opt.showmode = false -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8 -- Columns of context
-opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true -- Don't ignore case with capitals
-opt.smartindent = true -- Insert indents automatically
-opt.spelllang = { "en" }
-opt.splitbelow = true -- Put new windows below current
-opt.splitkeep = "screen"
-opt.splitright = true -- Put new windows right of current
--- opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.termguicolors = true -- True color support
-opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
-opt.undofile = true
-opt.undolevels = 10000
-opt.updatetime = 200 -- Save swap file and trigger CursorHold
-opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
-opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.winminwidth = 5 -- Minimum window width
-opt.wrap = false -- Disable line wrap
+-- UI ---------------------------------------------------------------------
+vim.o.breakindent = true
+vim.o.cursorline = true
+vim.o.laststatus = 2
+vim.o.linebreak = true
+vim.o.list = true
+vim.o.number = true
+vim.o.pumblend = 10
+vim.o.pumheight = 10
+vim.o.ruler = false
+vim.o.showmode = false
+vim.o.showtabline = 2
+vim.o.signcolumn = "yes"
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.termguicolors = true
+vim.winblend = 10
+vim.o.wrap = false
 
-opt.smoothscroll = true
-opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-opt.foldmethod = "expr"
-opt.foldtext = ""
+vim.o.fillchars = table.concat(
+  { 'foldopen:', 'foldclose:', 'fold:╌', 'foldsep: ', 'diff:╱', 'eob: ' },
+  ','
+)
 
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+if vim.fn.has('nvim-0.9') == 1 then
+  vim.opt.shortmess:append('C')
+  vim.o.splitkeep = "screen"
+end
+
+-- Editing ----------------------------------------------------------------
+vim.o.autoindent = true
+vim.o.expandtab = true
+vim.o.ignorecase = true
+vim.o.incsearch = true
+vim.o.infercase = true
+vim.o.shiftwidth = 2
+vim.o.smartcase = true
+vim.o.smartindent = true
+vim.o.tabstop = 2
+vim.o.virtualedit = 'block'
+
+vim.opt.clipboard:append('unnamedplus,unnamed')
+
+-- Spelling ---------------------------------------------------------------
+vim.o.spelllang = 'en'
+vim.o.spelloptions = 'camel'
+
+-- Folds ------------------------------------------------------------------
+vim.o.foldmethod = 'indent'
+vim.o.foldlevel = 1
+vim.o.foldnestmax = 10
+vim.g.markdown_folding = 1
+vim.o.foldtext = ""
+

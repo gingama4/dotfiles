@@ -1,8 +1,35 @@
+local function builder(map)
+  local key = map["key"] or map[1]
+  local action = map["action"] or map[2]
+  local mode = map["mode"] or "n"
+  local opts = map["opts"] or {}
+
+  local desc = map["desc"] or nil
+  if desc then
+    opts["desc"] = desc
+  end
+
+  return {
+    mode,
+    key,
+    action,
+    opts,
+  }
+end
+
+local function mapBuilder(maps)
+  local keymaps = {}
+  for _, v in ipairs(maps) do
+    table.insert(keymaps, builder(v))
+  end
+  return keymaps
+end
+
 local function keymap(map)
   local default = { noremap = true, silent = true }
 
   local data = require("config.keymaps." .. map)
-  local maps = GinVim.keymap.mapBuilder(data)
+  local maps = mapBuilder(data)
 
   for _, v in ipairs(maps) do
     local mode = v[1]
@@ -15,5 +42,6 @@ end
 
 keymap("window")
 keymap("coding")
+keymap("ui")
 keymap("lsp")
 keymap("terminal")
