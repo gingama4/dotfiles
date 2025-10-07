@@ -16,4 +16,5 @@ require('mini.deps').setup()
 -- Plugin Config
 require("plugins.mini")
 require("plugins.ui")
+require("plugins.editor")
 
