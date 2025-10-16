@@ -9,6 +9,12 @@ later(function()
   })
 end)
 
+-- Mason
+later(function()
+  add('mason-org/mason.nvim')
+  require('mason').setup()
+end)
+
 later(function()
   add('https://github.com/vim-jp/vimdoc-ja')
   vim.opt.helplang:prepend('ja')
