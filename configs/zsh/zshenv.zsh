@@ -26,7 +26,7 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Go
-case OS in
+case $OS in
   Darwin*)
     ;;
   Linux*)
