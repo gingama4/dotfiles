@@ -24,3 +24,14 @@ fi
 # volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Go
+case OS in
+  Darwin*)
+    ;;
+  Linux*)
+    export PATH="$PATH:/usr/local/go/bin"
+    ;;
+esac
+
+export PATH="$PATH:$HOME/go/bin"
