@@ -88,6 +88,10 @@ function _time_and_date_preexec() {
 add-zsh-hook preexec _time_and_date_preexec
 add-zsh-hook precmd _time_and_date_precmd
 
+if (( $+commands[eza] )); then
+  alias ls='eza --icons'
+fi
+
 # Setopt
 unsetopt glob_dots
 unsetopt ignore_eof
