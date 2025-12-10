@@ -1,9 +1,18 @@
-local function augroup(name)
-  return vim.api.nvim_create_augroup("ginvim_" .. name, { clear = true })
+local M = {}
+
+M.augroup = vim.api.nvim_create_augroup("ginvim_config", { clear = true })
+
+function M.autocmd(event, pattern, callback, desc)
+  local opts = { group = M.augroup, pattern = pattern, callback = callback, desc = desc }
+  vim.api.nvim_create_autocmd(event, opts)
 end
 
-vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
-  group = augroup("auto_reload"),
-  pattern = "*",
-  command = "checktime",
-})
+function M.setup()
+  vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
+    group = M.augroup,
+    pattern = "*",
+    command = "checktime",
+  })
+end
+
+return M
