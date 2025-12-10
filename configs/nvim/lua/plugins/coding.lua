@@ -18,6 +18,8 @@ later(function()
     formatters_by_ft = {
       lua = { 'stylua' },
       php = { 'pint' },
+      javascript = { 'eslint_d', 'prettier' },
+      typescript = { 'eslint_d', 'prettier' },
     },
   })
 end)
