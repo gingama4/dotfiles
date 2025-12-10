@@ -2,52 +2,52 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 -- LSP
 later(function()
-  add('neovim/nvim-lspconfig')
+  add("neovim/nvim-lspconfig")
   vim.lsp.enable({
-    'copilot',
-    'lua_ls',
-    'intelephense',
-    'vtsls',
+    "copilot",
+    "lua_ls",
+    "intelephense",
+    "vtsls",
   })
 end)
 
 -- Formatting
 later(function()
-  add('stevearc/conform.nvim')
-  require('conform').setup({
+  add("stevearc/conform.nvim")
+  require("conform").setup({
     format_on_save = {
       timeout_ms = 3000,
     },
     formatters_by_ft = {
-      lua = { 'stylua' },
-      php = { 'pint' },
-      javascript = { 'eslint_d', 'prettier' },
-      typescript = { 'eslint_d', 'prettier' },
+      lua = { "stylua" },
+      php = { "pint" },
+      javascript = { "eslint_d", "prettier" },
+      typescript = { "eslint_d", "prettier" },
     },
   })
 
-  vim.keymap.set('n', '<leader>i', require('conform').format, { desc = 'format buffer' })
+  vim.keymap.set("n", "<leader>i", require("conform").format, { desc = "format buffer" })
 end)
 
 -- Completion
 later(function()
   add({
-    source = 'https://github.com/saghen/blink.cmp',
-    checkout = 'v1.7.0',
+    source = "https://github.com/saghen/blink.cmp",
+    checkout = "v1.7.0",
   })
-  require('blink.cmp').setup({
+  require("blink.cmp").setup({
     keymap = {
-      preset = 'super-tab',
-      ["<CR>"] = { 'accept', 'fallback' },
+      preset = "super-tab",
+      ["<CR>"] = { "accept", "fallback" },
     },
     completion = {
-      menu = { border = 'single' },
+      menu = { border = "single" },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,
-        window = { border = 'single' }
+        window = { border = "single" },
       },
     },
-    signature = { window = { border = 'single' } },
+    signature = { window = { border = "single" } },
   })
 end)

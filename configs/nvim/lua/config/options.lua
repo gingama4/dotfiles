@@ -4,12 +4,12 @@ vim.g.maplocalleader = "\\"
 
 -- General ----------------------------------------------------------------
 vim.o.backup = false
-vim.o.mouse = 'a'
-vim.o.switchbuf = 'usetab'
+vim.o.mouse = "a"
+vim.o.switchbuf = "usetab"
 vim.o.writebackup = false
 vim.o.undofile = true
 
-vim.cmd('filetype plugin indent on')
+vim.cmd("filetype plugin indent on")
 
 -- UI ---------------------------------------------------------------------
 vim.o.breakindent = true
@@ -30,13 +30,10 @@ vim.o.termguicolors = true
 vim.winblend = 10
 vim.o.wrap = false
 
-vim.o.fillchars = table.concat(
-  { 'foldopen:', 'foldclose:', 'fold:╌', 'foldsep: ', 'diff:╱', 'eob: ' },
-  ','
-)
+vim.o.fillchars = table.concat({ "foldopen:", "foldclose:", "fold:╌", "foldsep: ", "diff:╱", "eob: " }, ",")
 
-if vim.fn.has('nvim-0.9') == 1 then
-  vim.opt.shortmess:append('C')
+if vim.fn.has("nvim-0.9") == 1 then
+  vim.opt.shortmess:append("C")
   vim.o.splitkeep = "screen"
 end
 
@@ -50,18 +47,17 @@ vim.o.shiftwidth = 2
 vim.o.smartcase = true
 vim.o.smartindent = true
 vim.o.tabstop = 2
-vim.o.virtualedit = 'block'
+vim.o.virtualedit = "block"
 
-vim.opt.clipboard:append('unnamedplus,unnamed')
+vim.opt.clipboard:append("unnamedplus,unnamed")
 
 -- Spelling ---------------------------------------------------------------
-vim.o.spelllang = 'en'
-vim.o.spelloptions = 'camel'
+vim.o.spelllang = "en"
+vim.o.spelloptions = "camel"
 
 -- Folds ------------------------------------------------------------------
-vim.o.foldmethod = 'indent'
+vim.o.foldmethod = "indent"
 vim.o.foldlevel = 1
 vim.o.foldnestmax = 10
 vim.g.markdown_folding = 1
 vim.o.foldtext = ""
-
