@@ -15,6 +15,9 @@ end)
 later(function()
   add('stevearc/conform.nvim')
   require('conform').setup({
+    format_on_save = {
+      timeout_ms = 3000,
+    },
     formatters_by_ft = {
       lua = { 'stylua' },
       php = { 'pint' },
@@ -22,6 +25,8 @@ later(function()
       typescript = { 'eslint_d', 'prettier' },
     },
   })
+
+  vim.keymap.set('n', '<leader>i', require('conform').format, { desc = 'format buffer' })
 end)
 
 -- Completion
