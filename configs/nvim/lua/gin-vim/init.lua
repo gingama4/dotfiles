@@ -2,17 +2,13 @@ local M = {}
 
 M.augroup = vim.api.nvim_create_augroup("ginvim_config", { clear = true })
 
-function M.autocmd(event, pattern, callback, desc)
+function M.create_autocmd(event, pattern, callback, desc)
   local opts = { group = M.augroup, pattern = pattern, callback = callback, desc = desc }
   vim.api.nvim_create_autocmd(event, opts)
 end
 
-function M.setup()
-  vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
-    group = M.augroup,
-    pattern = "*",
-    command = "checktime",
-  })
-end
+M.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
+
+M.luals_unique_definition = require("gin-vim.luals_unique")
 
 return M
