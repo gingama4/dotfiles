@@ -11,6 +11,7 @@ return {
   { "K", function() buf.hover({ border = "rounded", title = "Lsp Hover" }) end, desc = "hover" },
   { "gK", function() buf.signature_help({ border = "rounded", title = "Lsp Signature Help"}) end, desc = "Signature Help" },
   { "<leader>ca", buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+  { "<leader>cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, desc = "Diagnostic" },
   { "<leader>cc", lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } },
   { "<leader>cC", lsp.codelens.refresh, desc = "Refresh Codelens" },
   { "<leader>cr", buf.rename, desc = "Rename" },
