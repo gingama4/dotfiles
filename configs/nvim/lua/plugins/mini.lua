@@ -94,5 +94,15 @@ later(function()
 end)
 
 later(function()
+  require("mini.pick").setup()
+  vim.ui.select = MiniPick.ui_select
+
+  GinVim.keymap.set({ "<leader>fb", MiniPick.builtin.buffers, desc = "Buffers" })
+  -- stylua: ignore
+  GinVim.keymap.set({ "<leader>ff", function() MiniPick.builtin.files({ tool = 'git' }) end, desc = "Files" })
+  GinVim.keymap.set({ "<leader>fg", MiniPick.builtin.grep_live, desc = "Grep" })
+end)
+
+later(function()
   require("mini.surround").setup()
 end)
