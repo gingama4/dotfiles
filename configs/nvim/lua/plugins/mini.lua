@@ -33,6 +33,22 @@ now(function()
 end)
 
 later(function()
+  require("mini.extra").setup()
+end)
+
+later(function()
+  local ai = require("mini.ai")
+  ai.setup({
+    custom_textobjects = {
+      B = MiniExtra.gen_ai_spec.buffer(),
+      F = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+      o = ai.gen_spec.treesitter({ a = "@block.outer", i = "@block.inner" }),
+    },
+    search_method = "cover",
+  })
+end)
+
+later(function()
   local miniclue = require("mini.clue")
   miniclue.setup({
     clues = {
