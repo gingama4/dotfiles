@@ -5,6 +5,7 @@ local function keymap(map)
   end
 end
 
+keymap("buffer")
 keymap("window")
 keymap("coding")
 keymap("ui")
