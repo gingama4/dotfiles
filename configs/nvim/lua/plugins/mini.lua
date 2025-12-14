@@ -55,6 +55,7 @@ later(function()
       {
         { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
         { mode = "n", keys = "<Leader>c", desc = "+Code" },
+        { mode = "n", keys = "<Leader>f", desc = "+Find" },
       },
       miniclue.gen_clues.builtin_completion(),
       miniclue.gen_clues.g(),
