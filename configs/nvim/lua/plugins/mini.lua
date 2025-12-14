@@ -52,6 +52,10 @@ later(function()
   local miniclue = require("mini.clue")
   miniclue.setup({
     clues = {
+      {
+        { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
+        { mode = "n", keys = "<Leader>c", desc = "+LSP" },
+      },
       miniclue.gen_clues.builtin_completion(),
       miniclue.gen_clues.g(),
       miniclue.gen_clues.marks(),
