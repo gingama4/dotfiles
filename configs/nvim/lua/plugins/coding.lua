@@ -26,7 +26,7 @@ later(function()
     },
   })
 
-  vim.keymap.set("n", "<leader>i", require("conform").format, { desc = "format buffer" })
+  GinVim.keymap.set({ "<leader>ci", require("conform").format, desc = "Format" })
 end)
 
 -- Completion
