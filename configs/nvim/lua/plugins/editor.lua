@@ -5,7 +5,7 @@ local now_if_args = GinVim.now_if_args
 -- Tree-sitter
 now_if_args(function()
   GinVim.on_pack("nvim-treesitter", { "update" }, vim.cmd.TSUpdate, "Update tree-sitter parsers")
-  add({"https://github.com/nvim-treesitter/nvim-treesitter"})
+  add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
 
   require("nvim-treesitter").setup()
 
@@ -52,12 +52,12 @@ end)
 
 -- Mason
 later(function()
-  add({"https://github.com/mason-org/mason.nvim"})
+  add({ "https://github.com/mason-org/mason.nvim" })
   require("mason").setup()
 end)
 
 -- vimdoc-ja
 later(function()
-  add({"https://github.com/vim-jp/vimdoc-ja"})
+  add({ "https://github.com/vim-jp/vimdoc-ja" })
   vim.opt.helplang:prepend("ja")
 end)
