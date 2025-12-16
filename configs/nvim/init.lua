@@ -20,7 +20,5 @@ require("config.options")
 require("config.keymaps")
 
 -- Plugin Config
-require("plugins.mini")
-require("plugins.ui")
-require("plugins.editor")
-require("plugins.coding")
+require("mini")
+require("plugins")
