@@ -1,8 +1,9 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local add = vim.pack.add
+local now, later = MiniDeps.now, MiniDeps.later
 
 -- LSP
 later(function()
-  add("neovim/nvim-lspconfig")
+  add({ "https://github.com/neovim/nvim-lspconfig" })
   vim.lsp.enable({
     "copilot",
     "lua_ls",
@@ -13,7 +14,7 @@ end)
 
 -- Formatting
 later(function()
-  add("stevearc/conform.nvim")
+  add({ "https://github.com/stevearc/conform.nvim" })
   require("conform").setup({
     format_on_save = {
       timeout_ms = 3000,
@@ -32,8 +33,7 @@ end)
 -- Completion
 later(function()
   add({
-    source = "https://github.com/saghen/blink.cmp",
-    checkout = "v1.7.0",
+    { src = "https://github.com/saghen/blink.cmp", version = "v1.7.0" },
   })
   require("blink.cmp").setup({
     keymap = {
