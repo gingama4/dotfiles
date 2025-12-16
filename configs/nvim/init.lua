@@ -18,6 +18,7 @@ _G.GinVim = GinVim
 -- Basic Config
 require("config.options")
 require("config.keymaps")
+require("config.vscode")
 
 -- Plugin Config
 require("mini")
