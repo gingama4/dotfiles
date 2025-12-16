@@ -47,6 +47,7 @@ now_if_args(function()
     vim.treesitter.start(ev.buf)
     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.wo.foldmethod = "expr"
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()'"
   end
   GinVim.create_autocmd("FileType", filetypes, ts_start, "Ensure enabled tree-sitter")
 end)
