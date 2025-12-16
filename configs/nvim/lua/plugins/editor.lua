@@ -7,8 +7,6 @@ now_if_args(function()
   GinVim.on_pack("nvim-treesitter", { "update" }, vim.cmd.TSUpdate, "Update tree-sitter parsers")
   add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
 
-  require("nvim-treesitter").setup()
-
   -- Ensure installed
   local ensure_languages = {
     "bash",
