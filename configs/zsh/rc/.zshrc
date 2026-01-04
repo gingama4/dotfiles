@@ -29,6 +29,7 @@ source "$sheldon_cache"
 unset sheldon_cache sheldon_toml
 
 source "${ZDOTDIR}/base.zsh"
+source "${ZDOTDIR}/function.zsh"
 
 zsh-defer unfunction source
 
