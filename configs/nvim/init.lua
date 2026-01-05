@@ -15,12 +15,10 @@ require("mini.deps").setup()
 local GinVim = require("gin-vim")
 _G.GinVim = GinVim
 
--- Basic Config
+-- Config
 require("10_options")
 require("11_keymaps")
 require("12_commands")
 require("20_vscode")
-
--- Plugin Config
 require("30_mini")
 require("40_plugins")
