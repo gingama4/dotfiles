@@ -48,6 +48,7 @@ end
 -- stylua: ignore start
 
 -- Buffer 'b'
+map_leader({ "ba", "<cmd>b#<cr>", desc = "Alternate" })
 map_leader({ "bd", "<cmd>bdelete<cr>", desc = "Delete" })
 
 -- Lsp 'c'
