@@ -12,6 +12,12 @@ set({ "<C-j>", "<C-w>j", desc = "Go to Lower Window" })
 set({ "<C-k>", "<C-w>k", desc = "Go to Upper Window" })
 set({ "<C-l>", "<C-w>l", desc = "Go to Right Window" })
 
+-- Terminal
+set({ "<C-h>", [[<C-\><C-N><C-w>h]], mode = "t" })
+set({ "<C-j>", [[<C-\><C-N><C-w>j]], mode = "t" })
+set({ "<C-k>", [[<C-\><C-N><C-w>k]], mode = "t" })
+set({ "<C-l>", [[<C-\><C-N><C-w>l]], mode = "t" })
+
 -- Indent
 set({ "<", "<gv", mode = "v" })
 set({ ">", ">gv", mode = "v" })
