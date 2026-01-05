@@ -33,6 +33,10 @@
       "rev": "81b8a91",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "render-markdown": {
+      "rev": "da6a7b2",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
     "vimdoc-ja": {
       "rev": "6bd3066",
       "src": "https://github.com/vim-jp/vimdoc-ja"

@@ -20,6 +20,8 @@ now_if_args(function()
     "javascript",
     "json",
     "lua",
+    "markdown",
+    "markdown_inline",
     "php",
     "toml",
     "typescript",
@@ -122,4 +124,12 @@ later(function()
   add({ { src = "https://github.com/stevearc/oil.nvim", name = "oil" } })
   require("oil").setup()
   GinVim.keymap.set({ "<leader>e", "<Cmd>Oil<CR>", desc = "Open Explorer" })
+end)
+
+-- Markdown
+later(function()
+  add({ { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim", name = "render-markdown" } })
+  require("render-markdown").setup({
+    completions = { lsp = { enabled = true } },
+  })
 end)
