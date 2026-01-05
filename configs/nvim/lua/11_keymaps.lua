@@ -1,0 +1,54 @@
+local set = GinVim.keymap.set
+
+local lsp = vim.lsp
+local buf = lsp.buf
+
+-- Basic Mappings ========================================================
+-- stylua: ignore start
+
+-- Window
+set({ "<C-h>", "<C-w>h", desc = "Go to Left Window" })
+set({ "<C-j>", "<C-w>j", desc = "Go to Lower Window" })
+set({ "<C-k>", "<C-w>k", desc = "Go to Upper Window" })
+set({ "<C-l>", "<C-w>l", desc = "Go to Right Window" })
+
+-- Indent
+set({ "<", "<gv", mode = "v" })
+set({ ">", ">gv", mode = "v" })
+
+-- Lsp
+set({ "gd", buf.definition, desc = "Goto Definition" })
+set({ "gr", buf.references, desc = "References" })
+set({ "gI", buf.implementation, desc = "Goto Implementation" })
+set({ "gy", buf.type_definition, desc = "Goto T[y]pe Definition" })
+set({ "gD", buf.declaration, desc = "Goto Declaration" })
+set({ "K", function() buf.hover({ border = "rounded", title = "Lsp Hover" }) end, desc = "hover" })
+set({ "gK", function() buf.signature_help({ border = "rounded", title = "Lsp Signature Help"}) end, desc = "Signature Help" })
+
+-- stylua: ignore end
+
+-- Leader Mappings =======================================================
+-- `<Leader>` mapper
+local map_leader = function(map)
+  local key = map["key"] or map[1]
+  map["key"] = "<Leader>" .. key
+  set(map)
+end
+local xmap_leader = function(map)
+  map["mode"] = "x"
+  map_leader(map)
+end
+
+-- stylua: ignore start
+
+-- Buffer 'b'
+map_leader({ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete" })
+
+-- Lsp 'c'
+map_leader({ "<leader>ca", buf.code_action, desc = "Code Action", mode = { "n", "v" } })
+map_leader({ "<leader>cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, desc = "Diagnostic" })
+map_leader({ "<leader>cc", lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } })
+map_leader({ "<leader>cC", lsp.codelens.refresh, desc = "Refresh Codelens" })
+map_leader({ "<leader>cr", buf.rename, desc = "Rename" })
+
+-- stylua: ignore end

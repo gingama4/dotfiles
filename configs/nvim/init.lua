@@ -16,10 +16,11 @@ local GinVim = require("gin-vim")
 _G.GinVim = GinVim
 
 -- Basic Config
-require("config.options")
-require("config.keymaps")
-require("config.vscode")
+require("10_options")
+require("11_keymaps")
+require("12_commands")
+require("20_vscode")
 
 -- Plugin Config
-require("mini")
-require("plugins")
+require("30_mini")
+require("40_plugins")
