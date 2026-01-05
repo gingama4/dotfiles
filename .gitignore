@@ -2,3 +2,4 @@
 configs/zsh/rc/sheldon/sheldon.zsh
 .DS_Store
 **.zsh_history**
+**.zcompdump**
