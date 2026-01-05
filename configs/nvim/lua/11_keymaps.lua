@@ -48,13 +48,13 @@ end
 -- stylua: ignore start
 
 -- Buffer 'b'
-map_leader({ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete" })
+map_leader({ "bd", "<cmd>bdelete<cr>", desc = "Delete" })
 
 -- Lsp 'c'
-map_leader({ "<leader>ca", buf.code_action, desc = "Code Action", mode = { "n", "v" } })
-map_leader({ "<leader>cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, desc = "Diagnostic" })
-map_leader({ "<leader>cc", lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } })
-map_leader({ "<leader>cC", lsp.codelens.refresh, desc = "Refresh Codelens" })
-map_leader({ "<leader>cr", buf.rename, desc = "Rename" })
+map_leader({ "ca", buf.code_action, desc = "Code Action", mode = { "n", "v" } })
+map_leader({ "cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, desc = "Diagnostic" })
+map_leader({ "cc", lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } })
+map_leader({ "cC", lsp.codelens.refresh, desc = "Refresh Codelens" })
+map_leader({ "cr", buf.rename, desc = "Rename" })
 
 -- stylua: ignore end
