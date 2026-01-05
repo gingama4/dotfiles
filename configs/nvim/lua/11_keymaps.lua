@@ -31,6 +31,11 @@ set({ "gD", buf.declaration, desc = "Goto Declaration" })
 set({ "K", function() buf.hover({ border = "rounded", title = "Lsp Hover" }) end, desc = "hover" })
 set({ "gK", function() buf.signature_help({ border = "rounded", title = "Lsp Signature Help"}) end, desc = "Signature Help" })
 
+-- Paste
+local paste_cmd = vim.fn.has('nvim-0.12') == 1 and 'iput' or 'put'
+set({ "[p", '<cmd>exe "' .. paste_cmd .. '! " . v:register<cr>', desc = "Paste Above" })
+set({ "]p", '<cmd>exe "' .. paste_cmd .. ' " . v:register<cr>', desc = "Paste Below" })
+
 -- stylua: ignore end
 
 -- Leader Mappings =======================================================
