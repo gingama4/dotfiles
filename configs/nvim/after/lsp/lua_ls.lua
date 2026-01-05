@@ -7,7 +7,13 @@ return {
   end,
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+      runtime = {
+        version = "LuaJIT",
+        path = vim.tbl_deep_extend("force", vim.split(package.path, ";"), {
+          "lua/?.lua",
+          "lua/?/init.lua",
+        }),
+      },
       diagnostics = {
         workspaceDelay = -1,
       },
