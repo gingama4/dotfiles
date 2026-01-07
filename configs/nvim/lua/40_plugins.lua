@@ -1,6 +1,7 @@
 local add = vim.pack.add
 local now, later = MiniDeps.now, MiniDeps.later
 local now_if_args = GinVim.now_if_args
+local keymap = GinVim.keymap.set
 
 -- Tree-sitter
 now_if_args(function()
@@ -88,7 +89,7 @@ later(function()
     },
   })
 
-  GinVim.keymap.set({ "<leader>ci", require("conform").format, desc = "Format" })
+  keymap({ "<leader>ci", require("conform").format, desc = "Format" })
 end)
 
 -- Completion
@@ -123,7 +124,7 @@ end)
 later(function()
   add({ { src = "https://github.com/stevearc/oil.nvim", name = "oil" } })
   require("oil").setup()
-  GinVim.keymap.set({ "<leader>e", "<Cmd>Oil<CR>", desc = "Open Explorer" })
+  keymap({ "<leader>e", "<Cmd>Oil<CR>", desc = "Open Explorer" })
 end)
 
 -- Markdown
