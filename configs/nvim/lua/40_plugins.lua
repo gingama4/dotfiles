@@ -86,6 +86,7 @@ later(function()
       php = { "pint" },
       javascript = { "eslint_d", "prettier" },
       typescript = { "eslint_d", "prettier" },
+      markdown = { "prettier" },
     },
   })
 
