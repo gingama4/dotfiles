@@ -89,7 +89,13 @@ later(function()
 end)
 
 later(function()
-  require("mini.git").setup()
+  require("mini.git").setup({
+    command = {
+      split = "vertical",
+    },
+  })
+
+  GinVim.keymap.set({ "<Leader>gs", MiniGit.show_at_cursor, desc = "Show at cursor", mode = { "n", "x" } })
 end)
 
 later(function()
