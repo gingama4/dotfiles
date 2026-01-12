@@ -110,6 +110,18 @@ later(function()
     { src = "https://github.com/saghen/blink.cmp", version = "v1.7.0" },
   })
   require("blink.cmp").setup({
+    keymap = {
+      ["<Tab>"] = {
+        "snippet_forward",
+        function()
+          return require("sidekick").nes_jump_or_apply()
+        end,
+        function()
+          return vim.lsp.inline_completion.get()
+        end,
+        "fallback",
+      },
+    },
     completion = {
       menu = { border = "single" },
       documentation = {
@@ -146,5 +158,62 @@ later(function()
   add({ { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim", name = "render-markdown" } })
   require("render-markdown").setup({
     completions = { lsp = { enabled = true } },
+  })
+end)
+
+-- AI
+later(function()
+  add({ { src = "https://github.com/folke/sidekick.nvim", name = "sidekick.nvim" } })
+  require("sidekick").setup({
+    nes = {
+      enabled = true,
+    },
+  })
+
+  keymap({
+    "<Tab>",
+    function()
+      if not require("sidekick").nes_jump_or_apply() then
+        return "<Tab>"
+      end
+    end,
+    desc = "Goto/Apply Next Edit Suggestion",
+  })
+  keymap({
+    "<leader>aa",
+    function()
+      require("sidekick.cli").toggle({ name = "copilot" })
+    end,
+    desc = "Toglle Sidekick CLI",
+  })
+end)
+
+later(function()
+  add({
+    { src = "https://github.com/Copilot-C-Nvim/CopilotChat.nvim", name = "CopilotChat.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary.nvim" },
+  })
+
+  local default = require("CopilotChat.config.prompts")
+  require("CopilotChat").setup({
+    prompts = vim.tbl_deep_extend("force", default, {
+      COPILOT_BASE = { system_prompt = GinVim.copilot.prompt },
+    }),
+    language = "Japanese",
+  })
+
+  keymap({
+    "<leader>ac",
+    function()
+      require("CopilotChat").toggle()
+    end,
+    desc = "Open Copilot Chat",
+  })
+  keymap({
+    "<leader>as",
+    function()
+      require("CopilotChat").save()
+    end,
+    desc = "Save Chat",
   })
 end)

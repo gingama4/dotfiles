@@ -34,4 +34,7 @@ M.keymap = keymap
 local git = require("gin-vim.git")
 M.git = git
 
+local copilot = require("gin-vim.copilot")
+M.copilot = copilot
+
 return M
