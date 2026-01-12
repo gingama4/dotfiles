@@ -58,6 +58,7 @@ vim.o.spelloptions = "camel"
 -- Folds ------------------------------------------------------------------
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 1
+vim.o.foldlevelstart = 99
 vim.o.foldnestmax = 10
 vim.g.markdown_folding = 1
 vim.o.foldtext = ""
