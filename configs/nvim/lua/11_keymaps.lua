@@ -59,6 +59,7 @@ map_leader({ "bd", "<cmd>bdelete<cr>", desc = "Delete" })
 -- Lsp 'c'
 map_leader({ "ca", buf.code_action, desc = "Code Action", mode = { "n", "v" } })
 map_leader({ "cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, desc = "Diagnostic" })
+map_leader({ "cD", function() vim.diagnostic.setloclist({ open = true }) end, desc = "Diagnostic List" })
 map_leader({ "cc", lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } })
 map_leader({ "cC", lsp.codelens.refresh, desc = "Refresh Codelens" })
 map_leader({ "cr", buf.rename, desc = "Rename" })
