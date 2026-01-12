@@ -1,0 +1,18 @@
+[core]
+  ignoreCase = false
+
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+
+[fetch]
+  prune = true
+
+[init]
+  deffaultBranch = "main"
+
+[pull]
+  rebase = false
+
+[commit]
+  template = ~/.config/git/commit_template.txt

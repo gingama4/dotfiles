@@ -85,6 +85,32 @@ function symlink() {
   link "$1" "$2"
 }
 
+function safe_copy() {
+  local is_dry_run=${DOT_DRY_RUN:-0}
+
+  local src="$1"
+  local dest="$2"
+
+  local parent_dir="$(dirname "$dest")"
+
+  if [ ! -d "$parent_dir" ]; then
+    if [[ "${is_dry_run}" -ne 0 ]]; then
+      echo -e " ${COLOR_BLUE}Creating parent directory: ${COLOR_GREEN}$parent_dir ${COLOR_GRAY}(dry-run)${COLOR_NONE}"
+    else
+      echo -e " ${COLOR_BLUE}Creating parent directory: ${COLOR_GREEN}$parent_dir${COLOR_NONE}"
+      mkdir -p "$parent_dir"
+    fi
+  fi
+
+  # Copy the file 
+  if [[ "${is_dry_run}" -ne 0 ]]; then
+    echo -e " COPY: ${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2 ${COLOR_GRAY}(dry-run)${COLOR_NONE}"
+  else
+    echo -e " COPY: ${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2${COLOR_NONE}"
+    cp "$src" "$dest"
+  fi
+}
+
 load_scripts
 setup_zsh
 setup_git
