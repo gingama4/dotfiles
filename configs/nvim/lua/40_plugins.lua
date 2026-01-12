@@ -110,10 +110,6 @@ later(function()
     { src = "https://github.com/saghen/blink.cmp", version = "v1.7.0" },
   })
   require("blink.cmp").setup({
-    keymap = {
-      preset = "super-tab",
-      ["<CR>"] = { "accept", "fallback" },
-    },
     completion = {
       menu = { border = "single" },
       documentation = {
