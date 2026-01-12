@@ -7,6 +7,7 @@ setup_git() {
   local git_config_dir="${XDG_CONFIG_HOME}/git"
   mkdir -p "${git_config_dir}"
   symlink "${git_dot_dir}/config" "${git_config_dir}/config"
+  symlink "${git_dot_dir}/commit_template.txt" "${git_config_dir}/commit_template.txt"
 
   info "Creating ~/.gitconfig.local"
   touch "${HOME}/.gitconfig.local"
