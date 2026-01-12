@@ -81,12 +81,7 @@ later(function()
 end)
 
 later(function()
-  require("mini.diff").setup({
-    view = {
-      style = "sign",
-      signs = { add = "+", change = "~", delete = "-" },
-    },
-  })
+  require("mini.diff").setup()
 end)
 
 later(function()
