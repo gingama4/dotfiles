@@ -1,37 +1,11 @@
 # dotfiles
 
-## Supported OS
-
-- Darwin (ARM64)
-- Ubuntu - CLI (x86_64)
-
-### Hosts and OS (Device)
-
-| Name        | Description          |
-| ----------- | -------------------- |
-| hades       | M4 Mac mini          |
-| hythlodaeus | Work PC (Ubuntu CLI) |
-
 ## Install
 
-Run the following:
-
-### Hades
+Run the following command:
 
 ```bash
-nix run nixpkgs#home-manager -- switch --flake .#hades
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/gingama4/dotfiles/refs/heads/master/install.sh)"
 ```
 
-### Hythlodaeus
-
-```bash
-nix run nixpkgs#home-manager -- switch --flake .#hythlodaeus
-```
-
-After the initial execution, you can update it anytime by running `nh home switch .`.
-
-## References
-
-- [asa1984/dotfiles](https://github.com/asa1984/dotfiles)
-- [mkt3/dotfiles](https://github.com/mkt3/dotfiles)
-- [yutkat/dotfiles](https://github.com/yutkat/dotfiles)
+The install script is interactive and allows you to download, link, or unlink dotfiles as needed. For more details, see `install.sh`.
