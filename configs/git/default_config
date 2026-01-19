@@ -17,3 +17,10 @@
 
 [commit]
   template = ~/.config/git/commit_template.txt
+  gpgSign = true
+
+[gpg]
+  format = ssh
+
+[user]
+  signingkey = ~/.ssh/id_ed25519_github_sign.pub
