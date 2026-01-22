@@ -102,7 +102,13 @@ function safe_copy() {
     fi
   fi
 
-  # Copy the file 
+  # Skip if destination already exists
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    echo -e " ${COLOR_YELLOW}Destination already exists, skipping copy: ${COLOR_GREEN}$dest${COLOR_NONE}"
+    return 0
+  fi
+
+  # Copy the file
   if [[ "${is_dry_run}" -ne 0 ]]; then
     echo -e " COPY: ${COLOR_PURPLE}$1${COLOR_YELLOW} -----> ${COLOR_GREEN}$2 ${COLOR_GRAY}(dry-run)${COLOR_NONE}"
   else
