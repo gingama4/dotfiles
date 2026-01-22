@@ -165,6 +165,11 @@ end)
 later(function()
   add({ { src = "https://github.com/folke/sidekick.nvim", name = "sidekick.nvim" } })
   require("sidekick").setup({
+    cli = {
+      mux = {
+        enabled = true,
+      },
+    },
     nes = {
       enabled = true,
     },
