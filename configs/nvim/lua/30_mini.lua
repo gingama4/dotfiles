@@ -81,20 +81,6 @@ later(function()
 end)
 
 later(function()
-  require("mini.diff").setup()
-end)
-
-later(function()
-  require("mini.git").setup({
-    command = {
-      split = "vertical",
-    },
-  })
-
-  GinVim.keymap.set({ "<Leader>gs", MiniGit.show_at_cursor, desc = "Show at cursor", mode = { "n", "x" } })
-end)
-
-later(function()
   require("mini.indentscope").setup()
 end)
 

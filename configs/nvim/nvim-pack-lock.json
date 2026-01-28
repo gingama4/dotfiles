@@ -16,6 +16,14 @@
       "rev": "c2526f1",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "diffview.nvim": {
+      "rev": "4516612",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "abf82a6",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "mason.nvim": {
       "rev": "44d1e90",
       "src": "https://github.com/mason-org/mason.nvim"

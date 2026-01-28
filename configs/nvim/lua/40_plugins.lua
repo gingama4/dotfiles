@@ -153,6 +153,47 @@ later(function()
   keymap({ "<leader>e", "<Cmd>Oil<CR>", desc = "Open Explorer" })
 end)
 
+-- Git
+later(function()
+  add({
+    { src = "https://github.com/sindrets/diffview.nvim", name = "diffview.nvim" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim", name = "gitsigns.nvim" },
+  })
+
+  require("diffview").setup({
+    keymaps = {
+      view = {
+        { "n", "q", "<Cmd>DiffviewClose<CR>", { desc = "Close Diffview" } },
+      },
+      file_panel = {
+        { "n", "q", "<Cmd>DiffviewClose<CR>", { desc = "Close Diffview" } },
+      },
+      file_history_panel = {
+        { "n", "q", "<Cmd>DiffviewClose<CR>", { desc = "Close Diffview" } },
+      },
+    },
+  })
+
+  require("gitsigns").setup({
+    current_line_blame = true,
+    current_line_blame_opts = {
+      delay = 500,
+    },
+  })
+
+  -- keymap
+  keymap({ "<leader>go", "<Cmd>DiffviewOpen<CR>", desc = "Open Diffview" })
+
+  -- tabline
+  GinVim.create_autocmd("User", "DiffviewViewEnter", function()
+    vim.o.showtabline = 0
+  end)
+
+  GinVim.create_autocmd("User", "DiffviewViewLeave", function()
+    vim.o.showtabline = 2
+  end)
+end)
+
 -- Markdown
 later(function()
   add({ { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim", name = "render-markdown" } })
