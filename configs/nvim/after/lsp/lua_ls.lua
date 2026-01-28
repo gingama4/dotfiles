@@ -1,5 +1,8 @@
 return {
   on_attach = function(client, buf_id)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+
     client.server_capabilities.completionProvider.triggerCharacters = { ".", ":", "#", "(" }
 
     local opts = { buffer = buf_id, desc = "Lua source definition" }
