@@ -172,9 +172,18 @@ later(function()
         { "n", "q", "<Cmd>DiffviewClose<CR>", { desc = "Close Diffview" } },
       },
     },
+    hooks = {
+      view_enter = function()
+        vim.o.showtabline = 0
+      end,
+      view_leave = function()
+        vim.o.showtabline = 2
+      end,
+    },
   })
 
-  require("gitsigns").setup({
+  local gitsigns = require("gitsigns")
+  gitsigns.setup({
     current_line_blame = true,
     current_line_blame_opts = {
       delay = 500,
@@ -183,15 +192,16 @@ later(function()
 
   -- keymap
   keymap({ "<leader>go", "<Cmd>DiffviewOpen<CR>", desc = "Open Diffview" })
-
-  -- tabline
-  GinVim.create_autocmd("User", "DiffviewViewEnter", function()
-    vim.o.showtabline = 0
-  end)
-
-  GinVim.create_autocmd("User", "DiffviewViewLeave", function()
-    vim.o.showtabline = 2
-  end)
+  keymap({ "<leader>gs", gitsigns.stage_hunk, desc = "Stage hunk" })
+  keymap({
+    "<leader>gs",
+    function()
+      gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end,
+    mode = "v",
+    desc = "Stage hunk",
+  })
+  keymap({ "<leader>gS", gitsigns.stage_buffer, desc = "Stage buffer" })
 end)
 
 -- Markdown
