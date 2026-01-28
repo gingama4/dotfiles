@@ -81,6 +81,14 @@ later(function()
 end)
 
 later(function()
+  require("mini.git").setup({
+    command = {
+      split = "vertical",
+    },
+  })
+end)
+
+later(function()
   require("mini.indentscope").setup()
 end)
 
