@@ -25,6 +25,7 @@ now_if_args(function()
     "markdown_inline",
     "php",
     "toml",
+    "tsx",
     "typescript",
     "yaml",
   }
@@ -92,11 +93,15 @@ later(function()
     format_on_save = {
       timeout_ms = 3000,
     },
+    default_format_opts = {
+      lsp_format = "fallback",
+    },
     formatters_by_ft = {
       lua = { "stylua" },
       php = { "pint" },
       javascript = { "eslint_d", "prettier" },
       typescript = { "eslint_d", "prettier" },
+      tsx = { "eslint_d", "prettier" },
       markdown = { "prettier" },
     },
   })
