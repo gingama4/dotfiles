@@ -22,13 +22,14 @@ function initialize_os_env() {
     initialize_macos
   elif [[ "${OS_TYPE}" == "Linux" ]]; then
     echo "Detected Linux environment."
+    initialize_linux
   else
     echo "Unsupported OS type: ${OS_TYPE}"
     exit 1
   fi
 }
 
-function initialize_macos() {
+function initialize_homebrew() {
   function is_homebrew_installed() {
     command -v brew &> /dev/null
   }
@@ -40,6 +41,10 @@ function initialize_macos() {
   else
     echo "Homebrew is already installed."
   fi
+}
+
+function initialize_macos() {
+  initialize_homebrew
 
   # Setup Homebrew envvars.
   if [[ $(arch) == "arm64" ]]; then
@@ -48,6 +53,13 @@ function initialize_macos() {
     echo "Invalid CPU arch: $(arch)" >&2
     exit 1
   fi
+}
+
+function initialize_linux() {
+  initialize_homebrew
+
+  # Setup Homebrew envvars.
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 }
 
 function initialize_dotfiles() {
