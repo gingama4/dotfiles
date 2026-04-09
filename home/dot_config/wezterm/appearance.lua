@@ -2,10 +2,6 @@ local wezterm = require("wezterm")
 local M = {}
 
 local appearance = {
-  -- background
-  window_background_opacity = 0.7,
-  macos_window_background_blur = 13,
-
   -- font
   font_size = 14.0,
   font = wezterm.font("HackGen Console NF"),

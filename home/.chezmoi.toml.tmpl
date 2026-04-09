@@ -1,0 +1,8 @@
+{{- $git_name := "gingama4" -}}
+{{- $git_email := "me@gingama4.com" -}}
+{{- $git_name := promptStringOnce . "name" "Git用のユーザ名を入力してください" $git_name -}}
+{{- $git_email := promptStringOnce . "email" "Git用のメールアドレスを入力してください" $git_email -}}
+
+[data.git.user]
+    name = {{ $git_name | quote }}
+    email = {{ $git_email | quote }}
