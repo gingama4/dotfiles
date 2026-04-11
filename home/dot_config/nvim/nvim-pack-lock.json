@@ -1,7 +1,12 @@
 {
   "plugins": {
     "CopilotChat.nvim": {
-      "rev": "07dcc18"
+      "rev": "07dcc188bc488b2dafa9324bd42088640bee3d19",
+      "src": "https://github.com/Copilot-C-Nvim/CopilotChat.nvim"
+    },
+    "blink-copilot": {
+      "rev": "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39",
+      "src": "https://github.com/fang2hou/blink-copilot"
     },
     "blink.cmp": {
       "rev": "327fff9",
@@ -28,12 +33,24 @@
       "rev": "44d1e90",
       "src": "https://github.com/mason-org/mason.nvim"
     },
+    "mcphub.nvim": {
+      "rev": "7cd5db330f41b7bae02b2d6202218a061c3ebc1f",
+      "src": "https://github.com/ravitemer/mcphub.nvim"
+    },
     "mini.nvim": {
-      "rev": "4f53281",
+      "rev": "4182d64727fb4876407af65c181b85428a4a70d1",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
+    "neogit": {
+      "rev": "e06745228600a585b88726fc9fba44a373c15a47",
+      "src": "https://github.com/NeogitOrg/neogit"
+    },
+    "nvim-aibo": {
+      "rev": "bcbeab88c27cf831a08661eace7a928b2bba5694",
+      "src": "https://github.com/lambdalisue/nvim-aibo"
+    },
     "nvim-lspconfig": {
-      "rev": "92ee7d4",
+      "rev": "cb5bc0b2b35a6d513e3298d285db81453e791f4f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
@@ -44,14 +61,20 @@
       "rev": "f55b25e",
       "src": "https://github.com/stevearc/oil.nvim"
     },
-    "plenary.nvim": [],
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
     "render-markdown": {
       "rev": "c54380d",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
-    "sidekick.nvim": [],
+    "sidekick.nvim": {
+      "rev": "17447a05f9385e5f8372b61530f6f9329cb82421",
+      "src": "https://github.com/folke/sidekick.nvim"
+    },
     "vimdoc-ja": {
-      "rev": "7319a84",
+      "rev": "5371017a803f0eeaadd8a4f2b540c0b292bfd785",
       "src": "https://github.com/vim-jp/vimdoc-ja"
     }
   }
