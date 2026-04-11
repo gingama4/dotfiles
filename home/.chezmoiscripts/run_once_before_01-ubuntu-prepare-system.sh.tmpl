@@ -1,7 +1,3 @@
-{{ if eq .chezmoi.os "darwin" }}
-{{   include "../scripts/install_macos_command_line_tool.sh" }}
-{{ end }}
-
 {{ if eq .chezmoi.os "linux" }}
 {{   if eq .chezmoi.osRelease.idLike " debian" }}
 {{     include "../scripts/install_ubuntu_essential.sh" }}
@@ -9,6 +5,3 @@
 {{     fail (printf "Invalid linux distribution: %s" .chezmoi.osRelease.id) }}
 {{   end }}
 {{ end }}
-
-{{ include "../scripts/install_homebrew.sh" }}
-{{ include "../scripts/install_tools.sh" }}
