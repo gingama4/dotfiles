@@ -6,9 +6,7 @@ if [ "${DOTFILES_DEBUG:-}" ] ; then
   set -x
 fi
 
-function install_mise() {
-  brew install mise
-
+function activate_mise() {
   eval "$(mise activate bash)"
 }
 
@@ -17,7 +15,7 @@ function run_mise_install() {
 }
 
 function main() {
-  install_mise
+  activate_mise
   run_mise_install
 }
 

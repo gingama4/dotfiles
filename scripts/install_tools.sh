@@ -17,6 +17,7 @@ readonly BREW_PACKAGES=(
   ghq
   gpg
   lazygit
+  mise
   neovim
   sheldon
   vim
