@@ -1,0 +1,23 @@
+# Homebrew
+if [ "$OS" = 'Darwin' ];then
+  # macOS
+  if [ "$ARCH" = 'arm64' ]; then
+    # Apple Silicon
+    BREW_PATH="/opt/homebrew/bin/brew"
+  else
+    # Intel
+    BREW_PATH="/usr/local/bin/brew"
+  fi
+else
+  # Linux
+  BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
+fi
+
+if [[ -f "$BREW_PATH" ]]; then
+  eval "$($BREW_PATH shellenv)"
+fi
+
+# mise
+if command -v mise > /dev/null; then
+  eval "$(mise activate zsh)"
+fi
