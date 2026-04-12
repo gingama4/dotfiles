@@ -1,7 +1,7 @@
 # Homebrew
-if [ "$(uname -s)" = 'Darwin' ];then
+if [ "$OS" = 'Darwin' ];then
   # macOS
-  if [ "$(uname -m)" = 'arm64' ]; then
+  if [ "$ARCH" = 'arm64' ]; then
     # Apple Silicon
     BREW_PATH="/opt/homebrew/bin/brew"
   else
@@ -18,4 +18,6 @@ if [[ -f "$BREW_PATH" ]]; then
 fi
 
 # mise
-eval "$(mise activate zsh)"
+if command -v mise > /dev/null; then
+  eval "$(mise activate zsh)"
+fi
