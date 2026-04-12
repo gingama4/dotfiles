@@ -16,52 +16,6 @@ repository: https://github.com/gingama4/dotfiles
 
 declare -r OS_TYPE="$(uname -s)"
 
-function initialize_os_env() {
-  if [[ "${OS_TYPE}" == "Darwin" ]]; then
-    echo "Detected macOS environment."
-    initialize_macos
-  elif [[ "${OS_TYPE}" == "Linux" ]]; then
-    echo "Detected Linux environment."
-    initialize_linux
-  else
-    echo "Unsupported OS type: ${OS_TYPE}"
-    exit 1
-  fi
-}
-
-function initialize_homebrew() {
-  function is_homebrew_installed() {
-    command -v brew &> /dev/null
-  }
-
-  # Install Homebrew if it's not already installed
-  if ! is_homebrew_installed; then
-    echo "Homebrew not found. Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  else
-    echo "Homebrew is already installed."
-  fi
-}
-
-function initialize_macos() {
-  initialize_homebrew
-
-  # Setup Homebrew envvars.
-  if [[ $(arch) == "arm64" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  else
-    echo "Invalid CPU arch: $(arch)" >&2
-    exit 1
-  fi
-}
-
-function initialize_linux() {
-  initialize_homebrew
-
-  # Setup Homebrew envvars.
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-}
-
 function initialize_dotfiles() {
   run_chezmoi
 }
@@ -89,7 +43,6 @@ function run_chezmoi() {
 function main() {
   echo "${DOTFILES_DIALOG}"
 
-  initialize_os_env
   initialize_dotfiles
 }
 
