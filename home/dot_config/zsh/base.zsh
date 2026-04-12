@@ -4,10 +4,6 @@ bindkey -e
 # Completion
 fpath+=$ZSH_COMPLETION_DIR
 
-# OS
-export OS="$(uname -s)"
-export ARCH="$(uname -m)"
-
 # Prompt
 autoload -U colors
 colors

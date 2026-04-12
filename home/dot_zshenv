@@ -1,3 +1,7 @@
+# OS
+export OS="$(uname -s)"
+export ARCH="$(uname -m)"
+
 # XDG
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
