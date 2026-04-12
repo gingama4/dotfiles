@@ -1,4 +1,4 @@
-local now, later = MiniDeps.now, MiniDeps.later
+local now, later = GinVim.now, GinVim.later
 
 now(function()
   require("mini.basics").setup({

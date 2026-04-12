@@ -1,11 +1,15 @@
 {
   "plugins": {
+    "avante.nvim": {
+      "rev": "8c84af0f09e5d9058362ac58401a8e7b047d826e",
+      "src": "https://github.com/yetone/avante.nvim"
+    },
     "blink-copilot": {
       "rev": "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39",
       "src": "https://github.com/fang2hou/blink-copilot"
     },
     "blink.cmp": {
-      "rev": "327fff9",
+      "rev": "327fff91fe6af358e990be7be1ec8b78037d2138",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1.7.0'"
     },
@@ -17,8 +21,16 @@
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "copilot-lsp": {
+      "rev": "1b6d8273594643f51bb4c0c1d819bdb21b42159d",
+      "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
+    },
+    "copilot.lua": {
+      "rev": "ad7e729e9a6348f7da482be0271d452dbc4c8e2c",
+      "src": "https://github.com/zbirenbaum/copilot.lua"
+    },
     "diffview.nvim": {
-      "rev": "4516612",
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
     "gitsigns.nvim": {
@@ -34,19 +46,23 @@
       "src": "https://github.com/ravitemer/mcphub.nvim"
     },
     "mini.nvim": {
-      "rev": "4182d64727fb4876407af65c181b85428a4a70d1",
+      "rev": "c67822c53e8e282fe863343e88aa0a8ca3534059",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
       "rev": "e06745228600a585b88726fc9fba44a373c15a47",
       "src": "https://github.com/NeogitOrg/neogit"
     },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-aibo": {
       "rev": "bcbeab88c27cf831a08661eace7a928b2bba5694",
       "src": "https://github.com/lambdalisue/nvim-aibo"
     },
     "nvim-lspconfig": {
-      "rev": "cb5bc0b2b35a6d513e3298d285db81453e791f4f",
+      "rev": "b360f2dd3627597ce2a057ae239adbd14d9b0322",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
