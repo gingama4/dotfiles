@@ -1,4 +1,4 @@
-Host github.com
+Host *
   IgnoreUnknown UseKeychain,AddKeysToAgent
   UseKeychain yes
   AddKeysToAgent yes
