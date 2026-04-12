@@ -249,32 +249,3 @@ later(function()
   })
 end)
 
-later(function()
-  add({
-    { src = "https://github.com/Copilot-C-Nvim/CopilotChat.nvim", name = "CopilotChat.nvim" },
-    { src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary.nvim" },
-  })
-
-  local default = require("CopilotChat.config.prompts")
-  require("CopilotChat").setup({
-    prompts = vim.tbl_deep_extend("force", default, {
-      COPILOT_BASE = { system_prompt = GinVim.copilot.prompt },
-    }),
-    language = "Japanese",
-  })
-
-  keymap({
-    "<leader>ac",
-    function()
-      require("CopilotChat").toggle()
-    end,
-    desc = "Open Copilot Chat",
-  })
-  keymap({
-    "<leader>as",
-    function()
-      require("CopilotChat").save()
-    end,
-    desc = "Save Chat",
-  })
-end)
