@@ -1,56 +1,55 @@
 local add = vim.pack.add
-local now, later = MiniDeps.now, MiniDeps.later
-local now_if_args = GinVim.now_if_args
+local now, now_if_args, later = GinVim.now, GinVim.now_if_args, GinVim.later
 local keymap = GinVim.keymap.set
 
 -- Tree-sitter
-now_if_args(function()
-  GinVim.on_pack("nvim-treesitter", { "update" }, vim.cmd.TSUpdate, "Update tree-sitter parsers")
-  add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
-
-  -- Ensure installed
-  local ensure_languages = {
-    "bash",
-    "c",
-    "cpp",
-    "css",
-    "blade",
-    "diff",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "php",
-    "toml",
-    "tsx",
-    "typescript",
-    "yaml",
-  }
-  local isnt_installed = function(lang)
-    return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
-  end
-  local to_install = vim.tbl_filter(isnt_installed, ensure_languages)
-  if #to_install > 0 then
-    require("nvim-treesitter").install(to_install)
-  end
-
-  -- Ensure enabled
-  local filetypes = vim.iter(ensure_languages):map(vim.treesitter.language.get_filetypes):flatten():totable()
-  local ts_start = function(ev)
-    vim.treesitter.start(ev.buf)
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.wo.foldmethod = "expr"
-
-    -- Only php
-    if ev.match == "php" then
-      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()'"
-    end
-  end
-  GinVim.create_autocmd("FileType", filetypes, ts_start, "Ensure enabled tree-sitter")
-end)
+-- now_if_args(function()
+--   GinVim.on_pack("nvim-treesitter", { "update" }, vim.cmd.TSUpdate, "Update tree-sitter parsers")
+--   add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
+--
+--   -- Ensure installed
+--   local ensure_languages = {
+--     "bash",
+--     "c",
+--     "cpp",
+--     "css",
+--     "blade",
+--     "diff",
+--     "go",
+--     "html",
+--     "javascript",
+--     "json",
+--     "lua",
+--     "markdown",
+--     "markdown_inline",
+--     "php",
+--     "toml",
+--     "tsx",
+--     "typescript",
+--     "yaml",
+--   }
+--   local isnt_installed = function(lang)
+--     return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
+--   end
+--   local to_install = vim.tbl_filter(isnt_installed, ensure_languages)
+--   if #to_install > 0 then
+--     require("nvim-treesitter").install(to_install)
+--   end
+--
+--   -- Ensure enabled
+--   local filetypes = vim.iter(ensure_languages):map(vim.treesitter.language.get_filetypes):flatten():totable()
+--   local ts_start = function(ev)
+--     vim.treesitter.start(ev.buf)
+--     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+--     vim.wo.foldmethod = "expr"
+--
+--     -- Only php
+--     if ev.match == "php" then
+--       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()'"
+--     end
+--   end
+--   GinVim.create_autocmd("FileType", filetypes, ts_start, "Ensure enabled tree-sitter")
+-- end)
 
 -- Mason
 later(function()
@@ -119,7 +118,7 @@ later(function()
       ["<Tab>"] = {
         "snippet_forward",
         function()
-          return require("sidekick").nes_jump_or_apply()
+          -- return require("sidekick").nes_jump_or_apply()
         end,
         function()
           return vim.lsp.inline_completion.get()
@@ -214,67 +213,5 @@ later(function()
   add({ { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim", name = "render-markdown" } })
   require("render-markdown").setup({
     completions = { lsp = { enabled = true } },
-  })
-end)
-
--- AI
-later(function()
-  add({ { src = "https://github.com/folke/sidekick.nvim", name = "sidekick.nvim" } })
-  require("sidekick").setup({
-    cli = {
-      mux = {
-        enabled = true,
-      },
-    },
-    nes = {
-      enabled = true,
-    },
-  })
-
-  keymap({
-    "<Tab>",
-    function()
-      if not require("sidekick").nes_jump_or_apply() then
-        return "<Tab>"
-      end
-    end,
-    desc = "Goto/Apply Next Edit Suggestion",
-  })
-  keymap({
-    "<leader>aa",
-    function()
-      require("sidekick.cli").toggle({ name = "copilot" })
-    end,
-    desc = "Toglle Sidekick CLI",
-  })
-end)
-
-later(function()
-  add({
-    { src = "https://github.com/Copilot-C-Nvim/CopilotChat.nvim", name = "CopilotChat.nvim" },
-    { src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary.nvim" },
-  })
-
-  local default = require("CopilotChat.config.prompts")
-  require("CopilotChat").setup({
-    prompts = vim.tbl_deep_extend("force", default, {
-      COPILOT_BASE = { system_prompt = GinVim.copilot.prompt },
-    }),
-    language = "Japanese",
-  })
-
-  keymap({
-    "<leader>ac",
-    function()
-      require("CopilotChat").toggle()
-    end,
-    desc = "Open Copilot Chat",
-  })
-  keymap({
-    "<leader>as",
-    function()
-      require("CopilotChat").save()
-    end,
-    desc = "Save Chat",
   })
 end)

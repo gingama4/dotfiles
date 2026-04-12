@@ -1,24 +1,18 @@
-pcall(function()
-  vim.loader.enable()
-end)
-vim.uv = vim.uv or vim.loop
-vim.tbl_islist = vim.islist
+-- Support >= 0.12
+if vim.fn.has("nvim-0.12") == 0 then
+  vim.notify("Only Support >= Nvim 0.12.", vim.log.levels.ERROR)
+  return
+end
 
 -- Plugin Manager
 vim.pack.add({
   "https://github.com/nvim-mini/mini.nvim",
 })
 
--- Bootstrap
-require("mini.deps").setup()
+local misc = require("mini.misc")
 
 local GinVim = require("gin-vim")
+GinVim.now = function(f) misc.safely("now", f)  end
+GinVim.later = function(f) misc.safely("later", f)  end
+GinVim.now_if_args = vim.fn.argc(-1) > 0 and GinVim.now or GinVim.later
 _G.GinVim = GinVim
-
--- Config
-require("10_options")
-require("11_keymaps")
-require("12_commands")
-require("20_vscode")
-require("30_mini")
-require("40_plugins")
