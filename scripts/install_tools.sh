@@ -19,6 +19,7 @@ readonly BREW_PACKAGES=(
   lazygit
   mise
   neovim
+  ripgrep
   sheldon
   vim
   zsh
