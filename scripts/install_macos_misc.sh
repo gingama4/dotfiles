@@ -7,6 +7,9 @@ if [ "${DOTFILES_DEBUG:-}" ] ; then
 fi
 
 readonly BREW_PACKAGES=(
+  colima
+  docker
+  docker-compose
   google-chrome
   obsidian
   slack
