@@ -11,10 +11,20 @@ GinVim.on_pack(
 
 GinVim.later(function()
   vim.pack.add({
-    { src = "https://github.com/yetone/avante.nvim" },
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/MunifTanjim/nui.nvim",
+    "https://github.com/zbirenbaum/copilot.lua",
+  })
+  vim.pack.add({
+    "https://github.com/yetone/avante.nvim",
   })
 
   require("avante").setup({
     provider = "copilot",
+    behaviour = {
+      auto_suggestions = false,
+      auto_approve_tool_permissions = false,
+      auto_check_diagnostics = false,
+    },
   })
 end)

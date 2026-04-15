@@ -9,9 +9,9 @@
       "src": "https://github.com/fang2hou/blink-copilot"
     },
     "blink.cmp": {
-      "rev": "327fff91fe6af358e990be7be1ec8b78037d2138",
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",
-      "version": "'v1.7.0'"
+      "version": "'v1.10.2'"
     },
     "catppuccin": {
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
@@ -46,7 +46,7 @@
       "src": "https://github.com/ravitemer/mcphub.nvim"
     },
     "mini.nvim": {
-      "rev": "c67822c53e8e282fe863343e88aa0a8ca3534059",
+      "rev": "27a3e747a4e603b4121f5759e74020430ec7b7d5",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
@@ -62,7 +62,7 @@
       "src": "https://github.com/lambdalisue/nvim-aibo"
     },
     "nvim-lspconfig": {
-      "rev": "b360f2dd3627597ce2a057ae239adbd14d9b0322",
+      "rev": "d10ce09e42bb0ca8600fd610c3bb58676e61208d",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
@@ -78,7 +78,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown": {
-      "rev": "54d4b5431e9634ee3d8d30784e017239b5b89d41",
+      "rev": "0fd43fb4b1f073931c4b481f5f3b7cea3749e190",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "sidekick.nvim": {
@@ -86,7 +86,7 @@
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "vimdoc-ja": {
-      "rev": "f510810fb730908f7fe9ed31a0252873ae27b179",
+      "rev": "1f75eefd3f19f7c061742bda19f57a41e88c5754",
       "src": "https://github.com/vim-jp/vimdoc-ja"
     }
   }

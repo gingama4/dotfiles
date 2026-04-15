@@ -15,4 +15,5 @@ local GinVim = require("gin-vim")
 GinVim.now = function(f) misc.safely("now", f)  end
 GinVim.later = function(f) misc.safely("later", f)  end
 GinVim.now_if_args = vim.fn.argc(-1) > 0 and GinVim.now or GinVim.later
+GinVim.on_event = function(ev, f) misc.safely('event:' .. ev, f) end
 _G.GinVim = GinVim
