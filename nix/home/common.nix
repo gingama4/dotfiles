@@ -31,6 +31,7 @@ in
       mise
       neovim
       nodejs
+      openssh
       ripgrep
       rust-analyzer
       rustc
