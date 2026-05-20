@@ -1,20 +1,8 @@
-# Homebrew
-if [ "$OS" = 'Darwin' ];then
-  # macOS
-  if [ "$ARCH" = 'arm64' ]; then
-    # Apple Silicon
-    BREW_PATH="/opt/homebrew/bin/brew"
-  else
-    # Intel
-    BREW_PATH="/usr/local/bin/brew"
-  fi
-else
-  # Linux
-  BREW_PATH="/home/linuxbrew/.linuxbrew/bin/brew"
-fi
-
-if [[ -f "$BREW_PATH" ]]; then
-  eval "$($BREW_PATH shellenv)"
+# Nix
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
 # mise

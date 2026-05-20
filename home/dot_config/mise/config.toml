@@ -1,10 +1,3 @@
 [tools]
-go = "latest"
-node = "lts"
-pnpm = "latest"
-rust = "latest"
-
-lua-language-server = "latest"
-"npm:@vtsls/language-server" = "latest"
-"npm:intelephense" = "latest"
-tree-sitter = "latest"
+# Global fallback runtimes and editor tooling are managed by Nix.
+# Put project-specific versions in each repository's mise config.

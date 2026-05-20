@@ -1,0 +1,24 @@
+{{- if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) -}}
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ] ; then
+  set -x
+fi
+
+function is_nix_installed() {
+  command -v nix > /dev/null 2>&1 || [ -x /nix/var/nix/profiles/default/bin/nix ]
+}
+
+function install_nix() {
+  if is_nix_installed; then
+    return
+  fi
+
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
+    | sh -s -- install --determinate --no-confirm
+}
+
+install_nix
+{{- end -}}

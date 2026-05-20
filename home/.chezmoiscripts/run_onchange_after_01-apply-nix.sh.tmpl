@@ -1,0 +1,92 @@
+{{- if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) -}}
+#!/usr/bin/env bash
+
+: <<'DOTFILES_NIX_FINGERPRINT'
+{{ include "../flake.nix" }}
+{{ include "../nix/darwin/default.nix" }}
+{{ include "../nix/home/common.nix" }}
+{{ include "../nix/home/darwin.nix" }}
+{{ include "../nix/home/wsl.nix" }}
+DOTFILES_NIX_FINGERPRINT
+
+set -Eeuo pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ] ; then
+  set -x
+fi
+
+readonly FLAKE_DIR="$(cd "{{ .chezmoi.sourceDir }}/.." && pwd -P)"
+readonly NIX_CMD="/nix/var/nix/profiles/default/bin/nix"
+readonly DARWIN_REBUILD="/run/current-system/sw/bin/darwin-rebuild"
+readonly HOME_MANAGER="${HOME}/.nix-profile/bin/home-manager"
+
+function activate_nix() {
+  if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+    # shellcheck disable=SC1091
+    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+  elif [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+    # shellcheck disable=SC1091
+    . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+  fi
+}
+
+function nix_command() {
+  if command -v nix > /dev/null 2>&1; then
+    command -v nix
+    return
+  fi
+
+  if [ -x "${NIX_CMD}" ]; then
+    printf '%s\n' "${NIX_CMD}"
+    return
+  fi
+
+  echo "nix command not found. Re-run chezmoi apply after installing Nix." >&2
+  exit 1
+}
+
+function apply_darwin() {
+  local nix_bin
+  nix_bin="$(nix_command)"
+
+  if [ -x "${DARWIN_REBUILD}" ]; then
+    "${DARWIN_REBUILD}" switch --flake "${FLAKE_DIR}#hades"
+    return
+  fi
+
+  "${nix_bin}" build "${FLAKE_DIR}#darwinConfigurations.hades.system" \
+    --out-link /tmp/dotfiles-darwin-system
+  /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${FLAKE_DIR}#hades"
+}
+
+function apply_wsl() {
+  local nix_bin
+  nix_bin="$(nix_command)"
+
+  if [ -x "${HOME_MANAGER}" ]; then
+    "${HOME_MANAGER}" switch --flake "${FLAKE_DIR}#wsl"
+    return
+  fi
+
+  "${nix_bin}" build "${FLAKE_DIR}#homeConfigurations.wsl.activationPackage" \
+    --out-link /tmp/dotfiles-home-manager
+  /tmp/dotfiles-home-manager/activate
+}
+
+function main() {
+  activate_nix
+
+  case "{{ .chezmoi.os }}" in
+    darwin)
+      apply_darwin
+      ;;
+    linux)
+      apply_wsl
+      ;;
+    *)
+      ;;
+  esac
+}
+
+main
+{{- end -}}
