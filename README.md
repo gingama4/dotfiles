@@ -34,3 +34,8 @@ Test the WSL/Ubuntu path in Docker:
 ```bash
 ./scripts/test_wsl_docker.sh
 ```
+
+Test the macOS path with Nix:
+```bash
+./scripts/test_macos.sh
+```
