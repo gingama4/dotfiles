@@ -1,0 +1,47 @@
+{ lib, pkgs, ... }:
+
+let
+  optionalPackage =
+    name:
+    let
+      package = builtins.tryEval (builtins.getAttr name pkgs);
+    in
+    lib.optional package.success package.value;
+in
+{
+  home.stateVersion = "25.05";
+
+  programs.home-manager.enable = true;
+
+  home.packages =
+    with pkgs;
+    [
+      cargo
+      chezmoi
+      cmake
+      eza
+      fzf
+      gh
+      ghq
+      git
+      gnupg
+      go
+      lazygit
+      lua-language-server
+      mise
+      neovim
+      nodejs
+      openssh
+      ripgrep
+      rust-analyzer
+      rustc
+      sheldon
+      tree-sitter
+      vim
+      zsh
+    ]
+    ++ optionalPackage "github-copilot-cli"
+    ++ optionalPackage "intelephense"
+    ++ optionalPackage "pnpm"
+    ++ optionalPackage "vtsls";
+}

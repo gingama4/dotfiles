@@ -1,0 +1,18 @@
+name: WSL Docker
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  wsl-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test WSL Ubuntu setup
+        run: ./scripts/test_wsl_docker.sh
