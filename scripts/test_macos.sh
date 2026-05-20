@@ -9,7 +9,7 @@ fi
 readonly ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 readonly WORK_DIR="${RUNNER_TEMP:-${TMPDIR:-/tmp}}/dotfiles-macos-test"
 readonly OUT_LINK="${WORK_DIR}/dotfiles-darwin-system"
-readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes")
+readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes" --no-write-lock-file)
 
 function nix_command() {
   if command -v nix > /dev/null 2>&1; then

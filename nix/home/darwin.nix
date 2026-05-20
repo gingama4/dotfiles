@@ -1,6 +1,6 @@
-{ username, ... }:
+{ lib, username, ... }:
 
 {
   home.username = username;
-  home.homeDirectory = "/Users/${username}";
+  home.homeDirectory = lib.mkForce "/Users/${username}";
 }
