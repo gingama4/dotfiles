@@ -3,17 +3,15 @@
 let
   optionalPackage =
     name:
-    lib.optional (builtins.hasAttr name pkgs) (builtins.getAttr name pkgs);
+    let
+      package = builtins.tryEval (builtins.getAttr name pkgs);
+    in
+    lib.optional package.success package.value;
 in
 {
   home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
 
   home.packages =
     with pkgs;
@@ -41,8 +39,7 @@ in
       vim
       zsh
     ]
-    ++ optionalPackage "corepack"
-    ++ optionalPackage "gh-copilot"
+    ++ optionalPackage "github-copilot-cli"
     ++ optionalPackage "intelephense"
     ++ optionalPackage "pnpm"
     ++ optionalPackage "vtsls";

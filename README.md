@@ -29,3 +29,8 @@ Ubuntu on WSL uses standalone Home Manager:
 ```bash
 home-manager switch --flake ~/.local/share/chezmoi#wsl
 ```
+
+Test the WSL/Ubuntu path in Docker:
+```bash
+./scripts/test_wsl_docker.sh
+```

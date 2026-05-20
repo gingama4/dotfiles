@@ -19,6 +19,7 @@ readonly FLAKE_DIR="$(cd "{{ .chezmoi.sourceDir }}/.." && pwd -P)"
 readonly NIX_CMD="/nix/var/nix/profiles/default/bin/nix"
 readonly DARWIN_REBUILD="/run/current-system/sw/bin/darwin-rebuild"
 readonly HOME_MANAGER="${HOME}/.nix-profile/bin/home-manager"
+readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes")
 
 function activate_nix() {
   if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
@@ -50,11 +51,12 @@ function apply_darwin() {
   nix_bin="$(nix_command)"
 
   if [ -x "${DARWIN_REBUILD}" ]; then
-    "${DARWIN_REBUILD}" switch --flake "${FLAKE_DIR}#hades"
+    NIX_CONFIG="experimental-features = nix-command flakes" \
+      "${DARWIN_REBUILD}" switch --flake "${FLAKE_DIR}#hades"
     return
   fi
 
-  "${nix_bin}" build "${FLAKE_DIR}#darwinConfigurations.hades.system" \
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#darwinConfigurations.hades.system" \
     --out-link /tmp/dotfiles-darwin-system
   /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${FLAKE_DIR}#hades"
 }
@@ -64,11 +66,12 @@ function apply_wsl() {
   nix_bin="$(nix_command)"
 
   if [ -x "${HOME_MANAGER}" ]; then
-    "${HOME_MANAGER}" switch --flake "${FLAKE_DIR}#wsl"
+    NIX_CONFIG="experimental-features = nix-command flakes" \
+      "${HOME_MANAGER}" switch --flake "${FLAKE_DIR}#wsl"
     return
   fi
 
-  "${nix_bin}" build "${FLAKE_DIR}#homeConfigurations.wsl.activationPackage" \
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#homeConfigurations.wsl.activationPackage" \
     --out-link /tmp/dotfiles-home-manager
   /tmp/dotfiles-home-manager/activate
 }

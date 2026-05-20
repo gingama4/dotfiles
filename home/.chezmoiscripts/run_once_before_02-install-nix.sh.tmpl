@@ -12,6 +12,10 @@ function is_nix_installed() {
 }
 
 function install_nix() {
+  if [ "${DOTFILES_SKIP_NIX_INSTALL:-}" ]; then
+    return
+  fi
+
   if is_nix_installed; then
     return
   fi
