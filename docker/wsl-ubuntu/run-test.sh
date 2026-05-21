@@ -56,7 +56,7 @@ function install_nix() {
 
 function build_home_manager() {
   nix --extra-experimental-features "nix-command flakes" build \
-    "${CHEZMOI_SOURCE}#homeConfigurations.wsl.activationPackage" \
+    "${CHEZMOI_SOURCE}#homeConfigurations.linux.activationPackage" \
     --out-link /tmp/dotfiles-home-manager
 }
 

@@ -39,40 +39,81 @@
     let
       username = "gingama4";
       darwinSystem = "aarch64-darwin";
-      wslSystem = "x86_64-linux";
+      linuxSystem = "x86_64-linux";
+
+      mkLinuxHome =
+        {
+          username,
+          system ? linuxSystem,
+          modules ? [ ],
+        }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = { inherit inputs username; };
+          modules =
+            [
+              ./nix/home/common.nix
+              ./nix/home/linux.nix
+            ]
+            ++ modules;
+        };
+
+      mkWslWorkHome = args: mkLinuxHome args;
+
+      mkDarwinConfiguration =
+        {
+          username,
+          system ? darwinSystem,
+          homeModules ? [ ],
+          modules ? [ ],
+        }:
+        nix-darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = { inherit inputs username; };
+          modules =
+            [
+              ./nix/darwin
+              home-manager.darwinModules.home-manager
+              nix-homebrew.darwinModules.nix-homebrew
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = { inherit inputs username; };
+                home-manager.users.${username} = {
+                  imports =
+                    [
+                      ./nix/home/common.nix
+                      ./nix/home/darwin.nix
+                    ]
+                    ++ homeModules;
+                };
+              }
+            ]
+            ++ modules;
+        };
+
+      mkMacConfiguration = args: mkDarwinConfiguration args;
     in
     {
-      darwinConfigurations.hades = nix-darwin.lib.darwinSystem {
-        system = darwinSystem;
-        specialArgs = { inherit inputs username; };
-        modules = [
-          ./nix/darwin
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs username; };
-            home-manager.users.${username} = {
-              imports = [
-                ./nix/home/common.nix
-                ./nix/home/darwin.nix
-              ];
-            };
-          }
-        ];
+      lib = {
+        inherit mkDarwinConfiguration mkLinuxHome mkMacConfiguration mkWslWorkHome;
       };
 
-      homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = wslSystem;
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit inputs username; };
-        modules = [
-          ./nix/home/common.nix
-          ./nix/home/wsl.nix
-        ];
+      homeModules = {
+        common = ./nix/home/common.nix;
+        darwin = ./nix/home/darwin.nix;
+        linux = ./nix/home/linux.nix;
+      };
+
+      darwinConfigurations.hades = mkDarwinConfiguration {
+        inherit username;
+      };
+
+      homeConfigurations.linux = mkLinuxHome {
+        inherit username;
       };
     };
 }

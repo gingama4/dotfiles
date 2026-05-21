@@ -6,7 +6,7 @@
 {{ include "../nix/darwin/default.nix" }}
 {{ include "../nix/home/common.nix" }}
 {{ include "../nix/home/darwin.nix" }}
-{{ include "../nix/home/wsl.nix" }}
+{{ include "../nix/home/linux.nix" }}
 DOTFILES_NIX_FINGERPRINT
 
 set -Eeuo pipefail
@@ -87,17 +87,17 @@ function apply_darwin() {
     /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${FLAKE_DIR}#hades"
 }
 
-function apply_wsl() {
+function apply_linux() {
   local nix_bin
   nix_bin="$(nix_command)"
 
   if [ -x "${HOME_MANAGER}" ]; then
     NIX_CONFIG="experimental-features = nix-command flakes" \
-      "${HOME_MANAGER}" switch --flake "${FLAKE_DIR}#wsl"
+      "${HOME_MANAGER}" switch --flake "${FLAKE_DIR}#linux"
     return
   fi
 
-  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#homeConfigurations.wsl.activationPackage" \
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#homeConfigurations.linux.activationPackage" \
     --out-link /tmp/dotfiles-home-manager
   /tmp/dotfiles-home-manager/activate
 }
@@ -110,7 +110,7 @@ function main() {
       apply_darwin
       ;;
     linux)
-      apply_wsl
+      apply_linux
       ;;
     *)
       ;;
