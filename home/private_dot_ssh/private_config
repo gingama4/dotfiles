@@ -2,4 +2,4 @@ Host *
   IgnoreUnknown UseKeychain,AddKeysToAgent
   UseKeychain yes
   AddKeysToAgent yes
-  IdentifyFile ~/.ssh/id_ed25519_github_sign
+  IdentityFile ~/.ssh/id_ed25519_github_sign
