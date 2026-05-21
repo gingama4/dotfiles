@@ -21,6 +21,15 @@ readonly DARWIN_REBUILD="/run/current-system/sw/bin/darwin-rebuild"
 readonly HOME_MANAGER="${HOME}/.nix-profile/bin/home-manager"
 readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes")
 
+function as_root() {
+  if [ "${EUID}" -eq 0 ]; then
+    "$@"
+    return
+  fi
+
+  sudo "$@"
+}
+
 function activate_nix() {
   if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
     # shellcheck disable=SC1091
@@ -46,19 +55,36 @@ function nix_command() {
   exit 1
 }
 
+function require_darwin_admin() {
+  if [ "${EUID}" -eq 0 ]; then
+    return
+  fi
+
+  if ! command -v sudo > /dev/null 2>&1; then
+    echo "sudo command not found. Run darwin activation as root." >&2
+    exit 1
+  fi
+
+  echo "nix-darwin activation requires administrator privileges."
+  sudo -v
+}
+
 function apply_darwin() {
   local nix_bin
   nix_bin="$(nix_command)"
 
+  require_darwin_admin
+
   if [ -x "${DARWIN_REBUILD}" ]; then
-    NIX_CONFIG="experimental-features = nix-command flakes" \
+    as_root env NIX_CONFIG="experimental-features = nix-command flakes" \
       "${DARWIN_REBUILD}" switch --flake "${FLAKE_DIR}#hades"
     return
   fi
 
   "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#darwinConfigurations.hades.system" \
     --out-link /tmp/dotfiles-darwin-system
-  /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${FLAKE_DIR}#hades"
+  as_root env NIX_CONFIG="experimental-features = nix-command flakes" \
+    /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${FLAKE_DIR}#hades"
 }
 
 function apply_wsl() {

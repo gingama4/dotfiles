@@ -4,14 +4,11 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.enable = false;
 
   nix-homebrew = {
     enable = true;
-    enableRosetta = true;
+    enableRosetta = false;
     user = username;
     autoMigrate = true;
     taps = {
