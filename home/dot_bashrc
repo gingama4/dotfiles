@@ -1,0 +1,26 @@
+# Switch interactive bash sessions to the zsh installed by Nix/Home Manager.
+case "$-" in
+  *i*) ;;
+  *) return ;;
+esac
+
+if [ -n "${ZSH_VERSION:-}" ] || [ -n "${DOTFILES_KEEP_BASH:-}" ]; then
+  return
+fi
+
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  # shellcheck disable=SC1091
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+  # shellcheck disable=SC1091
+  . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+for zsh_path in \
+  "${HOME}/.nix-profile/bin/zsh" \
+  "/etc/profiles/per-user/${USER}/bin/zsh"
+do
+  if [ -x "${zsh_path}" ]; then
+    exec "${zsh_path}" -l
+  fi
+done
