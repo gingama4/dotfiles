@@ -33,6 +33,7 @@ readonly NIX_CMD="/nix/var/nix/profiles/default/bin/nix"
 readonly DARWIN_REBUILD="/run/current-system/sw/bin/darwin-rebuild"
 readonly HOME_MANAGER="${HOME}/.nix-profile/bin/home-manager"
 readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes")
+readonly LOCAL_FLAKE_LOCK="${LOCAL_FLAKE_DIR}/flake.lock"
 
 function as_root() {
   if [ "${EUID}" -eq 0 ]; then
@@ -66,6 +67,17 @@ function nix_command() {
 
   echo "nix command not found. Re-run chezmoi apply after installing Nix." >&2
   exit 1
+}
+
+function prepare_local_flake() {
+  local nix_bin
+  nix_bin="$(nix_command)"
+
+  if [ -e "${LOCAL_FLAKE_LOCK}" ] && [ ! -w "${LOCAL_FLAKE_LOCK}" ]; then
+    rm -f "${LOCAL_FLAKE_LOCK}"
+  fi
+
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" flake update dotfiles --flake "${LOCAL_FLAKE_DIR}"
 }
 
 function require_darwin_admin() {
@@ -117,6 +129,7 @@ function apply_linux() {
 
 function main() {
   activate_nix
+  prepare_local_flake
 
   case "{{ .chezmoi.os }}" in
     darwin)
