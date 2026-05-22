@@ -34,6 +34,7 @@
     ];
 
     casks = [
+      "codex"
       "ghostty"
       "google-chrome"
       "obsidian"
