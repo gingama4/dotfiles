@@ -34,6 +34,10 @@ function prepare_chezmoi_config() {
 [data.git.user]
     name = "gingama4"
     email = "me@gingama4.com"
+
+[data.nix]
+    profile = "linux"
+    username = "gingama4"
 EOF
 }
 

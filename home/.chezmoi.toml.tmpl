@@ -1,8 +1,19 @@
 {{- $git_name := "gingama4" -}}
 {{- $git_email := "me@gingama4.com" -}}
+{{- $nix_profile := "linux" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $nix_profile = "hades" -}}
+{{- end -}}
+{{- $nix_username := "gingama4" -}}
 {{- $git_name := promptStringOnce . "name" "Git用のユーザ名を入力してください" $git_name -}}
 {{- $git_email := promptStringOnce . "email" "Git用のメールアドレスを入力してください" $git_email -}}
+{{- $nix_profile := promptStringOnce . "nix_profile" "Nixのプロファイル名を入力してください" $nix_profile -}}
+{{- $nix_username := promptStringOnce . "nix_username" "Nixで利用するOSユーザ名を入力してください" $nix_username -}}
 
 [data.git.user]
     name = {{ $git_name | quote }}
     email = {{ $git_email | quote }}
+
+[data.nix]
+    profile = {{ $nix_profile | quote }}
+    username = {{ $nix_username | quote }}

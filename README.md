@@ -18,20 +18,25 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/gingama4/dotfiles/refs/h
 
 ## Nix
 
-Tool installation is managed by Nix. chezmoi still distributes configuration files.
+Tool installation is managed by Nix. chezmoi still distributes configuration
+files and generates a local flake at `~/.config/dotfiles-nix/flake.nix`.
 
-macOS uses nix-darwin, Home Manager, and Homebrew casks managed from Nix:
+chezmoi prompts for the Nix profile name and OS user name. For a work WSL
+environment, use a profile such as `wsl-work`.
+
+Activate macOS with nix-darwin:
 ```bash
-darwin-rebuild switch --flake ~/.local/share/chezmoi#hades
+darwin-rebuild switch --flake ~/.config/dotfiles-nix#hades
 ```
 
-Linux uses standalone Home Manager:
+Activate Linux or WSL with standalone Home Manager:
 ```bash
-home-manager switch --flake ~/.local/share/chezmoi#linux
+home-manager switch --flake ~/.config/dotfiles-nix#linux
+# or
+home-manager switch --flake ~/.config/dotfiles-nix#wsl-work
 ```
 
-Private flakes can reuse the public modules and builders without committing
-machine-specific user names:
+The public flake still exposes reusable builders for private flakes:
 ```nix
 {
   inputs.dotfiles.url = "github:gingama4/dotfiles";
