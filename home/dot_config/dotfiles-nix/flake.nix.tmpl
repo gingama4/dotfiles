@@ -1,0 +1,33 @@
+{{- if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) -}}
+{{- $nix_profile := "linux" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $nix_profile = "hades" -}}
+{{- end -}}
+{{- $nix_username := "gingama4" -}}
+{{- with (index . "nix") -}}
+{{- if .profile -}}{{- $nix_profile = .profile -}}{{- end -}}
+{{- if .username -}}{{- $nix_username = .username -}}{{- end -}}
+{{- end -}}
+{
+  description = "Local machine Nix configuration";
+
+  inputs = {
+    dotfiles.url = "path:{{ .chezmoi.sourceDir | dir }}";
+
+    nixpkgs.follows = "dotfiles/nixpkgs";
+    home-manager.follows = "dotfiles/home-manager";
+  };
+
+  outputs = { dotfiles, ... }: {
+{{- if eq .chezmoi.os "darwin" }}
+    darwinConfigurations.{{ $nix_profile | quote }} = dotfiles.lib.mkMacConfiguration {
+      username = {{ $nix_username | quote }};
+    };
+{{- else if eq .chezmoi.os "linux" }}
+    homeConfigurations.{{ $nix_profile | quote }} = dotfiles.lib.{{ if eq $nix_profile "wsl-work" }}mkWslWorkHome{{ else }}mkLinuxHome{{ end }} {
+      username = {{ $nix_username | quote }};
+    };
+{{- end }}
+  };
+}
+{{- end -}}

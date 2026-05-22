@@ -1,12 +1,24 @@
 {{- if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) -}}
+{{- $nix_profile := "linux" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $nix_profile = "hades" -}}
+{{- end -}}
+{{- $nix_username := "gingama4" -}}
+{{- with (index . "nix") -}}
+{{- if .profile -}}{{- $nix_profile = .profile -}}{{- end -}}
+{{- if .username -}}{{- $nix_username = .username -}}{{- end -}}
+{{- end -}}
 #!/usr/bin/env bash
 
 : <<'DOTFILES_NIX_FINGERPRINT'
+nix.profile={{ $nix_profile }}
+nix.username={{ $nix_username }}
 {{ include "../flake.nix" }}
 {{ include "../nix/darwin/default.nix" }}
 {{ include "../nix/home/common.nix" }}
 {{ include "../nix/home/darwin.nix" }}
-{{ include "../nix/home/wsl.nix" }}
+{{ include "../nix/home/linux.nix" }}
+{{ include "../home/dot_config/dotfiles-nix/flake.nix.tmpl" }}
 DOTFILES_NIX_FINGERPRINT
 
 set -Eeuo pipefail
@@ -15,11 +27,13 @@ if [ "${DOTFILES_DEBUG:-}" ] ; then
   set -x
 fi
 
-readonly FLAKE_DIR="$(cd "{{ .chezmoi.sourceDir }}/.." && pwd -P)"
+readonly LOCAL_FLAKE_DIR="${HOME}/.config/dotfiles-nix"
+readonly NIX_PROFILE="{{ $nix_profile }}"
 readonly NIX_CMD="/nix/var/nix/profiles/default/bin/nix"
 readonly DARWIN_REBUILD="/run/current-system/sw/bin/darwin-rebuild"
 readonly HOME_MANAGER="${HOME}/.nix-profile/bin/home-manager"
 readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes")
+readonly LOCAL_FLAKE_LOCK="${LOCAL_FLAKE_DIR}/flake.lock"
 
 function as_root() {
   if [ "${EUID}" -eq 0 ]; then
@@ -55,6 +69,17 @@ function nix_command() {
   exit 1
 }
 
+function prepare_local_flake() {
+  local nix_bin
+  nix_bin="$(nix_command)"
+
+  if [ -e "${LOCAL_FLAKE_LOCK}" ] && [ ! -w "${LOCAL_FLAKE_LOCK}" ]; then
+    rm -f "${LOCAL_FLAKE_LOCK}"
+  fi
+
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" flake update dotfiles --flake "${LOCAL_FLAKE_DIR}"
+}
+
 function require_darwin_admin() {
   if [ "${EUID}" -eq 0 ]; then
     return
@@ -77,40 +102,41 @@ function apply_darwin() {
 
   if [ -x "${DARWIN_REBUILD}" ]; then
     as_root env NIX_CONFIG="experimental-features = nix-command flakes" \
-      "${DARWIN_REBUILD}" switch --flake "${FLAKE_DIR}#hades"
+      "${DARWIN_REBUILD}" switch --flake "${LOCAL_FLAKE_DIR}#${NIX_PROFILE}"
     return
   fi
 
-  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#darwinConfigurations.hades.system" \
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${LOCAL_FLAKE_DIR}#darwinConfigurations.${NIX_PROFILE}.system" \
     --out-link /tmp/dotfiles-darwin-system
   as_root env NIX_CONFIG="experimental-features = nix-command flakes" \
-    /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${FLAKE_DIR}#hades"
+    /tmp/dotfiles-darwin-system/sw/bin/darwin-rebuild switch --flake "${LOCAL_FLAKE_DIR}#${NIX_PROFILE}"
 }
 
-function apply_wsl() {
+function apply_linux() {
   local nix_bin
   nix_bin="$(nix_command)"
 
   if [ -x "${HOME_MANAGER}" ]; then
     NIX_CONFIG="experimental-features = nix-command flakes" \
-      "${HOME_MANAGER}" switch --flake "${FLAKE_DIR}#wsl"
+      "${HOME_MANAGER}" switch --flake "${LOCAL_FLAKE_DIR}#${NIX_PROFILE}"
     return
   fi
 
-  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${FLAKE_DIR}#homeConfigurations.wsl.activationPackage" \
+  "${nix_bin}" "${NIX_FLAKE_FLAGS[@]}" build "${LOCAL_FLAKE_DIR}#homeConfigurations.${NIX_PROFILE}.activationPackage" \
     --out-link /tmp/dotfiles-home-manager
   /tmp/dotfiles-home-manager/activate
 }
 
 function main() {
   activate_nix
+  prepare_local_flake
 
   case "{{ .chezmoi.os }}" in
     darwin)
       apply_darwin
       ;;
     linux)
-      apply_wsl
+      apply_linux
       ;;
     *)
       ;;

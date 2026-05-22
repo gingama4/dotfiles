@@ -18,16 +18,43 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/gingama4/dotfiles/refs/h
 
 ## Nix
 
-Tool installation is managed by Nix. chezmoi still distributes configuration files.
+Tool installation is managed by Nix. chezmoi still distributes configuration
+files and generates a local flake at `~/.config/dotfiles-nix/flake.nix`.
 
-macOS uses nix-darwin, Home Manager, and Homebrew casks managed from Nix:
+chezmoi prompts for the Nix profile name and OS user name. For a work WSL
+environment, use a profile such as `wsl-work`.
+
+Activate macOS with nix-darwin:
 ```bash
-darwin-rebuild switch --flake ~/.local/share/chezmoi#hades
+darwin-rebuild switch --flake ~/.config/dotfiles-nix#hades
 ```
 
-Ubuntu on WSL uses standalone Home Manager:
+Activate Linux or WSL with standalone Home Manager:
 ```bash
-home-manager switch --flake ~/.local/share/chezmoi#wsl
+home-manager switch --flake ~/.config/dotfiles-nix#linux
+# or
+home-manager switch --flake ~/.config/dotfiles-nix#wsl-work
+```
+
+The public flake still exposes reusable builders for private flakes:
+```nix
+{
+  inputs.dotfiles.url = "github:gingama4/dotfiles";
+
+  outputs = { dotfiles, ... }: {
+    darwinConfigurations.mac = dotfiles.lib.mkMacConfiguration {
+      username = "your-private-mac-user";
+    };
+
+    homeConfigurations.linux = dotfiles.lib.mkLinuxHome {
+      username = "your-private-linux-user";
+    };
+
+    homeConfigurations.wsl-work = dotfiles.lib.mkWslWorkHome {
+      username = "your-private-work-user";
+    };
+  };
+}
 ```
 
 Test the WSL/Ubuntu path in Docker:

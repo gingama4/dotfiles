@@ -34,6 +34,10 @@ function prepare_chezmoi_config() {
 [data.git.user]
     name = "gingama4"
     email = "me@gingama4.com"
+
+[data.nix]
+    profile = "linux"
+    username = "gingama4"
 EOF
 }
 
@@ -56,7 +60,7 @@ function install_nix() {
 
 function build_home_manager() {
   nix --extra-experimental-features "nix-command flakes" build \
-    "${CHEZMOI_SOURCE}#homeConfigurations.wsl.activationPackage" \
+    "${CHEZMOI_SOURCE}#homeConfigurations.linux.activationPackage" \
     --out-link /tmp/dotfiles-home-manager
 }
 
