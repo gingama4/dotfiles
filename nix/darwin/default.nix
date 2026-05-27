@@ -62,6 +62,19 @@
       ShowPathbar = true;
       ShowStatusBar = true;
     };
+
+    trackpad = {
+      # 3本指ドラッグ
+      TrackpadThreeFingerDrag = true;
+
+      # tap-to-dragの無効化
+      Dragging = false;
+      DragLock = false;
+
+      # 3本指ジェスチャーの無効化
+      TrackpadThreeFingerHorizSwipeGesture = 0;
+      TrackpadThreeFingerVertSwipeGesture = 0;
+    };
   };
 
   system.primaryUser = username;
