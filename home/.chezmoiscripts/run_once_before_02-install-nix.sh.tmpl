@@ -20,8 +20,8 @@ function install_nix() {
     return
   fi
 
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
-    | sh -s -- install --determinate --no-confirm
+  curl --proto '=https' --tlsv1.2 -sSf -L https://artifacts.nixos.org/nix-installer \
+    | sh -s -- install --no-confirm
 }
 
 install_nix
