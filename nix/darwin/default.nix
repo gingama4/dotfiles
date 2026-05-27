@@ -14,6 +14,7 @@
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      "manaflow-ai/homebrew-cmux" = inputs.homebrew-cmux;
     };
     mutableTaps = false;
   };
@@ -24,7 +25,7 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "none";
+      cleanup = "uninstall";
     };
 
     brews = [
@@ -34,6 +35,7 @@
     ];
 
     casks = [
+      "cmux"
       "codex"
       "ghostty"
       "google-chrome"
@@ -78,5 +80,5 @@
   };
 
   system.primaryUser = username;
-  system.stateVersion = 5;
+  system.stateVersion = 7;
 }
