@@ -13,12 +13,13 @@
 : <<'DOTFILES_NIX_FINGERPRINT'
 nix.profile={{ $nix_profile }}
 nix.username={{ $nix_username }}
-{{ include "../flake.nix" }}
-{{ include "../nix/darwin/default.nix" }}
-{{ include "../nix/home/common.nix" }}
-{{ include "../nix/home/darwin.nix" }}
-{{ include "../nix/home/linux.nix" }}
-{{ include "../home/dot_config/dotfiles-nix/flake.nix.tmpl" }}
+flake.nix.sha256={{ include "../flake.nix" | sha256sum }}
+flake.lock.sha256={{ include "../flake.lock" | sha256sum }}
+nix/darwin/default.nix.sha256={{ include "../nix/darwin/default.nix" | sha256sum }}
+nix/home/common.nix.sha256={{ include "../nix/home/common.nix" | sha256sum }}
+nix/home/darwin.nix.sha256={{ include "../nix/home/darwin.nix" | sha256sum }}
+nix/home/linux.nix.sha256={{ include "../nix/home/linux.nix" | sha256sum }}
+home/dot_config/dotfiles-nix/flake.nix.tmpl.sha256={{ include "../home/dot_config/dotfiles-nix/flake.nix.tmpl" | sha256sum }}
 DOTFILES_NIX_FINGERPRINT
 
 set -Eeuo pipefail

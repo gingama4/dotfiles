@@ -14,6 +14,7 @@
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      "manaflow-ai/homebrew-cmux" = inputs.homebrew-cmux;
     };
     mutableTaps = false;
   };
@@ -24,7 +25,7 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "none";
+      cleanup = "uninstall";
     };
 
     brews = [
@@ -34,7 +35,9 @@
     ];
 
     casks = [
+      "cmux"
       "codex"
+      "codex-app"
       "ghostty"
       "google-chrome"
       "obsidian"
@@ -62,8 +65,21 @@
       ShowPathbar = true;
       ShowStatusBar = true;
     };
+
+    trackpad = {
+      # 3本指ドラッグ
+      TrackpadThreeFingerDrag = true;
+
+      # tap-to-dragの無効化
+      Dragging = false;
+      DragLock = false;
+
+      # 3本指ジェスチャーの無効化
+      TrackpadThreeFingerHorizSwipeGesture = 0;
+      TrackpadThreeFingerVertSwipeGesture = 0;
+    };
   };
 
   system.primaryUser = username;
-  system.stateVersion = 5;
+  system.stateVersion = 7;
 }
