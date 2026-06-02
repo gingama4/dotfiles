@@ -37,6 +37,7 @@
     casks = [
       "cmux"
       "codex"
+      "codex-app"
       "ghostty"
       "google-chrome"
       "obsidian"
