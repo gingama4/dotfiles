@@ -10,6 +10,25 @@ readonly ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 readonly WORK_DIR="${RUNNER_TEMP:-${TMPDIR:-/tmp}}/dotfiles-macos-test"
 readonly OUT_LINK="${WORK_DIR}/dotfiles-darwin-system"
 readonly NIX_FLAKE_FLAGS=(--extra-experimental-features "nix-command flakes")
+readonly DARWIN_SYSTEM="aarch64-darwin"
+
+function require_macos_runner() {
+  local os
+  local arch
+
+  os="$(uname -s)"
+  arch="$(uname -m)"
+
+  if [ "${os}" != "Darwin" ]; then
+    echo "This test must run on macOS. Got ${os}." >&2
+    exit 1
+  fi
+
+  if [ "${arch}" != "arm64" ]; then
+    echo "This test builds ${DARWIN_SYSTEM} and requires an arm64 macOS runner. Got ${arch}." >&2
+    exit 1
+  fi
+}
 
 function nix_command() {
   if command -v nix > /dev/null 2>&1; then
@@ -71,6 +90,33 @@ function render_scripts() {
     "${WORK_DIR}/apply-nix.sh"
 }
 
+function verify_install_nix_script() {
+  local install_script="${WORK_DIR}/install-nix.sh"
+
+  if grep -Eq 'DeterminateSystems|install\.determinate\.systems|https://nixos\.org/nix/install' \
+    "${install_script}"; then
+    echo "Rendered install-nix script references an unsupported Nix installer." >&2
+    exit 1
+  fi
+
+  if ! grep -q 'https://artifacts.nixos.org/nix-installer' "${install_script}"; then
+    echo "Rendered install-nix script does not use the NixOS installer." >&2
+    exit 1
+  fi
+
+  if ! grep -q -- '--no-confirm' "${install_script}"; then
+    echo "Rendered install-nix script does not skip confirmation for automation." >&2
+    exit 1
+  fi
+
+  if ! grep -q -- '--enable-flakes' "${install_script}"; then
+    echo "Rendered install-nix script does not enable flakes with the NixOS installer." >&2
+    exit 1
+  fi
+
+  DOTFILES_SKIP_NIX_INSTALL=1 bash "${install_script}"
+}
+
 function build_darwin_system() {
   local nix_bin
   nix_bin="$(nix_command)"
@@ -83,9 +129,11 @@ function build_darwin_system() {
 }
 
 function main() {
+  require_macos_runner
   activate_nix
   prepare_work_dir
   render_scripts
+  verify_install_nix_script
   build_darwin_system
 }
 
