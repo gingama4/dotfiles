@@ -21,7 +21,7 @@ function install_nix() {
   fi
 
   curl --proto '=https' --tlsv1.2 -sSf -L https://artifacts.nixos.org/nix-installer \
-    | sh -s -- install --no-confirm
+    | sh -s -- install --no-confirm --enable-flakes
 }
 
 install_nix
