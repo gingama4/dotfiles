@@ -1,4 +1,4 @@
-{ config, inputs, username, ... }:
+{ pkgs, config, inputs, username, ... }:
 
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -43,6 +43,14 @@
       "obsidian"
       "slack"
       "visual-studio-code"
+    ];
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      hackgen-nf-font
+      udev-gothic-nf
+      plemoljp-nf
     ];
   };
 
