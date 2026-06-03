@@ -10,6 +10,7 @@ later(function ()
     "copilot_ls",
     "lua_ls",
     "intelephense",
+    "gopls",
     "vtsls",
   })
 

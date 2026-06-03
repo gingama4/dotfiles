@@ -26,6 +26,8 @@ in
       git
       gnupg
       go
+      gopls
+      gofumpt
       lazygit
       lua-language-server
       mise
