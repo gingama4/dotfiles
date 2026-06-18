@@ -14,5 +14,5 @@
     with pkgs;
     [
       openssh
-    ]:
+    ];
 }
