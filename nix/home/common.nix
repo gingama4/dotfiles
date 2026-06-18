@@ -20,7 +20,6 @@ in
       chezmoi
       cmake
       devenv
-      direnv
       eza
       fzf
       gh
