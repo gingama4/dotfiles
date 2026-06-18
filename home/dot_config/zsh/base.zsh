@@ -92,6 +92,11 @@ if (( $+commands[eza] )); then
   alias ls='eza --icons'
 fi
 
+# devenv
+if (( $+commands[devenv] )); then
+  eval "$(devenv hook zsh)"
+fi
+
 # Setopt
 unsetopt glob_dots
 unsetopt ignore_eof
