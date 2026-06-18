@@ -19,6 +19,7 @@ in
       cargo
       chezmoi
       cmake
+      devenv
       direnv
       eza
       fzf
