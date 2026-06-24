@@ -42,7 +42,6 @@ in
       vim
       zsh
     ]
-    ++ optionalPackage "github-copilot-cli"
     ++ optionalPackage "intelephense"
     ++ optionalPackage "pnpm"
     ++ optionalPackage "vtsls";
