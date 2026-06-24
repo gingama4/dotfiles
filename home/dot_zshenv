@@ -18,3 +18,5 @@ export SHELDON_DATA_DIR="${XDG_DATA_HOME}/sheldon"
 # enhancd
 export ENHANCD_DIR="${XDG_DATA_HOME}/enhancd"
 
+# NPM
+export NPM_CONFIG_PREFIX="${HOME}/.local"
