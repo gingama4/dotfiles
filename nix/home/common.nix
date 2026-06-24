@@ -46,4 +46,8 @@ in
     ++ optionalPackage "intelephense"
     ++ optionalPackage "pnpm"
     ++ optionalPackage "vtsls";
+
+  home.sessionVariables = {
+    EDITOR_NODE = lib.getExe pkgs.nodejs;
+  };
 }
