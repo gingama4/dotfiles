@@ -27,6 +27,7 @@ later(function()
     formatters_by_ft = {
       lua = { "stylua" },
       php = { "pint" },
+      blade = { "blade-formatter" },
       go = { "gofumpt" },
       javascript = { "eslint_d", "prettier" },
       typescript = { "eslint_d", "prettier" },

@@ -16,6 +16,7 @@ in
   home.packages =
     with pkgs;
     [
+      blade-formatter
       cargo
       chezmoi
       cmake
