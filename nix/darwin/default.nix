@@ -40,6 +40,7 @@
       "codex-app"
       "ghostty"
       "google-chrome"
+      "hhkb"
       "obsidian"
       "slack"
       "visual-studio-code"
