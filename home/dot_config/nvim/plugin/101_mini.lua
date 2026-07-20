@@ -1,36 +1,79 @@
-local now, later = GinVim.now, GinVim.later
+local now, now_if_args, later = GinVim.now, GinVim.now_if_args, GinVim.later
+
+-- #####################################
+-- Step 1
+-- #####################################
+
+-- now(function() vim.cmd('colorscheme minisummer') end)
 
 now(function()
   require("mini.basics").setup({
-    options = {
-      extra_ui = true,
-    },
-    mappings = {
-      option_toggle_prefix = "m",
-    },
+    options = { basic = false },
+    mappings = { windows = true, move_with_alt = true },
+    autocommands = { relnum_in_visual_mode = true },
   })
 end)
 
 now(function()
   require("mini.icons").setup()
   later(MiniIcons.mock_nvim_web_devicons)
+  later(MiniIcons.tweak_lsp_kind)
 end)
 
 now(function()
-  require("mini.notify").setup()
-  vim.notify = require("mini.notify").make_notify({})
+  local predicate = function(notif)
+    if not (notif.data.source == 'lsp_progress' and notif.data.client_name == 'lua_ls') then return true end
+    return notif.msg:find('Diagnosing') == nil and notif.msg:find('semantic tokens') == nil
+  end
+  local custom_sort = function(notif_arr) return MiniNotify.default_sort(vim.tbl_filter(predicate, notif_arr)) end
+
+  require("mini.notify").setup({ content = { sort = custom_sort } })
+end)
+
+now(function()
+  require("mini.sessions").setup()
+end)
+
+now(function()
+  require("mini.starter").setup()
+end)
+
+now(function()
+  require("mini.statusline").setup()
 end)
 
 now(function()
   require("mini.tabline").setup()
 end)
-now(function()
-  require("mini.statusline").setup()
-  vim.opt.laststatus = 3
+
+-- #####################################
+-- Step 1.5
+-- #####################################
+
+now_if_args(function()
+  require("mini.misc").setup({ make_global = { 'put', 'put_text', 'stat_summary', 'bench_time' } })
+  MiniMisc.setup_auto_root()
+  MiniMisc.setup_restore_cursor()
+  MiniMisc.setup_termbg_sync()
 end)
-now(function()
-  require("mini.starter").setup()
-end)
+
+-- now_if_args(function()
+--   local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
+--   local process_items = function(items, base)
+--     return MiniCompletion.default_process_items(items, base, process_items_opts)
+--   end
+--   require("mini.completion").setup({
+--     lsp_completion = { source_func = 'omnifunc', auto_setup = false, process_items = process_items },
+--   })
+--
+--   local on_attach = function(args) vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp' end
+--   GinVim.create_autocmd('LspAttach', '*', on_attach, 'Custom `on_attach`')
+--   vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
+-- end)
+
+-- #####################################
+-- Step 2
+-- #####################################
 
 later(function()
   require("mini.extra").setup()
@@ -77,7 +120,19 @@ later(function()
 end)
 
 later(function()
+  require("mini.cmdline").setup()
+end)
+
+later(function()
+  require("mini.comment").setup()
+end)
+
+later(function()
   require("mini.cursorword").setup()
+end)
+
+later(function()
+  require("mini.diff").setup()
 end)
 
 later(function()
@@ -93,14 +148,31 @@ later(function()
 end)
 
 later(function()
-  require("mini.misc").setup()
-  MiniMisc.setup_auto_root()
-  MiniMisc.setup_restore_cursor()
-  MiniMisc.setup_termbg_sync()
+  require("mini.input").setup()
 end)
 
 later(function()
-  require("mini.pairs").setup()
+  require("mini.keymap").setup()
+  MiniKeymap.map_multistep('i', '<Tab>', { 'pmenu_next' })
+  MiniKeymap.map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
+  MiniKeymap.map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
+  MiniKeymap.map_multistep('i', '<BR>', { 'minipairs_bs' })
+end)
+
+later(function()
+  local map = require("mini.map")
+  local gen_integr = map.gen_integration
+  map.setup({
+    symbols = { encode = map.gen_encode_symbols.dot('4x2') },
+    integrations = { gen_integr.builtin_search(), gen_integr.diff(), gen_integr.diagnostic() },
+  })
+  for _, key in ipairs({ 'n', 'N', '*', '#' }) do
+    vim.keymap.set('n', key, key .. 'zv<Cmd>lua MiniMap.refresh({}, { lines = false, scrollbar = false })<CR>')
+  end
+end)
+
+later(function()
+  require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = false } })
 end)
 
 later(function()
