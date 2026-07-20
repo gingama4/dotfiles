@@ -20,6 +20,7 @@ in
       cargo
       chezmoi
       cmake
+      copilot-language-server
       devenv
       eza
       fzf

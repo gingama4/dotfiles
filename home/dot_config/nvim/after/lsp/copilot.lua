@@ -26,13 +26,11 @@ return {
         local bufnr = args.buf
         vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
 
-        vim.keymap.set("i", "<tab>", function()
-          if not vim.lsp.inline_completion.get() then
-            return "<tab>"
-          end
+        vim.keymap.set("i", "<C-e>", function()
+          vim.lsp.inline_completion.get()
 
           if vim.fn.pumvisible() then
-            return "<tab>"
+            return "<C-e>"
           end
         end, { silent = true, expr = true, buffer = bufnr })
 
