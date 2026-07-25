@@ -52,8 +52,4 @@ in
 
   home.file.".local/share/dotfiles/editor-bin".source =
     "${editorToolchain}/bin";
-
-  home.sessionVariables = {
-    EDITOR_NODE = lib.getExe pkgs.nodejs;
-  };
 }
