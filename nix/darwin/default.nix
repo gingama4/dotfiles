@@ -36,8 +36,8 @@
 
     casks = [
       "cmux"
+      "chatgpt"
       "codex"
-      "codex-app"
       "ghostty"
       "google-chrome"
       "hhkb"
