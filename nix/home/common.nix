@@ -1,26 +1,35 @@
 { lib, pkgs, ... }:
 
 let
-  optionalPackage =
-    name:
-    let
-      package = builtins.tryEval (builtins.getAttr name pkgs);
-    in
-    lib.optional package.success package.value;
+  editorPackages =
+    with pkgs;
+    [
+      blade-formatter
+      copilot-language-server
+      gopls
+      intelephense
+      lua-language-server
+      nodejs
+      rust-analyzer
+      vtsls
+    ];
+
+  editorToolchain = pkgs.buildEnv {
+    name = "dotfiles-editor-toolchain";
+    paths = editorPackages;
+    pathsToLink = [ "/bin" ];
+  };
 in
 {
   home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 
-  home.packages =
-    with pkgs;
-    [
-      blade-formatter
+  home.packages = editorPackages ++ 
+    (with pkgs;[
       cargo
       chezmoi
       cmake
-      copilot-language-server
       devenv
       eza
       fzf
@@ -29,24 +38,20 @@ in
       git
       gnupg
       go
-      gopls
-      gofumpt
       lazygit
-      lua-language-server
       mise
       neovim
-      nodejs
+      pnpm
       ripgrep
-      rust-analyzer
       rustc
       sheldon
       tree-sitter
       vim
       zsh
-    ]
-    ++ optionalPackage "intelephense"
-    ++ optionalPackage "pnpm"
-    ++ optionalPackage "vtsls";
+    ]);
+
+  home.file.".local/share/dotfiles/editor-bin".source =
+    "${editorToolchain}/bin";
 
   home.sessionVariables = {
     EDITOR_NODE = lib.getExe pkgs.nodejs;
