@@ -4,6 +4,7 @@ let
   editorPackages =
     with pkgs;
     [
+      astro-language-server
       blade-formatter
       copilot-language-server
       gopls

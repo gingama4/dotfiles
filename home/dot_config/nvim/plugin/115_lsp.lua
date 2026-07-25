@@ -7,6 +7,7 @@ later(function ()
     "https://github.com/copilotlsp-nvim/copilot-lsp",
   })
   vim.lsp.enable({
+    "astro",
     "copilot",
     "lua_ls",
     "intelephense",
