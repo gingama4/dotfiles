@@ -28,26 +28,35 @@ in
 
   home.packages = editorPackages ++ 
     (with pkgs;[
+      bat
       cargo
       chezmoi
       cmake
+      curl
       devenv
       eza
+      fd
       fzf
       gh
       ghq
       git
+      gnumake
       gnupg
       go
+      jq
       lazygit
       mise
       neovim
       pnpm
+      python3
       ripgrep
       rustc
       sheldon
+      shellcheck
+      tree
       tree-sitter
       vim
+      yq-go
       zsh
     ]);
 
