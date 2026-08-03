@@ -1,0 +1,91 @@
+# GitHub CLIの読み取り系コマンド。
+# サンドボックス内では、OSの認証ストアやホスト側の認証情報へ
+# アクセスできない場合があるため、サンドボックス外で実行する。
+
+prefix_rule(
+    pattern = ["gh", "auth", "status"],
+    decision = "allow",
+    justification = "Read-only authentication status check may require access to credentials unavailable inside the sandbox.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", ["view", "list", "status", "checks", "diff"]],
+    decision = "allow",
+    justification = "Read-only GitHub pull request operations may require credentials unavailable inside the sandbox.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", ["view", "list", "status"]],
+    decision = "allow",
+    justification = "Read-only GitHub issue operations may require credentials unavailable inside the sandbox.",
+)
+
+prefix_rule(
+    pattern = ["gh", "run", ["view", "list", "watch"]],
+    decision = "allow",
+    justification = "Read-only GitHub Actions operations may require credentials unavailable inside the sandbox.",
+)
+
+prefix_rule(
+    pattern = ["gh", "workflow", ["view", "list"]],
+    decision = "allow",
+    justification = "Read-only GitHub Actions workflow operations may require credentials unavailable inside the sandbox.",
+)
+
+prefix_rule(
+    pattern = ["gh", "repo", ["view", "list"]],
+    decision = "allow",
+    justification = "Read-only GitHub repository operations may require credentials unavailable inside the sandbox.",
+)
+
+# gh apiは任意のエンドポイントや書き込み操作を実行できるため、
+# 読み取り用途であっても毎回ユーザーへ確認する。
+
+prefix_rule(
+    pattern = ["gh", "api"],
+    decision = "prompt",
+    justification = "GitHub API calls may read or modify remote resources.",
+)
+
+# GitHub上の状態を書き換える操作は毎回ユーザーへ確認する。
+
+prefix_rule(
+    pattern = ["gh", "pr", ["create", "comment", "review", "merge", "close", "reopen", "edit"]],
+    decision = "prompt",
+    justification = "GitHub pull request write operations require explicit approval.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", ["create", "comment", "close", "reopen", "edit"]],
+    decision = "prompt",
+    justification = "GitHub issue write operations require explicit approval.",
+)
+
+prefix_rule(
+    pattern = ["gh", "workflow", ["run", "enable", "disable"]],
+    decision = "prompt",
+    justification = "GitHub Actions workflow mutations require explicit approval.",
+)
+
+prefix_rule(
+    pattern = ["gh", "release", ["create", "edit", "delete", "upload"]],
+    decision = "prompt",
+    justification = "GitHub release mutations require explicit approval.",
+)
+
+prefix_rule(
+    pattern = ["gh", "repo", ["create", "delete", "rename", "archive", "fork"]],
+    decision = "prompt",
+    justification = "Repository mutations require explicit approval.",
+)
+
+# CodexにはGitHub CLIの認証状態を変更させない。
+# サンドボックス内で認証情報を取得できないことは、
+# 認証情報の期限切れや破損を意味しない。
+# 認証操作は通常のターミナルから手動で行う。
+
+prefix_rule(
+    pattern = ["gh", "auth", ["login", "logout", "refresh", "setup-git", "switch"]],
+    decision = "forbidden",
+    justification = "Manage GitHub authentication manually outside Codex. Sandbox credential access failures do not imply that authentication must be refreshed.",
+)
