@@ -36,7 +36,7 @@ function prepare_chezmoi_config() {
     email = "me@gingama4.com"
 
 [data.nix]
-    profile = "linux"
+    profile = "wsl-work"
     username = "gingama4"
 EOF
 }
@@ -60,7 +60,7 @@ function install_nix() {
 
 function build_home_manager() {
   nix --extra-experimental-features "nix-command flakes" build \
-    "${CHEZMOI_SOURCE}#homeConfigurations.linux.activationPackage" \
+    "${CHEZMOI_SOURCE}#homeConfigurations.wsl-work.activationPackage" \
     --out-link /tmp/dotfiles-home-manager
 }
 
@@ -78,6 +78,12 @@ function smoke_test() {
   command -v git
   test -f "${HOME}/.config/zsh/.zprofile"
   test -f "${HOME}/.config/mise/config.toml"
+  test -x "${HOME}/.local/bin/open"
+  zsh -ic 'test "${BROWSER:-}" = open'
+
+  shellcheck "${CHEZMOI_SOURCE}/home/dot_local/bin/executable_open"
+  shellcheck "${CHEZMOI_SOURCE}/scripts/test_open.sh"
+  "${CHEZMOI_SOURCE}/scripts/test_open.sh"
 }
 
 function main() {

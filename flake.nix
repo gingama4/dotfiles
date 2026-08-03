@@ -66,7 +66,14 @@
             ++ modules;
         };
 
-      mkWslWorkHome = args: mkLinuxHome args;
+      mkWslWorkHome =
+        args:
+        mkLinuxHome (
+          args
+          // {
+            modules = [ ./nix/home/wsl.nix ] ++ (args.modules or [ ]);
+          }
+        );
 
       mkDarwinConfiguration =
         {
@@ -111,6 +118,7 @@
         common = ./nix/home/common.nix;
         darwin = ./nix/home/darwin.nix;
         linux = ./nix/home/linux.nix;
+        wsl = ./nix/home/wsl.nix;
       };
 
       darwinConfigurations.hades = mkDarwinConfiguration {
