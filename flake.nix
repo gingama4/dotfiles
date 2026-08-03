@@ -128,5 +128,9 @@
       homeConfigurations.linux = mkLinuxHome {
         inherit username;
       };
+
+      homeConfigurations.wsl-work = mkWslWorkHome {
+        inherit username;
+      };
     };
 }
