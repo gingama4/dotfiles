@@ -67,6 +67,11 @@ if (( $+commands[mise] )); then
   eval "$(mise activate zsh)"
 fi
 
+# devenv
+if (( $+commands[devenv] )); then
+  eval "$(devenv hook zsh)"
+fi
+
 # fzf
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
