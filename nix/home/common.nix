@@ -53,10 +53,12 @@ in
       rustc
       sheldon
       shellcheck
+      starship
       tree
       tree-sitter
       vim
       yq-go
+      zoxide
       zsh
     ]);
 

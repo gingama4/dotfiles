@@ -5,7 +5,24 @@ elif [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
   . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
-# mise
-if command -v mise > /dev/null; then
-  eval "$(mise activate zsh)"
-fi
+# Home Manager
+for session_vars in \
+  "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" \
+  "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh" \
+  "$XDG_STATE_HOME/nix/profiles/profile/etc/profile.d/hm-session-vars.sh"
+do
+  if [[ -r "$session_vars" ]]; then
+    source "$session_vars"
+    break
+  fi
+done
+unset session_vars
+
+# PATH
+typeset -U path PATH
+path=(
+  "$HOME/go/bin"
+  $path
+)
+export PATH
+

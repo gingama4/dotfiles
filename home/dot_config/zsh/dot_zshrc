@@ -1,37 +1,94 @@
-# source command override
-function source {
-  ensure_zcompiled "$1"
-  builtin source "$1"
-}
+#------------------------------------
+# Emacs keybind
+#------------------------------------
+bindkey -e
 
-function ensure_zcompiled {
-  local target_dir="$HOME/.config/zsh"
-  local compiled="$1.zwc"
+#------------------------------------
+# PATH
+#------------------------------------
+typeset -U path PATH
+path=("HOME/.local/bin" $path)
 
-  if [[ "$1" == "$target_dir/"* ]]; then
-    if [[ ! -r "$compiled" || "$1" -nt "$compiled" ]]; then
-      echo "\033[1;36mCompiling\033[m $1"
-      zcompile "$1" "$compiled"
-    fi
-  fi
-}
+#------------------------------------
+# Basic Option
+#------------------------------------
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt no_beep
+setopt no_flow_control
+setopt interactive_comments
+setopt complete_in_word
+setopt auto_menu
 
-ensure_zcompiled "${ZDOTDIR}/.zshrc"
+#------------------------------------
+# Hitstory
+#------------------------------------
+HISTFILE="$XDG_STATE_HOME/zsh/histroy"
+HISTSIZE=50000
+SAVEHIST=10000
 
-# sheldon cache
-sheldon_cache="${SHELDON_CONFIG_DIR}/sheldon.zsh"
-sheldon_toml="${SHELDON_CONFIG_DIR}/plugins.toml"
-if [[ ! -r "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
-  sheldon lock --update
-  sheldon source > "$sheldon_cache"
-fi
-source "$sheldon_cache"
-unset sheldon_cache sheldon_toml
+[[ -d "${HISTFILE:h}" ]] || mkdir -p "${HISTFILE:h}"
 
-source "${ZDOTDIR}/base.zsh"
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
+#------------------------------------
+# Completion
+#------------------------------------
+zstyle ':completion:*' matcher-list \
+  'm:{a-zA-Z}={A-Za-z}' \
+  'r:|[._-]=* r:|=*'
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+autoload -Uz compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+
+#------------------------------------
+# Config
+#------------------------------------
+
+source "${ZDOTDIR}/aliases.zsh"
+source "${ZDOTDIR}/functions.zsh"
 source "${ZDOTDIR}/ssh.zsh"
-source "${ZDOTDIR}/function.zsh"
-source "${ZDOTDIR}/path.zsh"
 
-zsh-defer unfunction source
+#------------------------------------
+# Tools
+#------------------------------------
+
+# mise
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+fi
+
+# fzf
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
+
+# Zoxide
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+fi
+
+# Starship
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi
+
+# sheldon (plugin)
+if (( $+commands[sheldon] )); then
+  eval "$(sheldon source)"
+fi
+
+#------------------------------------
+# compinit
+#------------------------------------
+[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
 

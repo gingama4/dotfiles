@@ -1,7 +1,9 @@
 # SSH Sign
 export SSH_SIGNING_KEY="$HOME/.ssh/id_ed25519_github_sign"
 
-case $OS in
+local os="$(uname -s)"
+
+case $os in
   Darwin)
     if [[ -S "$SSH_AUTH_SOCK" && -r "$SSH_SIGNING_KEY" ]]; then
       ssh-add --apple-load-keychain "$SSH_SIGNING_KEY" >/dev/null 2>&1
