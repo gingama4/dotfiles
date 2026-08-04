@@ -14,7 +14,7 @@ export SHELDON_DATA_DIR="${XDG_DATA_HOME}/sheldon"
 # PATH
 typeset -U path PATH
 path=(
-  "HOME/.local/bin"
+  "$HOME/.local/bin"
   $path
 )
 export PATH
