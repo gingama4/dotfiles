@@ -13,6 +13,7 @@ later(function ()
     "intelephense",
     "gopls",
     "vtsls",
+    "eslint",
   })
 
   vim.diagnostic.config({
