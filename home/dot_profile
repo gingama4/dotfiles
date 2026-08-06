@@ -1,0 +1,15 @@
+# shellcheck shell=sh
+# Environment shared with non-interactive shells and GUI-launched tools.
+# shellcheck disable=SC1091
+. "${HOME}/.config/shell/agent-env.sh"
+
+# Login bash does not read ~/.bashrc by itself. Keep the existing interactive
+# bash-to-zsh handoff consistent for login sessions as well.
+if [ -n "${BASH_VERSION:-}" ]; then
+  case "$-" in
+    *i*)
+      # shellcheck disable=SC1091
+      . "${HOME}/.bashrc"
+      ;;
+  esac
+fi

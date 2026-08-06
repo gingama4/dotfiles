@@ -4,12 +4,6 @@
 bindkey -e
 
 #------------------------------------
-# PATH
-#------------------------------------
-typeset -U path PATH
-path=("HOME/.local/bin" $path)
-
-#------------------------------------
 # Basic Option
 #------------------------------------
 setopt auto_pushd
@@ -96,4 +90,3 @@ fi
 # compinit
 #------------------------------------
 [[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
-
