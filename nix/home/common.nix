@@ -45,6 +45,7 @@ in
       gnumake
       gnupg
       go
+      google-cloud-sdk
       jq
       lazygit
       mise
