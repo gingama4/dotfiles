@@ -71,16 +71,43 @@ function apply_chezmoi() {
 function smoke_test() {
   activate_nix
 
+  local zsh_bin
+  zsh_bin="$(command -v zsh)"
+
   command -v home-manager
   command -v mise
   command -v nvim
   command -v node
   command -v git
   test -f "${HOME}/.config/zsh/.zprofile"
+  test -f "${HOME}/.config/shell/agent-env.sh"
   test -f "${HOME}/.config/mise/config.toml"
   test -x "${HOME}/.local/bin/open"
   zsh -ic 'test "${BROWSER:-}" = open'
 
+  env -i \
+    HOME="${HOME}" \
+    USER="${USER}" \
+    PATH="/usr/local/bin:/usr/bin:/bin" \
+    BASH_ENV="${HOME}/.config/shell/agent-env.sh" \
+    /bin/bash -c 'command -v nix && command -v mise && command -v zsh'
+
+  env -i \
+    HOME="${HOME}" \
+    USER="${USER}" \
+    PATH="/usr/local/bin:/usr/bin:/bin" \
+    /bin/bash -lc \
+    "test \"\$BASH_ENV\" = \"\$HOME/.config/shell/agent-env.sh\" && command -v nix && command -v mise && command -v zsh"
+
+  env -i \
+    HOME="${HOME}" \
+    USER="${USER}" \
+    PATH="/usr/local/bin:/usr/bin:/bin" \
+    "${zsh_bin}" -c 'command -v nix && command -v mise && command -v zsh'
+
+  shellcheck "${CHEZMOI_SOURCE}/home/dot_config/shell/agent-env.sh"
+  shellcheck "${CHEZMOI_SOURCE}/home/dot_profile"
+  shellcheck "${CHEZMOI_SOURCE}/home/dot_bashrc"
   shellcheck "${CHEZMOI_SOURCE}/home/dot_local/bin/executable_open"
   shellcheck "${CHEZMOI_SOURCE}/scripts/test_open.sh"
   "${CHEZMOI_SOURCE}/scripts/test_open.sh"

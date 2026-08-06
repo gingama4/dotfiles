@@ -27,6 +27,20 @@ in
 
   programs.home-manager.enable = true;
 
+  # Keep the baseline tool paths available through hm-session-vars.sh. Shell
+  # startup files additionally source a shared environment for launchers that
+  # do not start an interactive shell.
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "$HOME/.local/share/mise/shims"
+    "$HOME/go/bin"
+    "$HOME/.nix-profile/bin"
+  ];
+
+  # Bash only reads BASH_ENV for non-interactive invocations. The referenced
+  # file is intentionally POSIX-compatible and silent.
+  home.sessionVariables.BASH_ENV = "$HOME/.config/shell/agent-env.sh";
+
   home.packages = editorPackages ++ 
     (with pkgs;[
       bat

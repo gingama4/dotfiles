@@ -1,8 +1,5 @@
-# XDG
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_STATE_HOME="${HOME}/.local/state"
+# Environment shared with non-interactive shells and GUI-launched tools.
+source "${HOME}/.config/shell/agent-env.sh"
 
 # zsh
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
@@ -10,12 +7,3 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 # sheldon
 export SHELDON_CONFIG_DIR="${ZDOTDIR}/sheldon"
 export SHELDON_DATA_DIR="${XDG_DATA_HOME}/sheldon"
-
-# PATH
-typeset -U path PATH
-path=(
-  "$HOME/.local/bin"
-  $path
-)
-export PATH
-
