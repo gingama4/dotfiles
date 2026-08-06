@@ -30,6 +30,7 @@ in
   home.packages = editorPackages ++ 
     (with pkgs;[
       bat
+      bruno-cli
       cargo
       chezmoi
       cmake
