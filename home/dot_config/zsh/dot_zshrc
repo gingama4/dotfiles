@@ -87,6 +87,12 @@ if (( $+commands[sheldon] )); then
 fi
 
 #------------------------------------
+# Key bindings
+#------------------------------------
+zle -N _cgr_widget
+bindkey '^G' _cgr_widget
+
+#------------------------------------
 # compinit
 #------------------------------------
 [[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"

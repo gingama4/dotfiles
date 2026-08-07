@@ -15,3 +15,8 @@ function cgr() {
 
   cd "$root/$repo"
 }
+
+function _cgr_widget() {
+  cgr
+  zle reset-prompt
+}
