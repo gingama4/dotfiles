@@ -10,7 +10,10 @@ case "$-" in
   *) return ;;
 esac
 
-if [ -n "${ZSH_VERSION:-}" ] || [ -n "${DOTFILES_KEEP_BASH:-}" ]; then
+if [ -n "${ZSH_VERSION:-}" ] || \
+  [ -n "${DOTFILES_KEEP_BASH:-}" ] || \
+  [ -n "${BASH_EXECUTION_STRING:-}" ]
+then
   return
 fi
 

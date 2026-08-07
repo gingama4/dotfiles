@@ -99,6 +99,8 @@ function smoke_test() {
     /bin/bash -lc \
     "test \"\$BASH_ENV\" = \"\$HOME/.config/shell/agent-env.sh\" && command -v nix && command -v mise && command -v zsh"
 
+  test "$(/bin/bash -ic 'printf %s bash-command-ran')" = "bash-command-ran"
+
   env -i \
     HOME="${HOME}" \
     USER="${USER}" \
