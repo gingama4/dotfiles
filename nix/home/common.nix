@@ -7,7 +7,6 @@ let
       astro-language-server
       blade-formatter
       copilot-language-server
-      gofumpt
       gopls
       intelephense
       lua-language-server

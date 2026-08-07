@@ -34,7 +34,7 @@ later(function()
       lua = { "stylua" },
       php = { "pint" },
       blade = { "blade-formatter" },
-      go = { "gofumpt" },
+      go = { lsp_format = "prefer" },
       javascript = js_formatter,
       typescript = js_formatter,
       tsx = js_formatter,
