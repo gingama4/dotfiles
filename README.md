@@ -32,9 +32,7 @@ sudo darwin-rebuild switch --flake ~/dotfiles#hades
 Build and activate Home Manager for the first time, without sudo:
 
 ```sh
-cd ~/dotfiles
-nix build .#homeConfigurations.normal.activationPackage
-./result/activate
+nix run home-manager/master -- switch --flake .#normal
 ```
 
 Apply subsequent user configuration changes:
@@ -42,14 +40,6 @@ Apply subsequent user configuration changes:
 ```sh
 home-manager switch --flake ~/dotfiles#normal
 ```
-
-Home Manager currently manages only its own CLI. Existing dotfiles will be
-migrated incrementally from chezmoi; the legacy `home/` files and
-`nix/home/common.nix` are not imported by this configuration. The legacy setup
-scripts are not part of this setup procedure.
-
-A separate `contest` Home Manager configuration is planned once the Neovim
-package can exclude AI features. It is not yet available.
 
 ## Updating
 
