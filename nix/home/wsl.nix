@@ -1,5 +1,0 @@
-{ ... }:
-
-{
-  home.sessionVariables.BROWSER = "open";
-}
