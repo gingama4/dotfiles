@@ -1,6 +1,6 @@
 {
   imports = [
     ./common.nix
-    ../../home/config/git
+    ./config/git
   ];
 }

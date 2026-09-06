@@ -24,7 +24,7 @@
       homeConfigurations.normal = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         extraSpecialArgs = { username = "gingama4"; };
-        modules = [ ./nix/home/normal.nix ];
+        modules = [ ./home/normal.nix ];
       };
     };
 }
