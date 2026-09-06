@@ -26,6 +26,19 @@
     profileExtra = ''
       eval "$(/opt/homebrew/bin/brew shellenv zsh)"
     '';
+
+    initContent = ''
+      ghq-fzf-cd() {
+        local repo
+        repo=$(ghq list --full-path | fzf --no-multi --prompt='ghq> ') || return 0
+        [[ -n "$repo" ]] || return 0
+        builtin cd -- "$repo"
+        zle reset-prompt
+      }
+      zle -N ghq-fzf-cd
+      bindkey -M emacs '^G' ghq-fzf-cd
+      bindkey -M viins '^G' ghq-fzf-cd
+    '';
   };
 
   programs.starship = {
@@ -35,6 +48,8 @@
 
   home.packages = with pkgs; [
     eza
+    fzf
+    ghq
     lazygit
   ];
 }
