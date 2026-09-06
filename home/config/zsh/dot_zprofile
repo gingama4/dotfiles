@@ -1,2 +1,0 @@
-# The shared environment is loaded from ~/.zshenv so it is also available to
-# non-interactive zsh commands. Keep this file for login-only additions.
