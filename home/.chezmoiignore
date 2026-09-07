@@ -1,6 +1,0 @@
-**/.DS_Store
-result
-result-*
-{{ if ne .nix.profile "wsl-work" }}
-.local/bin/open
-{{ end }}

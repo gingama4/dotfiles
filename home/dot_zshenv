@@ -1,9 +1,0 @@
-# Environment shared with non-interactive shells and GUI-launched tools.
-source "${HOME}/.config/shell/agent-env.sh"
-
-# zsh
-export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
-
-# sheldon
-export SHELDON_CONFIG_DIR="${ZDOTDIR}/sheldon"
-export SHELDON_DATA_DIR="${XDG_DATA_HOME}/sheldon"

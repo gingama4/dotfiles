@@ -1,3 +1,0 @@
-[tools]
-# Global fallback runtimes and editor tooling are managed by Nix.
-# Put project-specific versions in each repository's mise config.

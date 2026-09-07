@@ -1,2 +1,0 @@
-# NPM
-export PATH="${NPM_CONFIG_PREFIX}/bin:$PATH"
