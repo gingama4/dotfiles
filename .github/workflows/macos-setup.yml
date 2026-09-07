@@ -22,4 +22,6 @@ jobs:
       - name: Run setup
         env:
           DOT_DIR: ${{ github.workspace }}
+          NIX_INSTALLER_EXTRA_CONF: |
+            access-tokens = github.com=${{ github.token }}
         run: ./setup.sh
