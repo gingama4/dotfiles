@@ -8,6 +8,7 @@
 
     casks = [
       "chatgpt"
+      "codex"
       "ghostty"
       "google-chrome"
       "slack"
