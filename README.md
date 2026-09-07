@@ -3,6 +3,8 @@
   <p>My personal dotfiles for macOS.</p>
 </div>
 
+<a href="https://github.com/gingama4/dotfiles/actions/workflows/macos-setup.yml"><img src="https://github.com/gingama4/dotfiles/actions/workflows/macos-setup.yml/badge.svg" alt="macOS setup"></a>
+
 ## Setup
 
 Run the setup script on macOS:

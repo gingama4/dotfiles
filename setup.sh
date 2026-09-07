@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-DOT_DIR="${HOME}/dotfiles"
+DOT_DIR="${DOT_DIR:-${HOME}/dotfiles}"
 REPO_URL="https://github.com/gingama4/dotfiles"
 DIALOG="
  Setup Steps:

@@ -1,0 +1,25 @@
+name: macOS setup
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: macos-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Run setup
+        env:
+          DOT_DIR: ${{ github.workspace }}
+        run: ./setup.sh
