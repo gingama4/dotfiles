@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-DOT_DIR="${HOME}/dotfiles"
+DOT_DIR="${DOT_DIR:-${HOME}/dotfiles}"
 REPO_URL="https://github.com/gingama4/dotfiles"
 DIALOG="
  Setup Steps:
@@ -84,7 +84,9 @@ darwin_cmd() {
   if has darwin-rebuild; then
     sudo darwin-rebuild "$@"
   else
-    sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- "$@"
+    sudo nix --extra-experimental-features "nix-command flakes" run \
+      --inputs-from "$DOT_DIR" \
+      nix-darwin#darwin-rebuild -- "$@"
   fi
 }
 
@@ -97,7 +99,9 @@ homemanager_cmd() {
   if has home-manager; then
     home-manager "$@"
   else
-    nix --extra-experimental-features "nix-command flakes" run home-manager/master -- "$@"
+    nix --extra-experimental-features "nix-command flakes" run \
+      --inputs-from "$DOT_DIR" \
+      home-manager#home-manager -- "$@"
   fi
 }
 
