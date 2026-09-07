@@ -99,7 +99,9 @@ homemanager_cmd() {
   if has home-manager; then
     home-manager "$@"
   else
-    nix --extra-experimental-features "nix-command flakes" run home-manager/master -- "$@"
+    nix --extra-experimental-features "nix-command flakes" run \
+      --inputs-from "$DOT_DIR" \
+      home-manager#home-manager -- "$@"
   fi
 }
 
