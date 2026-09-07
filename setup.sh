@@ -84,7 +84,9 @@ darwin_cmd() {
   if has darwin-rebuild; then
     sudo darwin-rebuild "$@"
   else
-    sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- "$@"
+    sudo nix --extra-experimental-features "nix-command flakes" run \
+      --inputs-from "$DOT_DIR" \
+      nix-darwin#darwin-rebuild -- "$@"
   fi
 }
 
