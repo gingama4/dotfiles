@@ -5,41 +5,32 @@
 
 ## Setup
 
-Install Nix using the [Lix installer](https://lix.systems/install/), then clone
-this repository to `~/dotfiles`.
+Run the setup script on macOS:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/gingama4/dotfiles/master/setup.sh | bash
+```
+
+The script performs the following steps:
+
+1. Installs Nix using the [Lix installer](https://lix.systems/install/) if needed.
+2. Clones this repository to `~/dotfiles`.
+3. Applies the nix-darwin configuration.
+4. Applies the Home Manager configuration.
+
+The nix-darwin step may prompt for your administrator password.
+
+To rerun only selected setup steps, run the cloned script interactively and
+choose from its menu:
+
+```sh
+~/dotfiles/setup.sh
+```
 
 The flake manages the system and user environment separately:
 
 - `darwinConfigurations.hades`: macOS settings, Homebrew, and Nix itself.
 - `homeConfigurations.normal`: standalone Home Manager for `gingama4`.
-
-## System configuration
-
-Bootstrap nix-darwin:
-
-```sh
-sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/dotfiles#hades
-```
-
-Apply subsequent system changes:
-
-```sh
-sudo darwin-rebuild switch --flake ~/dotfiles#hades
-```
-
-## User configuration
-
-Build and activate Home Manager for the first time, without sudo:
-
-```sh
-nix run home-manager/master -- switch --flake .#normal
-```
-
-Apply subsequent user configuration changes:
-
-```sh
-home-manager switch --flake ~/dotfiles#normal
-```
 
 ## Updating
 
