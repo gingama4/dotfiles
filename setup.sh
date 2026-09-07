@@ -3,10 +3,20 @@ set -e
 
 DOT_DIR="${HOME}/dotfiles"
 REPO_URL="https://github.com/gingama4/dotfiles"
+DIALOG="
+ Setup Steps:
+ (1) download dotfiles
+ (2) setup nix-darwin
+ (3) setup home-manager
+
+ Select:
+ [a] run all steps
+ [1-3] run a specific step
+ * You can use multiple choose like '23'
+"
 
 main () {
   echo " Dotfiles by gingama4"
-  echo "  --> Starting setup script..."
   OS="$(uname)"
 
   if [ "$OS" != "Darwin" ]; then
@@ -14,10 +24,29 @@ main () {
     exit 1
   fi
 
+  local selected_steps
+  if [ -t 0 ]; then
+    echo "$DIALOG"
+    read -r selected_steps
+  else
+    selected_steps="a"
+  fi
+
+  echo "  --> Starting setup script..."
+
   ensure_nix
-  download_dotfiles
-  setup_darwin
-  setup_home
+
+  if [[ "$selected_steps" = *"a"* ]] || [[ "$selected_steps" = *"1"* ]]; then
+    download_dotfiles
+  fi
+
+  if [[ "$selected_steps" = *"a"* ]] || [[ "$selected_steps" = *"2"* ]]; then
+    setup_darwin
+  fi
+
+  if [[ "$selected_steps" = *"a"* ]] || [[ "$selected_steps" = *"3"* ]]; then
+    setup_home
+  fi
   echo "  --> Finished."
 }
 
