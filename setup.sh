@@ -2,6 +2,7 @@
 set -e
 
 DOT_DIR="${DOT_DIR:-${HOME}/dotfiles}"
+SETUP_MODE="${SETUP_MODE:-switch}"
 REPO_URL="https://github.com/gingama4/dotfiles"
 DIALOG="
  Setup Steps:
@@ -23,6 +24,14 @@ main () {
     echo "  --> Unsupported OS: ${OS}"
     exit 1
   fi
+
+  case "$SETUP_MODE" in
+    build|switch) ;;
+    *)
+      echo "  --> Unsupported setup mode: ${SETUP_MODE}"
+      exit 1
+      ;;
+  esac
 
   local selected_steps
   if [ -t 0 ]; then
@@ -77,7 +86,7 @@ git_cmd() {
 
 setup_darwin() {
   echo "  --> Setting up nix-darwin..."
-  darwin_cmd switch --flake "$DOT_DIR"#hades
+  darwin_cmd "$SETUP_MODE" --flake "$DOT_DIR"#hades
 }
 
 darwin_cmd() {
@@ -92,7 +101,7 @@ darwin_cmd() {
 
 setup_home() {
   echo "  --> Setting up home-manager..."
-  homemanager_cmd switch --flake "$DOT_DIR"#normal
+  homemanager_cmd "$SETUP_MODE" --flake "$DOT_DIR"#normal
 }
 
 homemanager_cmd() {
