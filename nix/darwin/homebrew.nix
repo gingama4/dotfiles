@@ -11,6 +11,7 @@
       "codex"
       "ghostty"
       "google-chrome"
+      "raycast"
       "slack"
       "visual-studio-code"
     ];
